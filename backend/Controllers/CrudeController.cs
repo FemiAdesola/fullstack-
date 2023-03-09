@@ -5,6 +5,7 @@ using Backend.Models;
 using Backend.Services;
 using Microsoft.AspNetCore.Mvc;
 using Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 public abstract class CrudController<TModel, TDto> : BaseApiController
     where TModel : BaseModel, new()
@@ -39,7 +40,7 @@ public abstract class CrudController<TModel, TDto> : BaseApiController
         }
         finally
         {
-           // dbConn?.Dispose();
+            // DbContext?.Dispose();
         }
     }
 

@@ -6,6 +6,6 @@ public  class Category : BaseModel
 {
     public string Name { get; set; } = null!;
     
-    [Column(TypeName = "jsonb")]
+    [Column(TypeName = "bytea")]
     public string Image { get; set; } = null!;
 }

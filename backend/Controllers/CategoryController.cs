@@ -7,17 +7,17 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Exceptions;
 
-// [ApiController]
-// [Route("[controller]s")]
 
-// [HttpRoute("categories")]
+[Route("categories")]
 public class CategoryController : CrudController<Category, CategoryDTO>
 {
     private readonly ICategoryService _categoryService;
+    private readonly ILogger<CategoryController> _logger;
 
-    public CategoryController(ICategoryService service) : base(service)
+    public CategoryController(ICategoryService service, ILogger<CategoryController> logger) : base(service)
     {
         _categoryService = service;
+        _logger = logger;
+       
     }
-
 }
