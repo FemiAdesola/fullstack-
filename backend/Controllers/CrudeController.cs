@@ -61,10 +61,72 @@ public abstract class CrudController<TModel, TDto> : BaseApiController
         {
             return Ok("payload is not valid .....");
         }
-        finally
+    }
+
+ 
+    [HttpGet("{id:int}")]
+    public async virtual Task<ActionResult<TModel?>> Get(int id)
+    {
+        try 
         {
-            // dbConn?.Dispose();
+            var item = await _service.GetAsync(id);
+            if (item is null)
+            {
+                return NotFound($" {item} is not found");
+            }
+            return item;
+        }
+        catch (HttpException ex) when (ex.StatusCode == 500)
+        {
+            return Ok("Error getting data for the .....");
+        }
+        catch (HttpException ex) when (ex.StatusCode == 400)
+        {
+            return Ok("payload is not valid .....");
         }
     }
 
+    [HttpPut("{id:int}")]
+    public async Task<ActionResult<TModel>> Update(int id, TDto request)
+    {
+        try
+        {
+            var item = await _service.UpdateAsync(id, request);
+            if (item is null)
+            {
+                return NotFound("item is not found");
+            }
+            return Ok(item);
+        }
+        catch (HttpException ex) when (ex.StatusCode == 500)
+        {
+            return Ok("Error in getting data .....");
+        }
+        catch (NotFoundException ex) when (ex.StatusCode == 404)
+        {
+            return Ok("payload is not found .....");
+        }
+       
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> Delete(int id)
+    {
+        try 
+        {
+            if (await _service.DeleteAsync(id))
+            {
+                return Ok(new { Message = $"Crud {id} is deleted " });
+            }
+            return NotFound($" {id} is not found");
+        }
+        catch (HttpException ex) when (ex.StatusCode == 500)
+        {
+            return Ok("Error in getting data .....");
+        }
+        catch (NotFoundException ex) when (ex.StatusCode == 404)
+        {
+            return Ok("payload is not found .....");
+        }
+    }
 }

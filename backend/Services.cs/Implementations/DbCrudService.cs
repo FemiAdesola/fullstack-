@@ -13,7 +13,6 @@ public class DbCrudService<TModel, TDto> : ICrudService<TModel, TDto>
     where TModel : BaseModel, new()
     where TDto : BaseDTO<TModel>
 {
-
     protected readonly AppDbContext _dbContext;
 
     public DbCrudService(AppDbContext dbContext)
@@ -35,18 +34,32 @@ public class DbCrudService<TModel, TDto> : ICrudService<TModel, TDto>
         return await _dbContext.Set<TModel>().AsNoTracking().ToListAsync();
     }
 
-    public Task<bool> DeleteAsync(int id)
+    public virtual async Task<TModel?> GetAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _dbContext.Set<TModel>().FindAsync(id);
     }
 
-    public Task<TModel?> GetAsync(int id)
+    public async Task<TModel?> UpdateAsync(int id, TDto request)
     {
-        throw new NotImplementedException();
+        var item = await GetAsync(id);
+        if (item is null)
+        {
+            return null;
+        }
+        request.UpdateModel(item);
+        await _dbContext.SaveChangesAsync();
+        return item;
     }
 
-    public Task<TModel?> UpdateAsync(int id, TDto request)
+    public async Task<bool> DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var item = await GetAsync(id);
+        if (item is null)
+        {
+            return false;
+        }
+        _dbContext.Remove(item);
+        await _dbContext.SaveChangesAsync();
+        return true;
     }
 }
