@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Exceptions;
 
+// [ApiController]
+// [Route("[controller]s")]
+
+// [HttpRoute("categories")]
 public class CategoryController : CrudController<Category, CategoryDTO>
 {
     private readonly ICategoryService _categoryService;
@@ -15,4 +19,5 @@ public class CategoryController : CrudController<Category, CategoryDTO>
     {
         _categoryService = service;
     }
+
 }

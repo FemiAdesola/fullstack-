@@ -43,4 +43,27 @@ public abstract class CrudController<TModel, TDto> : BaseApiController
         }
     }
 
+    [HttpGet]
+    public async virtual Task<ActionResult<ICollection<TModel>>> GetAll()
+    {
+        try
+        {
+            var categories = await _service.GetAllAsync();
+            return Ok(categories);
+
+        }
+        catch (HttpException ex) when (ex.StatusCode == 500)
+        {
+            return Ok("Error retrieving data for the .....");
+        }
+        catch (HttpException ex) when (ex.StatusCode == 400)
+        {
+            return Ok("payload is not valid .....");
+        }
+        finally
+        {
+            // dbConn?.Dispose();
+        }
+    }
+
 }

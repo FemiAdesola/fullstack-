@@ -17,34 +17,27 @@ public class DbCrudService<TModel, TDto> : ICrudService<TModel, TDto>
 
     public async Task<TModel?> CreateAsync(TDto request)
     {
-        // await Task.Delay(1);
-        // var item = new TModel
-        // {
-        //     Id = Interlocked.Increment(ref _itemId), // Atomic operation
-        // };
-        // _items[item.Id] = item;
-        // request.UpdateModel(item); // DTO request for each class or model
-        // return item;
-
         return await Task.Run(() =>
         {
             var item = new TModel
             {
-                Id = Interlocked.Increment(ref _itemId), // Atomic operation
+                Id = Interlocked.Increment(ref _itemId),
             };
             _items[item.Id] = item;
-            request.UpdateModel(item); // DTO request for each class or model
+            request.UpdateModel(item);
             return item;
         });
+    }
 
+    public async Task<ICollection<TModel>> GetAllAsync()
+    {
+        return await Task.Run(() =>
+        {
+            return _items.Values;
+        });
     }
 
     public Task<bool> DeleteAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<ICollection<TModel>> GetAllAsync()
     {
         throw new NotImplementedException();
     }
