@@ -2,6 +2,7 @@ namespace Backend.DTOs;
 
 using Backend.Models;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class ProductDTO : BaseDTO<Product>
 {
@@ -10,7 +11,7 @@ public class ProductDTO : BaseDTO<Product>
     public string Title { get; set; } = null!;
     public float Price { get; set; }
     public string Description { get; set; } = null!;
-    public ICollection<string> Images { get; set; } = null!;
+    public ICollection<string> Images { get; set; } = null!; 
     public CategoryDTO Category { get; set; } = null!;
 
     public override void UpdateModel(Product model)

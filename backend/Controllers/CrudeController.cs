@@ -72,7 +72,7 @@ public abstract class CrudController<TModel, TDto> : BaseApiController
             var item = await _service.GetAsync(id);
             if (item is null)
             {
-                return NotFound($" {item} is not found");
+                return NotFound($" {id} is not found");
             }
             return item;
         }

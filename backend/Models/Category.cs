@@ -8,4 +8,9 @@ public  class Category : BaseModel
     
     [Column(TypeName = "bytea")]
     public string Image { get; set; } = null!;
+
+    internal void UpdateModel(Category category)
+    {
+        throw new NotImplementedException();
+    }
 }

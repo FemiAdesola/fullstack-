@@ -19,5 +19,13 @@ public static class CommonEntityExtention
         // modelBuilder.Entity<Category>()
         // .Property(p => p.Image);
         // .HasColumnType("json");
+
+        modelBuilder.Entity<Product>()
+            .HasIndex(c => c.Title);
+
+        modelBuilder.Entity<Product>()
+           .HasOne(s => s.Category)
+           .WithOne()
+           .OnDelete(DeleteBehavior.SetNull);
     }
 }

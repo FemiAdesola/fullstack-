@@ -25,6 +25,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ICategoryService, DbCategorySerivce>();
+builder.Services.AddScoped<IProductService, DbProductSerivce>();
 
 var app = builder.Build();
 
