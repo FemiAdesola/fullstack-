@@ -1,9 +1,25 @@
-import React from 'react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-const App = () => {
+import CategoryBoard from './components/category/CategoryBoard';
+
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    
+    children: [
+      {
+        path: 'categories',
+        element: <CategoryBoard/>
+      },
+    ]
+  }
+])
+
+function App() {
   return (
-    <div>App</div>
-  )
+    <RouterProvider router={router}/>
+  );
 }
 
 export default App
