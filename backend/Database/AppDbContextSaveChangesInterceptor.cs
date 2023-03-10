@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Backend.Models;
 
-
 public class AppDbContextSaveChangesInterceptor : SaveChangesInterceptor
 {
     public void UpdateTimestamps(DbContextEventData eventData)
@@ -32,7 +31,6 @@ public class AppDbContextSaveChangesInterceptor : SaveChangesInterceptor
         UpdateTimestamps(eventData);
         return base.SavingChanges(eventData, result);
     }
-
 
     public override ValueTask<InterceptionResult<int>> SavingChangesAsync(
         DbContextEventData eventData,

@@ -35,7 +35,7 @@ public class DbProductSerivce : DbCrudService<Product, ProductDTO>, IProductServ
     {
         return await _dbContext.Products
             .Include(s => s.Category)
-            .Where (c => c.Category.Name.Equals(category))
+            .Where(c => c.Category.Name.Equals(category))
             .ToListAsync();
     }
 }

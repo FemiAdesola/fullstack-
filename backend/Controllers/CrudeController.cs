@@ -72,7 +72,7 @@ public abstract class CrudController<TModel, TDto> : BaseApiController
             var item = await _service.GetAsync(id);
             if (item is null)
             {
-                return NotFound($" {id} is not found");
+                return NotFound($" ID {id} is not found");
             }
             return item;
         }
@@ -118,7 +118,7 @@ public abstract class CrudController<TModel, TDto> : BaseApiController
             {
                 return Ok(new { Message = $"Crud {id} is deleted " });
             }
-            return NotFound($" {id} is not found");
+            return NotFound($" ID {id} is not found");
         }
         catch (HttpException ex) when (ex.StatusCode == 500)
         {

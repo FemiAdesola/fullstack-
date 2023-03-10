@@ -2,17 +2,15 @@ namespace Backend.DTOs;
 
 using Backend.Models;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 public class ProductDTO : BaseDTO<Product>
 {
-
     [MinLength(3, ErrorMessage = "Name is too short, min : 3 characters")]
     public string Title { get; set; } = null!;
     public float Price { get; set; }
     public string Description { get; set; } = null!;
-    public ICollection<string> Images { get; set; } = null!; 
-    public CategoryDTO Category { get; set; } = null!;
+    public ICollection<string> Images { get; set; } = null!;
+    public int CategoryId { get; set; }
 
     public override void UpdateModel(Product model)
     {
@@ -20,9 +18,6 @@ public class ProductDTO : BaseDTO<Product>
         model.Price = Price;
         model.Description = Description;
         model.Images = Images;
-
-        var category = new Category();
-        Category.UpdateModel(category);
-        model.Category = category;
+        model.CategoryId = CategoryId;
     }
 }
