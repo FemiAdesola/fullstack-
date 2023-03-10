@@ -6,14 +6,13 @@
 
 body {
   background: #f1f1f1 !important;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 a {
   text-decoration: none;
   color: inherit;
 }
-
 .rating span {
   margin: 0 2px;
 }
@@ -32,8 +31,8 @@ a {
   height: 40rem;
 }
 
-.carsouel__item h3 {
-  color: #f1f1f1;
+.carsouel__item h3{
+    color: #f1f1f1;
 }
 
 .nav-link span {
@@ -60,6 +59,7 @@ a {
     height: 15rem;
   }
 }
+
 section {
   padding: 60px 0;
   overflow: hidden;
@@ -93,6 +93,7 @@ section {
     width: 80px;
   }
 }
+
 .brand-img:hover {
   filter: grayscale(0%);
   opacity: 1;
@@ -103,5 +104,3 @@ section {
   font-size: 0.5em !important;
   color: #000 !important;
 }
-
-/*# sourceMappingURL=App.css.map */

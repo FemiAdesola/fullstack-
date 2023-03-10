@@ -6,7 +6,7 @@ using Backend.Services;
 using Microsoft.AspNetCore.Mvc;
 
 
-[Route("categories")]
+[Route("api/v1/categories")]
 public class CategoryController : CrudController<Category, CategoryDTO>
 {
     private readonly ICategoryService _categoryService;
