@@ -3,10 +3,7 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { Link, NavLink} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 
-
 import HeaderTop from '../features/HeaderTop';
-
-
 
 const Header = () => {
   const ToggleSwitch = () => {
@@ -25,117 +22,109 @@ const Header = () => {
   return (
     <>
     <HeaderTop/>
-       <Navbar
-      collapseOnSelect
-      expand='lg'
-      sticky='top'
-      bg='white'
-      className='shadow px-0 py-3'
-      >
-        <div className='container-xl'>
-          <Navbar.Brand as={NavLink} to='/'>
-            <img
-              src='https://source.unsplash.com/gsUwEUr61NQ'
-              className='avatar rounded me-lg-10'
-              alt='...'
-            />
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-        
-          <Navbar.Collapse id='responsive-navbar-nav'>
-           
-            <div className='navbar-nav me-lg-auto'>
-              <Nav.Item
-                as={NavLink}
-                className=' nav-link active'
-                to='/'
-                aria-current='page'
-              >
-                <span>Home</span>
-              </Nav.Item>
-              <Nav.Item as={NavLink} className=' nav-link' to='/products'>
-                <span>Product</span>
-              </Nav.Item>
-
-              <Nav.Item as={NavLink} className=' nav-link' to='/createcategory'>
-                <span>CreateCategory</span>
-              </Nav.Item>
-
-              <Nav.Item as={NavLink} className=' nav-link' to='/contact'>
-                <span>Contact</span>
-              </Nav.Item>
+        <Navbar
+            collapseOnSelect
+            expand='lg'
+            sticky='top'
+            bg='white'
+            className='shadow px-0 py-3'
+            >
+            <div className='container-xl'>
+                <Navbar.Brand as={NavLink} to='/'>
+                    <img
+                    src='https://source.unsplash.com/gsUwEUr61NQ'
+                    className='avatar rounded me-lg-10'
+                    alt='...'
+                    />
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                 
-               <Nav.Item as={NavLink} className=' nav-link' to='/productList'>
-                <span>ListProduct</span>
-            </Nav.Item>
-    
-            <Nav.Item>
-              <span><ToggleSwitch /></span>
-            </Nav.Item>
-            </div>
-
-            <div className='d-flex align-items-center'>
-              <div className='d-flex align-items-center'>
-                <Link className='nav-link' to={'/products'}>
-                  <i className='fa fa-fw fa-search text-dark me-2'></i>
-                </Link>
-                <Link
-                  className='nav-icon position-relative text-decoration-none' to={'/cart'}                 
-                >
-                  <i className='fa fa-fw fa-cart-arrow-down text-dark me-2 '></i>
-                  <span
-                    style={{ backgroundColor: '#e03a3c' }}
-                    className='position-absolute top-0 left-100 translate-middle badge rounded-pill  text-white'
-                  >
-                  </span>
-                </Link>
-            </div>
-             
+                <Navbar.Collapse id='responsive-navbar-nav'>
                 
-                  <div className='d-flex align-items-lg-center mt-3  mt-lg-0'>
-                    <Nav.Link
-                      as={NavLink}
-                    to='/login'
-                    style={{ width:'100px' }}
-                    className='btn btn-secondary btn-sm text-white me-5 ms-5 p-2'
-                    >
-                      Login
-                    </Nav.Link>
-                  </div>
-
-                  <div className='d-flex align-items-lg-center mt-3 mt-lg-0'>
-                  <Nav.Link
-                      as={NavLink}
-                      to='/signup'
-                      style={{ backgroundColor: '#e03a3c', width:'100px' }}
-                      className='btn btn-sm text-white  ms-xs-3 p-2'
-                    >
-                      Register
-                    </Nav.Link>
-                  </div>
-                
-                
-                <NavDropdown
-                  title={<i className='fa fa-fw fa-user text-dark mr-5 me-5 ms-5'></i>}
-                  id='basic-nav-dropdown'
-                >
-                    <NavDropdown.Item as={NavLink} to='/products'>
-                    Products
-                    </NavDropdown.Item>
-                
-                  <NavDropdown.Item
+                    <div className='navbar-nav me-lg-auto'>
+                    <Nav.Item
                     as={NavLink}
-                     to={"/profile"}
-                  >
+                    className=' nav-link active'
+                    to='/'
+                    aria-current='page'
+                    >
+                    <span>Home</span>
+                </Nav.Item>
+                <Nav.Item as={NavLink} className=' nav-link' to='/products'>
+                    <span>Product</span>
+                </Nav.Item>
+
+                <Nav.Item as={NavLink} className=' nav-link' to='/createcategory'>
+                    <span>CreateCategory</span>
+                </Nav.Item>
+
+                <Nav.Item as={NavLink} className=' nav-link' to='/contact'>
+                    <span>Contact</span>
+                </Nav.Item>
+                    
+                <Nav.Item as={NavLink} className=' nav-link' to='/productList'>
+                <span>ListProduct</span>
+                </Nav.Item>
+                <Nav.Item>
+                    <span><ToggleSwitch /></span>
+                </Nav.Item>
+            </div>
+            <div className='d-flex align-items-center'>
+                <div className='d-flex align-items-center'>
+                    <Link className='nav-link' to={'/products'}>
+                        <i className='fa fa-fw fa-search text-dark me-2'></i>
+                    </Link>
+                    <Link
+                    className='nav-icon position-relative text-decoration-none' to={'/cart'}                 
+                    >
+                        <i className='fa fa-fw fa-cart-arrow-down text-dark me-2 '></i>
+                        <span
+                            style={{ backgroundColor: '#e03a3c' }}
+                            className='position-absolute top-0 left-100 translate-middle badge rounded-pill  text-white'
+                        >
+                    </span>
+                    </Link>
+                </div>
+                <div className='d-flex align-items-lg-center mt-3  mt-lg-0'>
+                    <Nav.Link
+                        as={NavLink}
+                        to='/login'
+                        style={{ width:'100px' }}
+                        className='btn btn-secondary btn-sm text-white me-5 ms-5 p-2'
+                        >
+                        Login
+                    </Nav.Link>
+                </div>
+                <div className='d-flex align-items-lg-center mt-3 mt-lg-0'>
+                    <Nav.Link
+                        as={NavLink}
+                        to='/signup'
+                        style={{ backgroundColor: '#e03a3c', width:'100px' }}
+                        className='btn btn-sm text-white  ms-xs-3 p-2'
+                        >
+                        Register
+                    </Nav.Link>
+                </div>
+                <NavDropdown
+                    title={<i className='fa fa-fw fa-user text-dark mr-5 me-5 ms-5'></i>}
+                    id='basic-nav-dropdown'
+                    >
+                <NavDropdown.Item as={NavLink} to='/products'>
+                    Products
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                    as={NavLink}
+                    to={"/profile"}
+                    >
                     Profile
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
                     Logout
                 </NavDropdown>
             </div>
-          </Navbar.Collapse>
+            </Navbar.Collapse>
         </div>
-      </Navbar>
+        </Navbar>
     </>
   )
 }

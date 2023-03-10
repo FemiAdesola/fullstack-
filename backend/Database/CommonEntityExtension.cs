@@ -16,6 +16,7 @@ public static class CommonEntityExtention
             .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
         modelBuilder.Entity<Category>()
-            .HasIndex(c => c.Name);
+            .HasIndex(c => c.Name)
+            .IsUnique();
     }
 }

@@ -31,11 +31,11 @@ public class DbProductSerivce : DbCrudService<Product, ProductDTO>, IProductServ
         return product;
     }
 
-    public async Task<ICollection<Product>> GetProductsByCategoryAsync(string category)
+    public async Task<ICollection<Product>> GetProductsByCategoryIdAsync(int id)
     {
         return await _dbContext.Products
             .Include(s => s.Category)
-            .Where(c => c.Category.Name.Equals(category))
+            .Where(c => c.Category.Id.Equals(id))
             .ToListAsync();
     }
 }

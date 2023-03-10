@@ -5,5 +5,5 @@ using Backend.Models;
 
 public interface IProductService : ICrudService<Product, ProductDTO>
 {
-    Task<ICollection<Product>> GetProductsByCategoryAsync(string category);
+    Task<ICollection<Product>> GetProductsByCategoryIdAsync(int id);
 }

@@ -16,10 +16,10 @@ public class ProductController : CrudController<Product, ProductDTO>
         _logger = logger;
     }
 
-    [HttpGet("by-categories/{category}")]
-    public async Task<IActionResult> GetStudentByCity(string category)
+    [HttpGet("by-categories/{id}")]
+    public async Task<IActionResult> GetProductsByCategoryIdAsync(int id)
     {
-        var productCategory = await _productService.GetProductsByCategoryAsync(category);
+        var productCategory = await _productService.GetProductsByCategoryIdAsync(id);
         if (productCategory.Any())
         {
             return Ok(productCategory);
