@@ -6,6 +6,7 @@ using Backend.Services;
 using Microsoft.AspNetCore.Mvc;
 using Exceptions;
 using Microsoft.EntityFrameworkCore;
+using Backend.Common;
 
 public abstract class CrudController<TModel, TDto> : BaseApiController
     where TModel : BaseModel, new()
@@ -74,7 +75,7 @@ public abstract class CrudController<TModel, TDto> : BaseApiController
             {
                 return NotFound($" ID {id} is not found");
             }
-            return item;
+            return Ok(new Response<TModel>(item));
         }
         catch (HttpException ex) when (ex.StatusCode == 500)
         {
@@ -96,7 +97,7 @@ public abstract class CrudController<TModel, TDto> : BaseApiController
             {
                 return NotFound("item is not found");
             }
-            return Ok(item);
+            return Ok(new Response<TModel>(item));
         }
         catch (HttpException ex) when (ex.StatusCode == 500)
         {
