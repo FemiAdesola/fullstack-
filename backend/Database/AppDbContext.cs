@@ -37,5 +37,6 @@ public class AppDbContext : DbContext
 
     public DbSet<Category> Categories { get; set; } = null!;
     public DbSet<Product> Products { get; set; } = null!;
-    
+    public DbSet<Order> Orders { get; set; } = null!;
+    public DbSet<Address> Addresses { get; set; } = null!;
 }

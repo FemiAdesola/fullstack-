@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 using Backend.Services;
 using Backend.Database;
+using Backend.Models;
+using Backend.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +31,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ICategoryService, DbCategorySerivce>();
 builder.Services.AddScoped<IProductService, DbProductSerivce>();
+builder.Services.AddScoped<IOrderService, DbOrderSerivce>();
+builder.Services.AddScoped<ICrudService<Address, AddressDTO>, DbCrudService<Address, AddressDTO>>();
 
 var app = builder.Build();
 

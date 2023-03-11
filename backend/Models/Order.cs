@@ -5,7 +5,8 @@ namespace Backend.Models;
 public class Order : BaseModel
 {
     public bool IsPaid { get; set; }
-    public DateTime DespatchDate { get; set; }
+    public double TotalPrice { get; set; }
+    public DateTime DispatchedDate { get; set; }
     public Address? Address { get; set; }
     
     [JsonIgnore]
