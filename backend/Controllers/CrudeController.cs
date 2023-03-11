@@ -27,7 +27,7 @@ public abstract class CrudController<TModel, TDto> : BaseApiController
             var item = await _service.CreateAsync(request);
             if (item is null)
             {
-                return BadRequest("Something is wrong with the payload");
+                return BadRequest("Something is wrong with the payload request");
             }
             return Ok(item);
        }
@@ -73,7 +73,7 @@ public abstract class CrudController<TModel, TDto> : BaseApiController
             var item = await _service.GetAsync(id);
             if (item is null)
             {
-                return NotFound($" ID {id} is not found");
+                return NotFound($"Item with ID {id} is not found");
             }
             return Ok(new Response<TModel>(item));
         }
@@ -117,9 +117,9 @@ public abstract class CrudController<TModel, TDto> : BaseApiController
         {
             if (await _service.DeleteAsync(id))
             {
-                return Ok(new { Message = $"Crud {id} is deleted " });
+                return Ok(new { Message = $"item with Id {id} is deleted " });
             }
-            return NotFound($" ID {id} is not found");
+            return NotFound($" Item with ID {id} is not found");
         }
         catch (HttpException ex) when (ex.StatusCode == 500)
         {

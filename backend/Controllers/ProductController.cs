@@ -24,6 +24,6 @@ public class ProductController : CrudController<Product, ProductDTO>
         {
             return Ok(productCategory);
         }
-        return NotFound("not found");
+        return NotFound("Item you are looking for is not found");
     }
 }
