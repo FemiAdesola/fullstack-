@@ -15,5 +15,8 @@ public static class CommonEntityExtention
             .HasOne(s => s.Address)
             .WithOne()
             .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<OrderProduct>()
+       .HasKey(ps => new { ps.ProductId});
     }
 }
