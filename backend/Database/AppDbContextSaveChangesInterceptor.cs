@@ -14,13 +14,11 @@ public class AppDbContextSaveChangesInterceptor : SaveChangesInterceptor
             (entity.State == EntityState.Added ||
             entity.State == EntityState.Modified));
 
-
         var orderEntries = eventData.Context!.ChangeTracker
                     .Entries()
                     .Where(entity => entity.Entity is Order &&
                     (entity.State == EntityState.Added ||
                     entity.State == EntityState.Modified));
-
 
         foreach (var entry in entries)
         {
@@ -36,13 +34,11 @@ public class AppDbContextSaveChangesInterceptor : SaveChangesInterceptor
         foreach (var entry in orderEntries)
         {
             if (entry.State == EntityState.Added)
-            {
-                
+            {  
                 ((Order)entry.Entity).CreatedAt  = DateTime.Now;
             }
             else
             {
-               
                 ((Order)entry.Entity).DispatchedDate = DateTime.Now;
             }
         }

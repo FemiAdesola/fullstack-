@@ -15,4 +15,15 @@ public class OrderItemController : CrudController<OrderItem, OrderItemDTO>
         _orderItemService = service;
         _logger = logger;
     }
+
+    [HttpPost("{id}/add-products")]
+    public async Task<IActionResult> AddProducts(int id, ICollection<AddProductToOrderItemDTO> request)
+    {
+        var added = await _orderItemService.AddProductsAsync(id, request);
+        if (added <= 0)
+        {
+            return BadRequest("No valid product found");
+        }
+        return Ok(new { Count = added });
+    }
 }

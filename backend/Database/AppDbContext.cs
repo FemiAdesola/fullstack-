@@ -30,8 +30,6 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
-
         modelBuilder.AddICommonConfig();
     }
 
@@ -40,4 +38,5 @@ public class AppDbContext : DbContext
     public DbSet<Order> Orders { get; set; } = null!;
     public DbSet<Address> Addresses { get; set; } = null!;
     public DbSet<OrderItem> OrderItems { get; set; } = null!;
+    public DbSet<OrderItemProduct> OrderItemProducts { get; set; } = null!;
 }
