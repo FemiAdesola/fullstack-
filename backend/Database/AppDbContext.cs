@@ -39,4 +39,5 @@ public class AppDbContext : DbContext
     public DbSet<Address> Addresses { get; set; } = null!;
     public DbSet<OrderItem> OrderItems { get; set; } = null!;
     public DbSet<OrderItemProduct> OrderItemProducts { get; set; } = null!;
+    public DbSet<Review> Reviews { get; set; } = null!;
 }

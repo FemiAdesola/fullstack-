@@ -31,6 +31,7 @@ builder.Services.AddScoped<IProductService, DbProductSerivce>();
 builder.Services.AddScoped<IOrderService, DbOrderSerivce>();
 builder.Services.AddScoped<ICrudService<Address, AddressDTO>, DbCrudService<Address, AddressDTO>>();
 builder.Services.AddScoped<IOrderItemService, DbOrderItemSerivce>();
+builder.Services.AddScoped<IReviewService, DbReviewSerivce>();
 
 var app = builder.Build();
 
