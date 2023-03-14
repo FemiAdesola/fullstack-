@@ -1,10 +1,14 @@
-namespace Backend.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-using System.ComponentModel.DataAnnotations.Schema;
-
-public class Review : BaseModel
+namespace Backend.Models
 {
-    public int Rating { get; set; }
-    public string? Comment { get; set; } 
-    public int ProductId { get; set; }
+    public class Review : BaseModel
+    {
+        public int Rating { get; set; }
+        public string? Comment { get; set; }
+        public int ProductId { get; set; }
+    }
 }

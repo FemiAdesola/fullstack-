@@ -1,11 +1,17 @@
-namespace Backend.Models;
-
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
-public  class Category : BaseModel
+namespace Backend.Models
 {
-    public string Name { get; set; } = null!;
-    
-    [Column(TypeName = "bytea")]
-    public string Image { get; set; } = null!;
+
+    public class Category : BaseModel
+    {
+        public string Name { get; set; } = null!;
+
+        [Column(TypeName = "bytea")]
+        public string Image { get; set; } = null!;
+    }
 }

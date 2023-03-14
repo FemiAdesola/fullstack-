@@ -1,7 +1,13 @@
-namespace Backend.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-public class OrderItem : BaseModel
+namespace Backend.Models
 {
-    public int Quantity { get; set; }
-    public ICollection<OrderItemProduct> ProductLists { get; set; } = null!;
-} 
+    public class OrderItem : BaseModel
+    {
+        public int Quantity { get; set; }
+        public ICollection<OrderItemProduct> ProductLists { get; set; } = null!;
+    }
+}

@@ -1,8 +1,13 @@
-namespace Backend.DTOs;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Backend.Models;
 
-public abstract class BaseDTO<TModel> where TModel: BaseModel
+namespace Backend.DTOs
 {
-    public abstract void UpdateModel(TModel model);
+    public abstract class BaseDTO<TModel> where TModel : BaseModel
+    {
+        public abstract void UpdateModel(TModel model);
+    }
 }

@@ -1,29 +1,30 @@
-namespace Backend.Controllers;
-
 using Backend.DTOs;
 using Backend.Models;
-using Backend.Services;
+using Backend.Services.OrderItemService;
 using Microsoft.AspNetCore.Mvc;
 
-public class OrderItemController : CrudController<OrderItem, OrderItemDTO>
+namespace Backend.Controllers
 {
-    private readonly IOrderItemService _orderItemService;
-    private readonly ILogger<OrderItemController> _logger;
-
-    public OrderItemController(IOrderItemService service, ILogger<OrderItemController> logger) : base(service)
+    public class OrderItemController : CrudController<OrderItem, OrderItemDTO>
     {
-        _orderItemService = service;
-        _logger = logger;
-    }
+        private readonly IOrderItemService _orderItemService;
+        private readonly ILogger<OrderItemController> _logger;
 
-    [HttpPost("{id}/add-products")]
-    public async Task<IActionResult> AddProducts(int id, ICollection<AddProductToOrderItemDTO> request)
-    {
-        var added = await _orderItemService.AddProductsAsync(id, request);
-        if (added <= 0)
+        public OrderItemController(IOrderItemService service, ILogger<OrderItemController> logger) : base(service)
         {
-            return BadRequest("No valid product found");
+            _orderItemService = service;
+            _logger = logger;
         }
-        return Ok(new { Count = added });
+
+        [HttpPost("{id}/add-products")]
+        public async Task<IActionResult> AddProducts(int id, ICollection<AddProductToOrderItemDTO> request)
+        {
+            var added = await _orderItemService.AddProductsAsync(id, request);
+            if (added <= 0)
+            {
+                return BadRequest("No valid product found");
+            }
+            return Ok(new { Count = added });
+        }
     }
 }

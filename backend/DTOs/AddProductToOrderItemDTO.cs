@@ -1,7 +1,14 @@
-namespace Backend.DTOs;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-public class AddProductToOrderItemDTO
+namespace Backend.DTOs
 {
-    public int ProductId { get; set; }
+    public class AddProductToOrderItemDTO
+    {
+        public int ProductId { get; set; }
+
+    }
     
 }

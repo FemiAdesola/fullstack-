@@ -1,29 +1,35 @@
-namespace Backend.Controllers;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Backend.DTOs;
 using Backend.Models;
-using Backend.Services;
+using Backend.Services.ProductService;
 using Microsoft.AspNetCore.Mvc;
 
-public class ProductController : CrudController<Product, ProductDTO>
+namespace Backend.Controllers
 {
-    private readonly IProductService _productService;
-    private readonly ILogger<ProductController> _logger;
-
-    public ProductController(IProductService service, ILogger<ProductController> logger): base(service)
+    public class ProductController : CrudController<Product, ProductDTO>
     {
-        _productService = service;
-        _logger = logger;
-    }
+        private readonly IProductService _productService;
+        private readonly ILogger<ProductController> _logger;
 
-    [HttpGet("by-categories/{id}")]
-    public async Task<IActionResult> GetProductsByCategoryIdAsync(int id)
-    {
-        var productCategory = await _productService.GetProductsByCategoryIdAsync(id);
-        if (productCategory.Any())
+        public ProductController(IProductService service, ILogger<ProductController> logger) : base(service)
         {
-            return Ok(productCategory);
+            _productService = service;
+            _logger = logger;
         }
-        return NotFound("Item you are looking for is not found");
+
+        [HttpGet("by-categories/{id}")]
+        public async Task<IActionResult> GetProductsByCategoryIdAsync(int id)
+        {
+            var productCategory = await _productService.GetProductsByCategoryIdAsync(id);
+            if (productCategory.Any())
+            {
+                return Ok(productCategory);
+            }
+            return NotFound("Item you are looking for is not found");
+        }
     }
+
 }

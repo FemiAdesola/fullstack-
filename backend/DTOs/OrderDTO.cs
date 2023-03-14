@@ -1,29 +1,34 @@
-namespace Backend.DTOs;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Backend.Models;
 
-public class OrderDTO : BaseDTO<Order>
+namespace Backend.DTOs
 {
-    public bool IsPaid { get; set; }
-    public double TotalPrice { get; set; }
-    public DateTime DispatcedDate { get; set; }
-    public AddressDTO Address { get; set; } = null!;
-
-    public override void UpdateModel(Order model)
+    public class OrderDTO : BaseDTO<Order>
     {
-        model.IsPaid = IsPaid;
-        model.DispatchedDate = DispatcedDate;
-        model.TotalPrice = TotalPrice;
+        public bool IsPaid { get; set; }
+        public double TotalPrice { get; set; }
+        public DateTime DispatcedDate { get; set; }
+        public AddressDTO Address { get; set; } = null!;
 
-        if (model.Address is not null)
+        public override void UpdateModel(Order model)
         {
-            Address.UpdateModel(model.Address);
-        }
-        else
-        {
-            var address = new Address();
-            Address.UpdateModel(address);
-            model.Address = address;
+            model.IsPaid = IsPaid;
+            model.DispatchedDate = DispatcedDate;
+            model.TotalPrice = TotalPrice;
+
+            if (model.Address is not null)
+            {
+                Address.UpdateModel(model.Address);
+            }
+            else
+            {
+                var address = new Address();
+                Address.UpdateModel(address);
+                model.Address = address;
+            }
         }
     }
 }

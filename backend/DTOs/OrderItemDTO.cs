@@ -1,13 +1,18 @@
-namespace Backend.DTOs;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Backend.Models;
 
-public class OrderItemDTO : BaseDTO<OrderItem>
+namespace Backend.DTOs
 {
-    public int Quantity { get; set; }
-
-    public override void UpdateModel(OrderItem model)
+    public class OrderItemDTO : BaseDTO<OrderItem>
     {
-        model.Quantity = Quantity;
+        public int Quantity { get; set; }
+
+        public override void UpdateModel(OrderItem model)
+        {
+            model.Quantity = Quantity;
+        }
     }
 }

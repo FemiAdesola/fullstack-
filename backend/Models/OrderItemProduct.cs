@@ -1,12 +1,17 @@
-namespace Backend.Models;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
-public class OrderItemProduct
+namespace Backend.Models
 {
-    public int ProductId { get; set; }
-    public Product Product { get; set; } = null!;
+    public class OrderItemProduct
+    {
+        public int ProductId { get; set; }
+        public Product Product { get; set; } = null!;
 
-    [JsonIgnore]
-    public int OrderItemId { get; set; }
+        [JsonIgnore]
+        public int OrderItemId { get; set; }
+    }
 }

@@ -1,20 +1,20 @@
-namespace Backend.Controllers;
-
 using Backend.DTOs;
 using Backend.Models;
-using Backend.Services;
-using Microsoft.AspNetCore.Mvc;
+using Backend.Services.CategoryService;
+using Microsoft.AspNetCore.Components;
 
-
-[Route("api/v1/categories")]
-public class CategoryController : CrudController<Category, CategoryDTO>
+namespace Backend.Controllers
 {
-    private readonly ICategoryService _categoryService;
-    private readonly ILogger<CategoryController> _logger;
-
-    public CategoryController(ICategoryService service, ILogger<CategoryController> logger) : base(service)
+    [Route("api/v1/categories")]
+    public class CategoryController : CrudController<Category, CategoryDTO>
     {
-        _categoryService = service;
-        _logger = logger;
+        private readonly ICategoryService _categoryService;
+        private readonly ILogger<CategoryController> _logger;
+
+        public CategoryController(ICategoryService service, ILogger<CategoryController> logger) : base(service)
+        {
+            _categoryService = service;
+            _logger = logger;
+        }
     }
 }
