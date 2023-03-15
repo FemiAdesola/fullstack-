@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Backend.Controllers
 {
     [Route("api/v1/categories")]
-    public class CategoryController : CrudController<Category, CategoryDTO>
+    public class CategoryController : CrudController<Category, CategoryDTO, CategoryToReturnDTO>
     {
         private readonly ICategoryService _categoryService;
         private readonly ILogger<CategoryController> _logger;

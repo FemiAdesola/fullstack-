@@ -8,9 +8,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
 {
-    public abstract class CrudController<TModel, TDto> : BaseApiController
+    public abstract class CrudController<TModel, TDto, TReturn> : BaseApiController
      where TModel : BaseModel, new()
      where TDto : BaseDTO<TModel>
+     where TReturn: BaseReturnDTO<TModel>
     {
         private readonly ICrudService<TModel, TDto> _service;
 
@@ -31,7 +32,7 @@ namespace Backend.Controllers
         }
 
         [HttpGet]
-        public async virtual Task<ActionResult<IReadOnlyList<TModel>>> GetAll()
+        public async virtual Task<ActionResult<IReadOnlyList<TReturn>>> GetAll()
         {
             var item = await _service.GetAllAsync();
             return Ok(item);
@@ -39,7 +40,7 @@ namespace Backend.Controllers
 
 
         [HttpGet("{id}")]
-        public async virtual Task<ActionResult<TModel?>> Get(int id)
+        public async virtual Task<ActionResult<TReturn?>> Get(int id)
         {
 
             var item = await _service.GetAsync(id);
@@ -47,7 +48,7 @@ namespace Backend.Controllers
             {
                 return NotFound($"Item with ID {id} is not found");
             }
-            return Ok(new Response<TModel>(item));
+            return Ok((item));
         }
 
         [HttpPut("{id}")]

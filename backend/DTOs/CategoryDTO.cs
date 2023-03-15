@@ -20,4 +20,15 @@ namespace Backend.DTOs
             model.Image = Image;
         }
     }
+
+    public class CategoryToReturnDTO : BaseReturnDTO<Category>
+    {
+        public string Name { get; set; } = null!;
+        public string Image { get; set; } = null!;
+        public override void BaseToRetunModel(Category returnBase)
+        {
+            returnBase.Name = Name;
+            returnBase.Image = Image;
+        }
+    }
 }

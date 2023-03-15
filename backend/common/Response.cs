@@ -12,10 +12,10 @@ namespace Backend.common
         public string[] Errors { get; set; } = default!;
         public string Message { get; set; } = default!;
 
-        public Response()
-        {
+        // public Response(TModel item)
+        // {
 
-        }
+        // }
         public Response(T data)
         {
             Succeeded = true;
