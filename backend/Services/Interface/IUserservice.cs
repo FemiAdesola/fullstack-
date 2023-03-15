@@ -1,4 +1,4 @@
-namespace Backend.Services.cs.UserService
+namespace Backend.Services.Interface
 {
     public interface IUserservice
     {

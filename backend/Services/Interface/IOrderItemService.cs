@@ -1,8 +1,7 @@
 using Backend.DTOs;
 using Backend.Models;
-using Backend.Services.crude;
 
-namespace Backend.Services.OrderItemService
+namespace Backend.Services.Interface
 {
     public interface IOrderItemService : ICrudService<OrderItem, OrderItemDTO>
     {

@@ -9,7 +9,7 @@ namespace Backend.Exceptions
     public class HttpException : Exception
     {
         public HttpStatusCode StatusCode { get; set; }
-        public string Message { get; set; }
+        public override string Message { get;  }
 
         public HttpException(HttpStatusCode statusCode, string message)
         {

@@ -1,17 +1,9 @@
-
-
 using System.Text.Json.Serialization;
 using Backend.Database;
 using Backend.DTOs;
 using Backend.Models;
-using Backend.Services.CategoryService;
-using Backend.Services.crude;
 using Backend.Services.Implementations;
-using Backend.Services.OrderItemService;
-using Backend.Services.OrderService;
-using Backend.Services.ProductService;
-using Backend.Services.ReviewService;
-
+using Backend.Services.Interface;
 
 internal class Program
 {
@@ -29,24 +21,20 @@ internal class Program
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
 
-        builder.Services.AddCors();
 
+        builder.Services.AddCors();
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
-        builder.Services.AddScoped<ICategoryService, DbCategorySerivce>()
-        .AddScoped<IProductService, DbProductSerivce>();
-
-
-        builder.Services.AddScoped<IOrderService, DbOrderSerivce>();
-
-        builder.Services.AddScoped<ICrudService<Address, AddressDTO>, DbCrudService<Address, AddressDTO>>();
-
-        builder.Services.AddScoped<IOrderItemService, DbOrderItemSerivce>();
-
-        builder.Services.AddScoped<IReviewService, DbReviewSerivce>();
+        builder.Services
+            .AddScoped<ICategoryService, DbCategorySerivce>()
+            .AddScoped<IProductService, DbProductSerivce>()
+            .AddScoped<ICrudService<Address, AddressDTO>, DbCrudService<Address, AddressDTO>>()
+            .AddScoped<IOrderService, DbOrderSerivce>()
+            .AddScoped<IOrderItemService, DbOrderItemSerivce>()
+            .AddScoped<IReviewService, DbReviewSerivce>();
 
         var app = builder.Build();
 

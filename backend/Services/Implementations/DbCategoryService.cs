@@ -1,7 +1,7 @@
 using Backend.Database;
 using Backend.DTOs;
 using Backend.Models;
-using Backend.Services.CategoryService;
+using Backend.Services.Interface;
 
 namespace Backend.Services.Implementations
 {
@@ -11,6 +11,5 @@ namespace Backend.Services.Implementations
         {
 
         }
-
     }
 }

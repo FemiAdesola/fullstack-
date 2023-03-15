@@ -1,7 +1,7 @@
 using Backend.Database;
 using Backend.DTOs;
 using Backend.Models;
-using Backend.Services.OrderItemService;
+using Backend.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Services.Implementations

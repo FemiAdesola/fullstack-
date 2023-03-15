@@ -1,7 +1,7 @@
 using Backend.Database;
 using Backend.DTOs;
 using Backend.Models;
-using Backend.Services.ReviewService;
+using Backend.Services.Interface;
 
 namespace Backend.Services.Implementations
 {

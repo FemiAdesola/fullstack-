@@ -1,7 +1,7 @@
 using Backend.DTOs;
 using Backend.Models;
-using Backend.Services.CategoryService;
-using Microsoft.AspNetCore.Components;
+using Backend.Services.Interface;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
 {

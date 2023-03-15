@@ -3,7 +3,7 @@ using Backend.DTOs;
 using Backend.Exceptions;
 using Backend.Models;
 using Backend.Services;
-using Backend.Services.crude;
+using Backend.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
@@ -31,7 +31,7 @@ namespace Backend.Controllers
                 }
                 return Ok(item);
             }
-            catch (HttpException ex) 
+            catch (HttpException ) 
             {
                 return Ok("Error creating data for the .....");
             }
@@ -46,7 +46,7 @@ namespace Backend.Controllers
                 return Ok(categories);
 
             }
-            catch (HttpException ex) 
+            catch (HttpException) 
             {
                 return Ok("Error retrieving data for the .....");
             }
@@ -65,7 +65,7 @@ namespace Backend.Controllers
                 }
                 return Ok(new Response<TModel>(item));
             }
-            catch (HttpException ex) 
+            catch (HttpException) 
             {
                 return Ok("Error getting data for the .....");
             }
@@ -83,7 +83,7 @@ namespace Backend.Controllers
                 }
                 return Ok(new Response<TModel>(item));
             }
-            catch (HttpException ex)
+            catch (HttpException)
             {
                 return Ok("Error in getting data .....");
             }
@@ -102,7 +102,7 @@ namespace Backend.Controllers
                 }
                 return NotFound($" Item with ID {id} is not found");
             }
-            catch (HttpException ex)
+            catch (HttpException)
             {
                 return Ok("Error in getting data .....");
             }

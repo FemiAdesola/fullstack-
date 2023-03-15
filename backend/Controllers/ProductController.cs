@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Backend.DTOs;
 using Backend.Models;
-using Backend.Services.ProductService;
+using Backend.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
