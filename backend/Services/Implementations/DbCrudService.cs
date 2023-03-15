@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Backend.Services.Implementations
 {
     public class DbCrudService<TModel, TDto> : ICrudService<TModel, TDto>
-    where TModel : BaseModel, new()
-    where TDto : BaseDTO<TModel>
+        where TModel : BaseModel, new()
+        where TDto : BaseDTO<TModel>
     {
         protected readonly AppDbContext _dbContext;
 
@@ -28,7 +28,7 @@ namespace Backend.Services.Implementations
             return item;
         }
 
-        public virtual async Task<ICollection<TModel>> GetAllAsync()
+        public virtual async Task<IReadOnlyList<TModel>> GetAllAsync()
         {
             return await _dbContext.Set<TModel>().AsNoTracking().ToListAsync();
         }
@@ -60,6 +60,21 @@ namespace Backend.Services.Implementations
             _dbContext.Remove(item);
             await _dbContext.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<TModel?> GetEntityWithSpec(ISpecificationService<TModel> spec)
+        {
+            return await ApplySpecification(spec).FirstOrDefaultAsync();
+        }
+
+        public async Task<IReadOnlyList<TModel>> GetAllSpecAsync(ISpecificationService<TModel> spec)
+        {
+            return await ApplySpecification(spec).ToListAsync();
+        }
+
+        private IQueryable<TModel> ApplySpecification(ISpecificationService<TModel> spec)
+        {
+            return SPecificationEvaluator<TModel>.GetQuery(_dbContext.Set<TModel>().AsQueryable(), spec);
         }
     }
 }

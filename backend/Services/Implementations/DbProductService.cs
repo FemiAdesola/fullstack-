@@ -12,7 +12,7 @@ namespace Backend.Services.Implementations
         {
         }
 
-        public override async Task<ICollection<Product>> GetAllAsync()
+        public override async Task<IReadOnlyList<Product>> GetAllAsync()
         {
             return await _dbContext.Products
             .AsNoTracking()
@@ -23,13 +23,17 @@ namespace Backend.Services.Implementations
 
         public override async Task<Product?> GetAsync(int id)
         {
-            var product = await base.GetAsync(id);
-            if (product is null)
-            {
-                return null;
-            }
-            await _dbContext.Entry(product).Reference(s => s.Category).LoadAsync();
-            return product;
+            // var product = await base.GetAsync(id);
+            // if (product is null)
+            // {
+            //     return null;
+            // }
+            // await _dbContext.Entry(product).Reference(s => s.Category).LoadAsync();
+            // return product;
+            return await _dbContext.Products
+                .Include(s => s.Category)
+                .OrderByDescending(s => s.CreatedAt)
+                .FirstOrDefaultAsync(P => P.Id == id);
         }
 
         public async Task<ICollection<Product>> GetProductsByCategoryIdAsync(int id)

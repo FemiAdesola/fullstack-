@@ -10,7 +10,7 @@ namespace Backend.Models
     public class Product : BaseModel
     {
         public string Title { get; set; } = null!;
-        public float Price { get; set; }
+        public decimal Price { get; set; }
         public string Description { get; set; } = null!;
 
         [Column(TypeName = "jsonb")]
@@ -20,5 +20,9 @@ namespace Backend.Models
         public int CategoryId { get; set; }
 
         public Category Category { get; set; } = default!;
+
+// new added
+        // public ProductBrand ProductBrand { get; set; } = null!;
+        // public int ProductBrandId { get; set; }
     }
 }

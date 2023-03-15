@@ -62,6 +62,26 @@ internal class Program
 
         app.MapControllers();
 
+
+        // using var scope = app.Services.CreateScope();
+        // var services = scope.ServiceProvider;
+        // var context = services.GetRequiredService<AppDbContext>();
+        // var logger = services.GetRequiredService<ILogger<Program>>();
+        // try
+        // {
+
+        //     await DataStore.DataAsync(context);
+
+        // }
+        // catch (Exception ex)
+        // {
+        //     logger.LogError(ex, "An error occured during migration");
+        // }
+
+
+
         app.Run();
+
+        
     }
 }

@@ -22,90 +22,53 @@ namespace Backend.Controllers
         [HttpPost]
         public async virtual Task<IActionResult> Create(TDto request)
         {
-            try
+            var item = await _service.CreateAsync(request);
+            if (item is null)
             {
-                var item = await _service.CreateAsync(request);
-                if (item is null)
-                {
-                    return BadRequest("Something is wrong with the payload request");
-                }
-                return Ok(item);
+                return BadRequest("Something is wrong with the payload request");
             }
-            catch (HttpException ) 
-            {
-                return Ok("Error creating data for the .....");
-            }
+            return Ok(item);
         }
 
         [HttpGet]
-        public async virtual Task<ActionResult<ICollection<TModel>>> GetAll()
+        public async virtual Task<ActionResult<IReadOnlyList<TModel>>> GetAll()
         {
-            try
-            {
-                var categories = await _service.GetAllAsync();
-                return Ok(categories);
-
-            }
-            catch (HttpException) 
-            {
-                return Ok("Error retrieving data for the .....");
-            }
+            var item = await _service.GetAllAsync();
+            return Ok(item);
         }
 
 
-        [HttpGet("{id:int}")]
+        [HttpGet("{id}")]
         public async virtual Task<ActionResult<TModel?>> Get(int id)
         {
-            try
+
+            var item = await _service.GetAsync(id);
+            if (item is null)
             {
-                var item = await _service.GetAsync(id);
-                if (item is null)
-                {
-                    return NotFound($"Item with ID {id} is not found");
-                }
-                return Ok(new Response<TModel>(item));
+                return NotFound($"Item with ID {id} is not found");
             }
-            catch (HttpException) 
-            {
-                return Ok("Error getting data for the .....");
-            }
+            return Ok(new Response<TModel>(item));
         }
 
-        [HttpPut("{id:int}")]
+        [HttpPut("{id}")]
         public async Task<ActionResult<TModel>> Update(int id, TDto request)
         {
-            try
+            var item = await _service.UpdateAsync(id, request);
+            if (item is null)
             {
-                var item = await _service.UpdateAsync(id, request);
-                if (item is null)
-                {
-                    return NotFound("item is not found");
-                }
-                return Ok(new Response<TModel>(item));
+                return NotFound("item is not found");
             }
-            catch (HttpException)
-            {
-                return Ok("Error in getting data .....");
-            }
-
-
+            return Ok(new Response<TModel>(item));
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            try
+            if (await _service.DeleteAsync(id))
             {
-                if (await _service.DeleteAsync(id))
-                {
-                    return Ok(new { Message = $"item with Id {id} is deleted " });
-                }
-                return NotFound($" Item with ID {id} is not found");
+                return Ok(new { Message = $"item with Id {id} is deleted " });
             }
-            catch (HttpException)
-            {
-                return Ok("Error in getting data .....");
-            }
+            return NotFound($" Item with ID {id} is not found");
         }
     }
 }
