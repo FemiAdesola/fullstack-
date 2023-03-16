@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Backend.common;
 using Backend.DTOs;
 using Backend.Models;
@@ -17,11 +18,13 @@ namespace Backend.Controllers
     {
         private readonly IProductService _productService;
         private readonly ILogger<ProductController> _logger;
+        private readonly IMapper _mapper;
 
-        public ProductController(IProductService service, ILogger<ProductController> logger) : base(service)
+        public ProductController(IProductService service, ILogger<ProductController> logger, IMapper mapper): base( service, mapper)
         {
             _productService = service;
             _logger = logger;
+            _mapper = mapper;
         }
 
         [HttpGet("by-categories/{id}")]
@@ -40,18 +43,8 @@ namespace Backend.Controllers
         public async override Task<ActionResult<IReadOnlyList<ProductToReturnDTO>>> GetAll()
         {
             var spec = new DbCrudWithSPecService();
-
             var products = await _productService.GetAllSpecAsync(spec);
-
-            return products.Select(product => new ProductToReturnDTO
-            {
-                Id = product.Id,
-                Title = product.Title,
-                Description = product.Description,
-                Price = product.Price,
-                Images = product.Images,
-                Category = product.Category.Name
-            }).ToList();
+            return Ok(_mapper.Map<IReadOnlyList<Product>, IReadOnlyList <ProductToReturnDTO>>(products));
             
         }
 
@@ -65,21 +58,7 @@ namespace Backend.Controllers
             {
                 return NotFound($"Item with ID {id} is not found");
             }
-            return new ProductToReturnDTO
-            {
-                Id = item.Id,
-                Title = item.Title,
-                Description = item.Description,
-                Price = item.Price,
-                Images = item.Images,
-                Category = item.Category.Name
-            };
-
-            // if (item is null)
-            // {
-            //     return NotFound($"Item with ID {id} is not found");
-            // }
-            // return Ok(new Response<Product>(item));
+            return _mapper.Map<Product, ProductToReturnDTO>(item);
         }
     }
 

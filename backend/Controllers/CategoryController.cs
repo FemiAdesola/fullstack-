@@ -1,3 +1,4 @@
+using AutoMapper;
 using Backend.DTOs;
 using Backend.Models;
 using Backend.Services.Interface;
@@ -10,11 +11,13 @@ namespace Backend.Controllers
     {
         private readonly ICategoryService _categoryService;
         private readonly ILogger<CategoryController> _logger;
+        private readonly IMapper _mapper;
 
-        public CategoryController(ICategoryService service, ILogger<CategoryController> logger) : base(service)
+        public CategoryController(ICategoryService service, ILogger<CategoryController> logger, IMapper mapper) : base(service, mapper)
         {
             _categoryService = service;
             _logger = logger;
+            _mapper = mapper;
         }
     }
 }

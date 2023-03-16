@@ -1,3 +1,4 @@
+using AutoMapper;
 using Backend.common;
 using Backend.DTOs;
 using Backend.Exceptions;
@@ -14,11 +15,15 @@ namespace Backend.Controllers
      where TReturn: BaseReturnDTO<TModel>
     {
         private readonly ICrudService<TModel, TDto> _service;
+        private readonly IMapper _mapper;
+        
 
-        public CrudController(ICrudService<TModel, TDto> service)
+        public CrudController(ICrudService<TModel, TDto> service, IMapper mapper)
         {
             _service = service ?? throw new ArgumentNullException(nameof(service));
+            _mapper = mapper;
         }
+        
 
         [HttpPost]
         public async virtual Task<IActionResult> Create(TDto request)
@@ -34,8 +39,9 @@ namespace Backend.Controllers
         [HttpGet]
         public async virtual Task<ActionResult<IReadOnlyList<TReturn>>> GetAll()
         {
-            var item = await _service.GetAllAsync();
-            return Ok(item);
+            var items = await _service.GetAllAsync();
+            return Ok(_mapper.Map<IReadOnlyList<TModel>, IReadOnlyList<TReturn>>(items));
+            
         }
 
 
@@ -48,7 +54,7 @@ namespace Backend.Controllers
             {
                 return NotFound($"Item with ID {id} is not found");
             }
-            return Ok((item));
+            return _mapper.Map<TModel, TReturn>(item);
         }
 
         [HttpPut("{id}")]
@@ -59,6 +65,7 @@ namespace Backend.Controllers
             {
                 return NotFound("item is not found");
             }
+            
             return Ok(new Response<TModel>(item));
         }
 
