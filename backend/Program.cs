@@ -56,6 +56,8 @@ internal class Program
         }
 
         app.UseHttpsRedirection();
+        app.UseRouting();
+        app.UseStaticFiles();
 
         app.UseCors();
         app.UseAuthorization();

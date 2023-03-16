@@ -13,7 +13,7 @@ namespace Backend.DTOs
         public string Title { get; set; } = null!;
         public decimal Price { get; set; }
         public string Description { get; set; } = null!;
-        public ICollection<string> Images { get; set; } = null!;
+        public string Images { get; set; } = null!;
         public int CategoryId { get; set; }
 
         public override void UpdateModel(Product model)

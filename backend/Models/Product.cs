@@ -13,8 +13,9 @@ namespace Backend.Models
         public decimal Price { get; set; }
         public string Description { get; set; } = null!;
 
-        [Column(TypeName = "jsonb")]
-        public ICollection<string> Images { get; set; } = null!;
+        // [Column(TypeName = "jsonb")]
+        public string Images { get; set; } = null!;
+        //public ICollection<string> Images { get; set; } = null!;
 
         [JsonIgnore]
         public int CategoryId { get; set; }

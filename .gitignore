@@ -5,6 +5,7 @@ backend/appsettings.json
 backend/appsettings.*.json
 backend/obj
 backend/bin
+backend/wwwroot
 
 /Note.md
 /Note2.md
