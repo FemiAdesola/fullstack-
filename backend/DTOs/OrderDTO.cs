@@ -31,4 +31,26 @@ namespace Backend.DTOs
             }
         }
     }
+
+    public class OrderToReturnDTO : BaseReturnDTO<Order>
+    {
+        public double TotalPrice { get; set; }
+        public AddressDTO Address { get; set; } = null!;
+        
+        public override void BaseToRetunModel(Order returnBase)
+        {
+            returnBase.TotalPrice = TotalPrice;
+
+            if (returnBase.Address is not null)
+            {
+                Address.UpdateModel(returnBase.Address);
+            }
+            else
+            {
+                var address = new Address();
+                Address.UpdateModel(address);
+                returnBase.Address = address;
+            }
+        }
+    }
 }

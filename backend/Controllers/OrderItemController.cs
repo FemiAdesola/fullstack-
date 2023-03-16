@@ -9,11 +9,13 @@
 //     {
 //         private readonly IOrderItemService _orderItemService;
 //         private readonly ILogger<OrderItemController> _logger;
+//         private readonly IMapper _mapper;
 
-//         public OrderItemController(IOrderItemService service, ILogger<OrderItemController> logger) : base(service)
+//         public OrderItemController(IOrderItemService service, ILogger<OrderItemController> logger, IMapper _mapper) : base(service)
 //         {
 //             _orderItemService = service;
 //             _logger = logger;
+//              _mapper = mapper;
 //         }
 
 //         [HttpPost("{id}/add-products")]

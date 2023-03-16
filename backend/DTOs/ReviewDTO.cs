@@ -24,4 +24,23 @@ namespace Backend.DTOs
             model.ProductId = ProductId;
         }
     }
+
+    public class ReviewToReturnDTO : BaseReturnDTO<Review>
+    {
+        public int Id { get; set; }
+        public int Rating { get; set; }
+
+        [MaxLength(400)]
+        public string? Comment { get; set; }
+
+        public int ProductId { get; set; }
+        public override void BaseToRetunModel(Review returnBase)
+        {
+            returnBase.Id = Id;
+            returnBase.Rating = Rating;
+            returnBase.Comment = Comment;
+            returnBase.ProductId = ProductId;
+
+        }
+    }
 }
