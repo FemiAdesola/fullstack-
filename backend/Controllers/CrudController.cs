@@ -17,13 +17,11 @@ namespace Backend.Controllers
         private readonly ICrudService<TModel, TDto> _service;
         private readonly IMapper _mapper;
         
-
         public CrudController(ICrudService<TModel, TDto> service, IMapper mapper)
         {
             _service = service ?? throw new ArgumentNullException(nameof(service));
             _mapper = mapper;
         }
-        
 
         [HttpPost]
         public async virtual Task<IActionResult> Create(TDto request)
@@ -44,7 +42,6 @@ namespace Backend.Controllers
             
         }
 
-
         [HttpGet("{id}")]
         public async virtual Task<ActionResult<TReturn?>> Get(int id)
         {
@@ -54,6 +51,7 @@ namespace Backend.Controllers
             {
                 return NotFound($"Item with ID {id} is not found");
             }
+
             return _mapper.Map<TModel, TReturn>(item);
         }
 

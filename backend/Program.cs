@@ -1,9 +1,13 @@
 using System.Text.Json.Serialization;
 using Backend.Database;
 using Backend.DTOs;
+using Backend.Errors;
+using Backend.Middleware;
 using Backend.Models;
 using Backend.Services.Implementations;
 using Backend.Services.Interface;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 internal class Program
 {
@@ -28,6 +32,24 @@ internal class Program
         builder.Services.AddSwaggerGen();
         builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
+        builder.Services.Configure<ApiBehaviorOptions>(options =>
+        {
+            options.InvalidModelStateResponseFactory = actionContex =>
+            {
+                var errors = actionContex.ModelState
+                    .Where(e => e.Value.Errors.Count > 0)
+                    .SelectMany(e => e.Value.Errors)
+                    .SelectMany(e => e.ErrorMessage).ToString();
+
+                var errorResponse = new ApiValidationError
+                {
+                    // Errors = errors
+                };
+                return new BadRequestObjectResult(errorResponse);
+            };
+        });
+
+
         builder.Services
             .AddScoped<ICategoryService, DbCategorySerivce>()
             .AddScoped<IProductService, DbProductSerivce>()
@@ -38,11 +60,14 @@ internal class Program
 
         var app = builder.Build();
 
+        app.UseMiddleware<ErrorHandlerMiddleware>();
+
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+
             using (var scope = app.Services.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetService<AppDbContext>();
@@ -55,6 +80,7 @@ internal class Program
             }
         }
 
+        app.UseStatusCodePagesWithRedirects("/errors/{0}");
         app.UseHttpsRedirection();
         app.UseRouting();
         app.UseStaticFiles();
