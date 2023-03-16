@@ -4,6 +4,7 @@ using Backend.Database;
 using Backend.DTOs;
 using Backend.Models;
 using Backend.Services.Interface;
+using Backend.Specifications;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Services.Implementations
@@ -70,6 +71,11 @@ namespace Backend.Services.Implementations
         public async Task<IReadOnlyList<TModel>> GetAllSpecAsync(ISpecificationService<TModel> spec)
         {
             return await ApplySpecification(spec).ToListAsync();
+        }
+
+        public async Task<int> CountAsync(ISpecificationService<TModel> spec)
+        {
+            return await ApplySpecification(spec).CountAsync();
         }
 
         private IQueryable<TModel> ApplySpecification(ISpecificationService<TModel> spec)

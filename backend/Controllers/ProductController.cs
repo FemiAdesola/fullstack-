@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Backend.common;
 using Backend.DTOs;
+using Backend.Helper;
 using Backend.Models;
-using Backend.Services.Implementations;
 using Backend.Services.Interface;
+using Backend.Specifications;
 using Microsoft.AspNetCore.Mvc;
-using static Backend.DTOs.ProductDTO;
-using static Backend.Models.Product;
+
 
 namespace Backend.Controllers
 {
+    //  [Route("api/v1/products")]
     public class ProductController : CrudController<Product, ProductDTO, ProductToReturnDTO>
     {
         private readonly IProductService _productService;
@@ -39,13 +39,34 @@ namespace Backend.Controllers
         }
 
 
-        [HttpGet]
-        public async override Task<ActionResult<IReadOnlyList<ProductToReturnDTO>>> GetAll()
+        // [HttpGet]
+        // public async override Task<ActionResult<IReadOnlyList<ProductToReturnDTO>>> GetProducts()
+        // {
+        //     var spec = new DbCrudWithSPecService();
+        //     var products = await _productService.GetAllSpecAsync(spec);
+        //     return Ok(_mapper.Map<IReadOnlyList<Product>, IReadOnlyList <ProductToReturnDTO>>(products));
+
+        // }
+
+
+        // [HttpGet]
+        public async  Task<ActionResult<Pagination<ProductToReturnDTO>>> GetProduct(
+            [FromQuery]SpecificationParams productParams)
         {
-            var spec = new DbCrudWithSPecService();
+            var spec = new DbCrudWithSPecService(productParams);
+
+            var countSpec = new ProductWithFilterSpec(productParams);
+
+            var totalItemsSpec = await _productService.CountAsync(countSpec);
+
             var products = await _productService.GetAllSpecAsync(spec);
-            return Ok(_mapper.Map<IReadOnlyList<Product>, IReadOnlyList <ProductToReturnDTO>>(products));
-            
+            var data = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDTO>>(products);
+
+            return Ok(new Pagination<ProductToReturnDTO>(
+                productParams.PageIndex,
+                productParams.PageSize,
+                totalItemsSpec,
+                data));
         }
 
         [HttpGet("{id}")]

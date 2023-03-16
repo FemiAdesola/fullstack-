@@ -3,6 +3,7 @@ using Backend.common;
 using Backend.DTOs;
 using Backend.Errors;
 using Backend.Exceptions;
+using Backend.Helper;
 using Backend.Models;
 using Backend.Services;
 using Backend.Services.Interface;
@@ -35,6 +36,13 @@ namespace Backend.Controllers
             }
             return Ok(item);
         }
+
+        // [HttpGet]
+        // public async virtual Task<ActionResult<Pagination<TReturn>>> GetAll()
+        // {
+        //     var items = await _service.GetAllAsync();
+        //     return Ok(_mapper.Map<IReadOnlyList<TModel>, Pagination<TReturn>>(items));
+        // }
 
         [HttpGet]
         public async virtual Task<ActionResult<IReadOnlyList<TReturn>>> GetAll()
