@@ -1,13 +1,8 @@
 using System.Text.Json.Serialization;
 using Backend.Database;
-using Backend.DTOs;
-using Backend.Errors;
+using Backend.Exceptions;
 using Backend.Middleware;
-using Backend.Models;
-using Backend.Services.Implementations;
-using Backend.Services.Interface;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
+
 
 internal class Program
 {
@@ -25,49 +20,22 @@ internal class Program
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
 
-
         builder.Services.AddCors();
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
-        builder.Services.Configure<ApiBehaviorOptions>(options =>
-        {
-            options.InvalidModelStateResponseFactory = actionContex =>
-            {
-                var errors = actionContex.ModelState
-                    .Where(e => e.Value.Errors.Count > 0)
-                    .SelectMany(e => e.Value.Errors)
-                    .SelectMany(e => e.ErrorMessage).ToString();
-
-                var errorResponse = new ApiValidationError
-                {
-                    // Errors = errors
-                };
-                return new BadRequestObjectResult(errorResponse);
-            };
-        });
-
-
-        builder.Services
-            .AddScoped<ICategoryService, DbCategorySerivce>()
-            .AddScoped<IProductService, DbProductSerivce>()
-            .AddScoped<ICrudService<Address, AddressDTO>, DbCrudService<Address, AddressDTO>>()
-            .AddScoped<IOrderService, DbOrderSerivce>()
-            .AddScoped<IOrderItemService, DbOrderItemSerivce>()
-            .AddScoped<IReviewService, DbReviewSerivce>();
+        builder.Services.AddApplicationServices(builder.Configuration);
+        builder.Services.AddSwaggerDocumentation();
 
         var app = builder.Build();
 
         app.UseMiddleware<ErrorHandlerMiddleware>();
-
+    
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-
             using (var scope = app.Services.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetService<AppDbContext>();
@@ -84,32 +52,10 @@ internal class Program
         app.UseHttpsRedirection();
         app.UseRouting();
         app.UseStaticFiles();
-
+        app.UseSwaggerDocumentation();
         app.UseCors();
         app.UseAuthorization();
-
         app.MapControllers();
-
-
-        // using var scope = app.Services.CreateScope();
-        // var services = scope.ServiceProvider;
-        // var context = services.GetRequiredService<AppDbContext>();
-        // var logger = services.GetRequiredService<ILogger<Program>>();
-        // try
-        // {
-
-        //     await DataStore.DataAsync(context);
-
-        // }
-        // catch (Exception ex)
-        // {
-        //     logger.LogError(ex, "An error occured during migration");
-        // }
-
-
-
         app.Run();
-
-        
     }
 }

@@ -1,11 +1,13 @@
 using AutoMapper;
 using Backend.common;
 using Backend.DTOs;
+using Backend.Errors;
 using Backend.Exceptions;
 using Backend.Models;
 using Backend.Services;
 using Backend.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace Backend.Controllers
 {
@@ -39,17 +41,17 @@ namespace Backend.Controllers
         {
             var items = await _service.GetAllAsync();
             return Ok(_mapper.Map<IReadOnlyList<TModel>, IReadOnlyList<TReturn>>(items));
-            
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponseError), StatusCodes.Status404NotFound)]
         public async virtual Task<ActionResult<TReturn?>> Get(int id)
         {
-
             var item = await _service.GetAsync(id);
             if (item is null)
             {
-                return NotFound($"Item with ID {id} is not found");
+                return NotFound(new ApiResponseError(404));
             }
 
             return _mapper.Map<TModel, TReturn>(item);

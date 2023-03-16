@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
 {
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class BuggyController : BaseApiController
     {
         private readonly AppDbContext _context;
