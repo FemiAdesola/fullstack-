@@ -20,7 +20,19 @@ internal class Program
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
 
-        builder.Services.AddCors();
+
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("CorsPolicy", builder =>
+            {
+                builder
+                    .AllowAnyOrigin()
+                    .SetIsOriginAllowedToAllowWildcardSubdomains()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
+
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
@@ -52,9 +64,9 @@ internal class Program
         app.UseHttpsRedirection();
         app.UseRouting();
         app.UseStaticFiles();
-        app.UseSwaggerDocumentation();
-        app.UseCors();
+        app.UseCors("CorsPolicy");
         app.UseAuthorization();
+        app.UseSwaggerDocumentation();
         app.MapControllers();
         app.Run();
     }
