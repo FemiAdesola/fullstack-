@@ -9,8 +9,8 @@ namespace Backend.Helper
         public MappingProfile()
         {
             CreateMap<Product, ProductToReturnDTO>()
-                .ForMember(d => d.Category, o => o.MapFrom(s => s.Category.Name))
-                .ForMember(d => d.Images, o => o.MapFrom<ImageUrlResolver>());
+                .ForMember(d => d.Category, o => o.MapFrom(s => s.Category.Name));
+            // .ForMember(d => d.Images, o => o.MapFrom<ImageUrlResolver>());
 
             CreateMap<Category, CategoryToReturnDTO>();
 

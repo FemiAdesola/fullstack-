@@ -14,16 +14,14 @@ namespace Backend.Models
         public string Description { get; set; } = null!;
 
         // [Column(TypeName = "jsonb")]
-        public string Images { get; set; } = null!;
-        //public ICollection<string> Images { get; set; } = null!;
+        [Column(TypeName = "bytea")]
+         public string Images { get; set; } = null!;
+        // public ICollection<string> Images { get; set; } = null!;
 
         [JsonIgnore]
         public int CategoryId { get; set; }
 
         public Category Category { get; set; } = default!;
 
-// new added
-        // public ProductBrand ProductBrand { get; set; } = null!;
-        // public int ProductBrandId { get; set; }
     }
 }

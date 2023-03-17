@@ -15,10 +15,10 @@ namespace Backend.Helper
         public string Resolve(Product source, ProductToReturnDTO destination, 
         string destMember, ResolutionContext context)
         {
-            if (!string.IsNullOrEmpty(source.Images))
-            {
-                return _config["ApiUrl"] + source.Images;
-            }
+            // if (!string.IsNullOrEmpty(source.Images))
+            // {
+            //     return _config["ApiUrl"] + source.Images;
+            // }
             return null;
         }
     }

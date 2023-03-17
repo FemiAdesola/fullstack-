@@ -5,7 +5,8 @@ export interface ProductType {
     price: number;
     description: string;
     category: CategoryType; 
-    images: string[]
+    // images: string[]
+    images: string
     product?: ProductType | null;
 }
 
