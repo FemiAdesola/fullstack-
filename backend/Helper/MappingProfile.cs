@@ -13,6 +13,12 @@ namespace Backend.Helper
                 .ForMember(d => d.Images, o => o.MapFrom<ImageUrlResolver>());
 
             CreateMap<Category, CategoryToReturnDTO>();
+
+            CreateMap<Order, OrderToReturnDTO>();
+
+            CreateMap<Review, ReviewToReturnDTO>();
+
+            CreateMap<OrderItem, OrderItemToReturnDTO>();
         }
     }
 }

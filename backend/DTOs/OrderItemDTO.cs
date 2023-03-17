@@ -15,4 +15,17 @@ namespace Backend.DTOs
             model.Quantity = Quantity;
         }
     }
+
+    public class OrderItemToReturnDTO : BaseReturnDTO<OrderItem>
+    {
+        public int Id { get; set; }
+        public int Quantity { get; set; }
+        public override void BaseToRetunModel(OrderItem returnBase)
+        {
+            returnBase.Id = Id;
+            returnBase.Quantity = Quantity;
+            
+
+        }
+    }
 }

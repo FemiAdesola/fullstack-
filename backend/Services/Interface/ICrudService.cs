@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Backend.Specifications;
 
 namespace Backend.Services.Interface
 {
@@ -11,8 +10,5 @@ namespace Backend.Services.Interface
         Task<TModel?> GetAsync(int id);
         Task<TModel?> UpdateAsync(int id, TDto request);
         Task<bool> DeleteAsync(int id);
-        Task<TModel?> GetEntityWithSpec(ISpecificationService<TModel> spec);
-        Task<IReadOnlyList<TModel>> GetAllSpecAsync(ISpecificationService<TModel> spec);
-        Task<int> CountAsync(ISpecificationService<TModel> spec);
     }
 }

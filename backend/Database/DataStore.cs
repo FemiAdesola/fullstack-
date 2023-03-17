@@ -7,19 +7,6 @@ namespace Backend.Database
     {
        public static async Task DataAsync(AppDbContext context, ILoggerFactory loggerFactory)
         {
-            // if(!context.ProductBrands.Any())
-            // {
-            //     var brandsData = File.ReadAllText("../Database/Data/productbrands.json");
-
-            //     var brands = JsonSerializer.Deserialize<List<ProductBrand>>(brandsData);
-
-            //     foreach (var item in brands)
-            //     {
-            //         context.ProductBrands.Add(item);
-            //     }
-            //     await context.SaveChangesAsync();
-            // }
-
             if (!context.Categories.Any())
             {
                 var categoryData = File.ReadAllText("../Database/Data/categories.json");
