@@ -5,7 +5,7 @@ using Backend.Services.Implementations;
 using Backend.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Backend.Exceptions
+namespace Backend.Extensions
 {
     public static class ApplicationServiceExtension
     {
@@ -21,21 +21,22 @@ namespace Backend.Exceptions
             .AddScoped<IReviewService, DbReviewSerivce>();
 
             services.Configure<ApiBehaviorOptions>(options =>
-            {
-                options.InvalidModelStateResponseFactory = actionContex =>
                 {
-                    var errors = actionContex.ModelState
-                        .Where(e => e.Value.Errors.Count > 0)
-                        .SelectMany(e => e.Value.Errors)
-                        .SelectMany(e => e.ErrorMessage).ToString();
-
-                    var errorResponse = new ApiValidationError
+                    options.InvalidModelStateResponseFactory = actionContext =>
                     {
-                        // Errors = errors
+                        var errors = actionContext.ModelState
+                            .Where(e => e.Value.Errors.Count > 0)
+                            .SelectMany(x => x.Value.Errors)
+                            .Select(x => x.ErrorMessage).ToArray();
+
+                        var errorResponse = new ApiValidationError
+                        {
+                            Errors = errors
+                        };
+
+                        return new BadRequestObjectResult(errorResponse);
                     };
-                    return new BadRequestObjectResult(errorResponse);
-                };
-            });
+                });
             return services;
         }
     }

@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 using Backend.Database;
-using Backend.Exceptions;
+using Backend.Extensions;
 using Backend.Middleware;
 
 

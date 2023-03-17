@@ -17,9 +17,9 @@ namespace Backend.Errors
             {
                 400 => "A bad request, you have made",
                 401 => "Authorized, you are not",
-                404 => "Resource found, it was not",
+                404 => "Lokking for Resourcing, it was not found",
                 500 => "Internal path error",
-                _ => "Anything else"
+                _ => "Consult administrator"
             };
         }
     }

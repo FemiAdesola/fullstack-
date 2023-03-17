@@ -2,7 +2,6 @@ using AutoMapper;
 using Backend.common;
 using Backend.DTOs;
 using Backend.Errors;
-using Backend.Exceptions;
 using Backend.Helper;
 using Backend.Models;
 using Backend.Services;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace Backend.Exceptions
+namespace Backend.Extensions
 {
     public class HttpException : Exception
     {

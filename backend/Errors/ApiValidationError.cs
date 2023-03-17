@@ -7,6 +7,5 @@ namespace Backend.Errors
         }
 
         public IEnumerable<string> Errors { get; set; } = null!;
-
     }
 }
