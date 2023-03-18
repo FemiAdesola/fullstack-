@@ -13,7 +13,7 @@ namespace Backend.Database
 
                 var category = JsonSerializer.Deserialize<List<Category>>(categoryData);
 
-                foreach (var it in category)
+                foreach (var it in category!)
                 {
                     context.Categories.Add(it);
                 }
@@ -27,7 +27,7 @@ namespace Backend.Database
 
                 var product = JsonSerializer.Deserialize<List<Product>>(productData);
 
-                foreach (var it in product)
+                foreach (var it in product!)
                 {
                     context.Products.Add(it);
                 }

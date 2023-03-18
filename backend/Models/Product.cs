@@ -13,7 +13,6 @@ namespace Backend.Models
         public decimal Price { get; set; }
         public string Description { get; set; } = null!;
 
-        // [Column(TypeName = "jsonb")]
         [Column(TypeName = "bytea")]
          public string Images { get; set; } = null!;
         // public ICollection<string> Images { get; set; } = null!;

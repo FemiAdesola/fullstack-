@@ -7,5 +7,4 @@ namespace Backend.Services.Interface
     {
         Task<ICollection<Product>> GetProductsByCategoryIdAsync(int id);
     }
-
 }

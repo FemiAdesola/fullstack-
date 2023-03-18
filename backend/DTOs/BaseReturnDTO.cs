@@ -6,5 +6,4 @@ namespace Backend.DTOs
     {
         public abstract void BaseToRetunModel(TModel returnBase);
     }
-    
 }

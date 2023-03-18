@@ -21,5 +21,4 @@ namespace Backend.DTOs
             model.Country = Country;
         }
     }
-    
 }

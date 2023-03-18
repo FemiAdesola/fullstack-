@@ -19,7 +19,7 @@ namespace Backend.Helper
             // {
             //     return _config["ApiUrl"] + source.Images;
             // }
-            return null;
+            return null!;
         }
     }
 }

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Backend.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace Backend.Database
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
         static AppDbContext()
         {
@@ -25,15 +27,16 @@ namespace Backend.Database
             var connString = _config.GetConnectionString("DefaultConnection");
             optionsBuilder
                 .UseNpgsql(connString)
-                // .AddInterceptors(new AppDbContextSaveChangesInterceptor())
-                
+                .AddInterceptors(new AppDbContextSaveChangesInterceptor())
                 .UseSnakeCaseNamingConvention();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.AddIdentityConfig();
             modelBuilder.AddICommonConfig();
+           
         }
 
         public DbSet<Category> Categories { get; set; } = null!;

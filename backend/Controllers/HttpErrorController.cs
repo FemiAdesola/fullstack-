@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace Backend.Controllers
 {
     [ApiExplorerSettings(IgnoreApi = true)]
-    public class BuggyController : BaseApiController
+    public class HttpErrorController : BaseApiController
     {
         private readonly AppDbContext _context;
-        public BuggyController(AppDbContext context)
+        public HttpErrorController(AppDbContext context)
         {
             _context = context;
         }
@@ -36,7 +36,7 @@ namespace Backend.Controllers
         {
             var serverError = _context.Products.Find(42);
 
-            var thingToReturn = serverError.ToString();
+            var thingToReturn = serverError?.ToString();
 
             return Ok();
         }

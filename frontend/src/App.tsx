@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import CategoryBoard from './components/category/CategoryBoard';
+import CreateCategory from './components/category/CreateCategory';
 import Products from './components/product/Products';
 import SingleProduct from './components/product/SingleProduct';
 import Home from './pages/Home';
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
        {
         path: 'products/:id',
         element: <SingleProduct />
+      },
+       {
+        path: 'createcategory',
+        element: <CreateCategory />
       }
     ]
   }

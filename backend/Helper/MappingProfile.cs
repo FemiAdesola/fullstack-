@@ -19,6 +19,9 @@ namespace Backend.Helper
             CreateMap<Review, ReviewToReturnDTO>();
 
             CreateMap<OrderItem, OrderItemToReturnDTO>();
+
+            CreateMap<UserSignUpDTO, User>();
+            CreateMap<UserToReturnDTO, User>();
         }
     }
 }

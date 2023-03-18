@@ -40,7 +40,6 @@ namespace Backend.DTOs
             returnBase.Rating = Rating;
             returnBase.Comment = Comment;
             returnBase.ProductId = ProductId;
-
         }
     }
 }

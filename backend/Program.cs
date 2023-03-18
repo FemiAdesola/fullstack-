@@ -2,7 +2,8 @@ using System.Text.Json.Serialization;
 using Backend.Database;
 using Backend.Extensions;
 using Backend.Middleware;
-
+using Backend.Models;
+using Microsoft.AspNetCore.Identity;
 
 internal class Program
 {
@@ -20,7 +21,18 @@ internal class Program
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
 
-
+        builder.Services
+            // .AddIdentity<User,IdentityRole<int>>() // with strong identity 
+            .AddIdentity<User, IdentityRole<int>>(options =>
+            {
+                options.Password.RequiredLength = 6;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+            }) // with less strong password requirements
+            .AddEntityFrameworkStores<AppDbContext>();
+            
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("CorsPolicy", builder =>
@@ -40,6 +52,7 @@ internal class Program
 
         builder.Services.AddApplicationServices(builder.Configuration);
         builder.Services.AddSwaggerDocumentation();
+        builder.Services.AddIdentityServices(builder.Configuration);
 
         var app = builder.Build();
 
@@ -65,6 +78,7 @@ internal class Program
         app.UseRouting();
         app.UseStaticFiles();
         app.UseCors("CorsPolicy");
+        app.UseAuthentication();
         app.UseAuthorization();
         app.UseSwaggerDocumentation();
         app.MapControllers();

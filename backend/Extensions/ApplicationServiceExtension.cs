@@ -1,9 +1,13 @@
+using System.Text;
 using Backend.DTOs;
 using Backend.Errors;
 using Backend.Models;
 using Backend.Services.Implementations;
 using Backend.Services.Interface;
+using Backend.Services.UserService;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Backend.Extensions
 {
@@ -13,12 +17,15 @@ namespace Backend.Extensions
             IConfiguration config)
         {
             services
-            .AddScoped<ICategoryService, DbCategorySerivce>()
-            .AddScoped<IProductService, DbProductSerivce>()
-            .AddScoped<ICrudService<Address, AddressDTO>, DbCrudService<Address, AddressDTO>>()
-            .AddScoped<IOrderService, DbOrderSerivce>()
-            .AddScoped<IOrderItemService, DbOrderItemSerivce>()
-            .AddScoped<IReviewService, DbReviewSerivce>();
+                .AddScoped<ICategoryService, DbCategorySerivce>()
+                .AddScoped<IProductService, DbProductSerivce>()
+                .AddScoped<ICrudService<Address, AddressDTO>, DbCrudService<Address, AddressDTO>>()
+                .AddScoped<IOrderService, DbOrderSerivce>()
+                .AddScoped<IOrderItemService, DbOrderItemSerivce>()
+                .AddScoped<IReviewService, DbReviewSerivce>()
+
+                .AddScoped<IUserService, UserService>()
+                .AddScoped<IUserTokenService, UserTokenService>();
 
             services.Configure<ApiBehaviorOptions>(options =>
                 {

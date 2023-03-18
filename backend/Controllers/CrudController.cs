@@ -6,11 +6,13 @@ using Backend.Helper;
 using Backend.Models;
 using Backend.Services;
 using Backend.Services.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace Backend.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public abstract class CrudController<TModel, TDto, TReturn> : BaseApiController
      where TModel : BaseModel, new()
      where TDto : BaseDTO<TModel>
@@ -36,13 +38,7 @@ namespace Backend.Controllers
             return Ok(item);
         }
 
-        // [HttpGet]
-        // public async virtual Task<ActionResult<Pagination<TReturn>>> GetAll()
-        // {
-        //     var items = await _service.GetAllAsync();
-        //     return Ok(_mapper.Map<IReadOnlyList<TModel>, Pagination<TReturn>>(items));
-        // }
-
+        [AllowAnonymous]
         [HttpGet]
         public async virtual Task<ActionResult<IReadOnlyList<TReturn>>> GetAll()
         {
@@ -50,6 +46,7 @@ namespace Backend.Controllers
             return Ok(_mapper.Map<IReadOnlyList<TModel>, IReadOnlyList<TReturn>>(items));
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponseError), StatusCodes.Status404NotFound)]

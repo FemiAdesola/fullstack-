@@ -24,6 +24,10 @@ public static class CommonEntityExtention
         modelBuilder.Entity<Product>().Property(c => c.Price).HasColumnType("decimal(18,2)");
         modelBuilder.Entity<Product>()
             .HasOne(c => c.Category).WithMany().HasForeignKey(p => p.CategoryId);
+
+        modelBuilder.Entity<User>()
+           .HasIndex(s => s.Email)
+           .IsUnique();
     
     }
 }
