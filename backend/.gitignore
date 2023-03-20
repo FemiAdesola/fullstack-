@@ -8,6 +8,7 @@ backend/bin
 
 /Note.md
 /Note2.md
+/user.http
 # Visual Studio 2015/2017 cache/options directory
 .vs/
 

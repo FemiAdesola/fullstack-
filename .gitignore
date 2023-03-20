@@ -6,9 +6,11 @@ backend/appsettings.*.json
 backend/obj
 backend/bin
 backend/wwwroot
+backend/user.http
 
 /Note.md
 /Note2.md
+
 # Visual Studio 2015/2017 cache/options directory
 .vs/
 

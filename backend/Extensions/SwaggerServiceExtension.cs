@@ -1,4 +1,5 @@
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Backend.Extensions
 {
@@ -7,31 +8,40 @@ namespace Backend.Extensions
         public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services)
         {
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(option =>
             {
-                var securitySchema = new OpenApiSecurityScheme
+                option.AddSecurityDefinition(
+                "TOKEN",
+                new OpenApiSecurityScheme
                 {
-                    Description = "JWT Auth Bearer Scheme",
-                    Name = "Authorisation",
+                    Description = "Bearer token authentication",
+                    Name = "Authentication",
                     In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.Http,
-                    Scheme = "Bearer",
-                    Reference = new OpenApiReference
-                    {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer"
-                    }
-                };
+                });
+                option.OperationFilter<SecurityRequirementsOperationFilter>();
+                // var securitySchema = new OpenApiSecurityScheme
+                // {
+                //     Description = "JWT Auth Bearer Scheme",
+                //     Name = "Authorisation",
+                //     In = ParameterLocation.Header,
+                //     Type = SecuritySchemeType.Http,
+                //     Scheme = "Bearer",
+                //     Reference = new OpenApiReference
+                //     {
+                //         Type = ReferenceType.SecurityScheme,
+                //         Id = "Bearer"
+                //     }
+                // };
 
-                c.AddSecurityDefinition("Bearer", securitySchema);
+                // c.AddSecurityDefinition("Bearer", securitySchema);
 
-                var securityRequirement = new OpenApiSecurityRequirement
-                {
-                    {
-                        securitySchema, new[] {"Bearer"}
-                    }
-                };
-                c.AddSecurityRequirement(securityRequirement);
+                // var securityRequirement = new OpenApiSecurityRequirement
+                // {
+                //     {
+                //         securitySchema, new[] {"Bearer"}
+                //     }
+                // };
+                // c.AddSecurityRequirement(securityRequirement);
             });
             return services;
         }

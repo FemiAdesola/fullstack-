@@ -75,16 +75,37 @@ namespace Backend.Services.UserService
             return await _userManager.FindByIdAsync(id.ToString());
         }
 
-//
-        public async Task<User> DeleteAsync(string Id)
+        public async Task<User> DeleteAsync(int id)
         {
-            var user = await _userManager.FindByIdAsync(Id);
+            var user = await _userManager.FindByIdAsync(id.ToString());
             if (user == null)
             {
                 return null!;
             }
             await _userManager.DeleteAsync(user);
             return user;
+        }
+
+        public async Task<User> UpdateUserAsync(UserUpdateDTO request)
+        {
+            var user = await _userManager.FindByEmailAsync(request.Email);
+            if (user is null)
+            {
+                return null!;
+            }
+            if (!await _userManager.CheckPasswordAsync(user, request.Password))
+            {
+                return null!;
+            }
+            if (request.NewPassword != null)
+            {
+                await _userManager.ChangePasswordAsync(user, request.Password, request.NewPassword);
+            }
+            request.UpdateUser(user);
+
+            await _userManager.UpdateAsync(user);
+            return user;
+
         }
     }
 }

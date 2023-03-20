@@ -59,5 +59,11 @@ namespace Backend.Services.UserService
                 Expiration = expiration,
             };
         }
+
+        public JwtSecurityToken GetToken(string token)
+        {
+            var tokenWriter = new JwtSecurityTokenHandler();
+            return tokenWriter.ReadJwtToken(token);
+        }
     }
 }
