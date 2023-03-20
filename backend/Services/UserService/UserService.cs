@@ -14,7 +14,6 @@ namespace Backend.Services.UserService
         private readonly IUserTokenService _tokenUserService;
         private readonly IMapper _mapper;
 
-
         public UserService(UserManager<User> userManager,
             RoleManager<IdentityRole<int>> roleManager,
             IUserTokenService tokenUserService,
@@ -25,13 +24,7 @@ namespace Backend.Services.UserService
             _tokenUserService = tokenUserService;
             _mapper = mapper;
         }
-
-        public async Task<ICollection<User>> GetAllAsync()
-        {
-            return await _userManager.Users.ToListAsync();
-        }
-
-       
+        
         public async Task<User?> SignUpAsync(UserSignUpDTO request)
         {
             var user = _mapper.Map<UserSignUpDTO, User>(request);
@@ -72,5 +65,26 @@ namespace Backend.Services.UserService
             return await _tokenUserService.GenerateUserTokenAsync(user);
         }
 
+        public async Task<ICollection<User>> GetUsersAsync()
+        {
+            return await _userManager.Users.ToListAsync();
+        }
+
+        public async Task<User?> GetByIdAsync(int id)
+        {
+            return await _userManager.FindByIdAsync(id.ToString());
+        }
+
+//
+        public async Task<User> DeleteAsync(string Id)
+        {
+            var user = await _userManager.FindByIdAsync(Id);
+            if (user == null)
+            {
+                return null!;
+            }
+            await _userManager.DeleteAsync(user);
+            return user;
+        }
     }
 }

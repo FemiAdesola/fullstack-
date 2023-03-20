@@ -21,7 +21,7 @@ namespace Backend.Helper
             CreateMap<OrderItem, OrderItemToReturnDTO>();
 
             CreateMap<UserSignUpDTO, User>();
-            CreateMap<UserToReturnDTO, User>();
+            CreateMap<User, UserToReturnDTO >();
         }
     }
 }

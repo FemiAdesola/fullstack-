@@ -1,5 +1,6 @@
 using AutoMapper;
 using Backend.DTOs;
+using Backend.Errors;
 using Backend.Models;
 using Backend.Services.UserService;
 using Microsoft.AspNetCore.Authorization;
@@ -44,35 +45,40 @@ namespace Backend.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<IReadOnlyList<UserToReturnDTO>>> GetAll()
         {
-            var user = await _service.GetAllAsync();
+            var user = await _service.GetUsersAsync();
 
             if (user is null)
             {
                 return BadRequest();
             }
-            return Ok(user);
+            return Ok(_mapper.Map<IReadOnlyList<UserToReturnDTO>>(user));
         }
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(string id)
+        {
 
-        // [AllowAnonymous]
-        // [HttpGet]
-        // public async Task<IActionResult> GetAll(UserToReturnDTO request)
-        // {
+            var user= await _service.DeleteAsync(id);
 
-        //     // var user = _mapper.Map<UserToReturnDTO, User>(request);
-        //     var result = await _service.GetAllAsync(request);
-        //     if (result is null)
-        //     {
-        //         return BadRequest();
-        //     }
-        //     return Ok(result);
-        //     //return Ok(UserToReturnDTO.FromUser((User)result));
+            if (user is null)
+            {
+                return NotFound($" Item with ID {id} is not found");
+            }
+            return Ok(new { Message = $"item with Id {id} is deleted " });
+        }
 
-        //     // return Ok(_mapper.Map<IReadOnlyList<User>, IReadOnlyList<UserToReturnDTO>>(result));
-        // }
+        [HttpGet("{id}")]
+        public async virtual Task<ActionResult<UserToReturnDTO?>> Get(int id)
+        {
+            var item = await _service.GetByIdAsync(id);
+            if (item is null)
+            {
+                return NotFound(new ApiResponseError(404));
+            }
+            return Ok(_mapper.Map<User, UserToReturnDTO>(item));
+        }
     }
-
 }
 
