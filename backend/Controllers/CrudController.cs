@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public abstract class CrudController<TModel, TDto, TReturn> : BaseApiController
      where TModel : BaseModel, new()
      where TDto : BaseDTO<TModel>

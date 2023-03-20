@@ -7,6 +7,7 @@ backend/obj
 backend/bin
 backend/wwwroot
 backend/user.http
+backend/note.http
 
 /Note.md
 /Note2.md

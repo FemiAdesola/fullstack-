@@ -33,7 +33,7 @@ namespace Backend.DTOs
         public decimal Price { get; set; }
         public string Description { get; set; } = null!;
         public string Images { get; set; } = null!;
-        public string Category { get; set; } = null!;
+        public Category Category { get; set; } = null!;
 
         public override void BaseToRetunModel(Product returnBase)
         {
@@ -42,7 +42,7 @@ namespace Backend.DTOs
             returnBase.Description = Description;
             returnBase.Price = Price;
             returnBase.Images = Images;
-            returnBase.Category.Name = Category;
+            returnBase.Category = Category;
 
         }
     }

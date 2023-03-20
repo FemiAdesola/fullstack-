@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 
 import axiosInstance from '../../common/axiosIntsance';
 import { ProductType } from '../../types/product';
-
+import Review from './Review';
+import UpdateProduct from './UpdateProduct';
 
 const SingleProduct = () => {
   const params = useParams();
@@ -62,7 +63,18 @@ const SingleProduct = () => {
           </ListGroup.Item>
           </ListGroup>
         </Col>
-    </Row>
+         <Col md={30}>
+          <ListGroup.Item>
+            <UpdateProduct
+              id={products?.id}
+              previousTitle={products?.title}
+              previousDescription={products?.description}
+              previousPrice={products?.price}
+              previousImage={products?.images} />
+          </ListGroup.Item>
+          </Col> 
+      </Row>
+      <Review/>
     </Container>
   )
 }
