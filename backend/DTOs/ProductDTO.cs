@@ -34,6 +34,7 @@ namespace Backend.DTOs
         public string Description { get; set; } = null!;
         public string Images { get; set; } = null!;
         public Category Category { get; set; } = null!;
+        public ICollection<ReviewProduct> Reviews{ get; set; } = null!;
 
         public override void BaseToRetunModel(Product returnBase)
         {

@@ -28,6 +28,10 @@ public static class CommonEntityExtention
         modelBuilder.Entity<User>()
            .HasIndex(s => s.Email)
            .IsUnique();
-    
+
+
+        modelBuilder.Entity<ReviewProduct>()
+         .HasKey(ps => new {ps.ReviewId, ps.ProductId })
+         ;
     }
 }

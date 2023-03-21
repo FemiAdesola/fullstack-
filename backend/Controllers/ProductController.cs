@@ -35,6 +35,17 @@ namespace Backend.Controllers
             }
             return NotFound("Item you are looking for is not found");
         }
+
+        [HttpPost("{id}/reviews")]
+        public async Task<IActionResult> AddReview(int id, ICollection<AddReviewToProductDTO> reviews)
+        {
+            var added = await _productService.AddReviewToProuct(id, reviews);
+            if (added <= 0)
+            {
+                return BadRequest("No valid review found");
+            }
+            return Ok(new { Count = added });
+        }
     }
 
 }

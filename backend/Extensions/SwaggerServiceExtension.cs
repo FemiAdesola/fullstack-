@@ -10,38 +10,29 @@ namespace Backend.Extensions
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(option =>
             {
-                option.AddSecurityDefinition(
-                "TOKEN",
-                new OpenApiSecurityScheme
+                var securitySchema = new OpenApiSecurityScheme
                 {
-                    Description = "Bearer token authentication",
-                    Name = "Authentication",
+                    Description = "JWT Auth Bearer Scheme",
+                    Name = "Authorisation",
                     In = ParameterLocation.Header,
-                });
-                option.OperationFilter<SecurityRequirementsOperationFilter>();
-                // var securitySchema = new OpenApiSecurityScheme
-                // {
-                //     Description = "JWT Auth Bearer Scheme",
-                //     Name = "Authorisation",
-                //     In = ParameterLocation.Header,
-                //     Type = SecuritySchemeType.Http,
-                //     Scheme = "Bearer",
-                //     Reference = new OpenApiReference
-                //     {
-                //         Type = ReferenceType.SecurityScheme,
-                //         Id = "Bearer"
-                //     }
-                // };
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "Bearer",
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                };
 
-                // c.AddSecurityDefinition("Bearer", securitySchema);
+                option.AddSecurityDefinition("Bearer", securitySchema);
 
-                // var securityRequirement = new OpenApiSecurityRequirement
-                // {
-                //     {
-                //         securitySchema, new[] {"Bearer"}
-                //     }
-                // };
-                // c.AddSecurityRequirement(securityRequirement);
+                var securityRequirement = new OpenApiSecurityRequirement
+                {
+                    {
+                        securitySchema, new[] {"Bearer"}
+                    }
+                };
+                option.AddSecurityRequirement(securityRequirement);
             });
             return services;
         }

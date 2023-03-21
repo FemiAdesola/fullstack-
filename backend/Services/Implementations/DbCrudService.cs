@@ -28,7 +28,7 @@ namespace Backend.Services.Implementations
             return item;
         }
 
-        public virtual async Task<IReadOnlyList<TModel>> GetAllAsync()
+        public virtual async Task<ICollection<TModel>> GetAllAsync()
         {
             return await _dbContext.Set<TModel>().AsNoTracking().ToListAsync();
         }

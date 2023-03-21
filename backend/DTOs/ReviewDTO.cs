@@ -15,13 +15,10 @@ namespace Backend.DTOs
         [MaxLength(400)]
         public string? Comment { get; set; }
 
-        public int ProductId { get; set; }
-
         public override void UpdateModel(Review model)
         {
             model.Rating = Rating;
             model.Comment = Comment;
-            model.ProductId = ProductId;
         }
     }
 
@@ -33,13 +30,11 @@ namespace Backend.DTOs
         [MaxLength(400)]
         public string? Comment { get; set; }
 
-        public int ProductId { get; set; }
         public override void BaseToRetunModel(Review returnBase)
         {
             returnBase.Id = Id;
             returnBase.Rating = Rating;
             returnBase.Comment = Comment;
-            returnBase.ProductId = ProductId;
         }
     }
 }

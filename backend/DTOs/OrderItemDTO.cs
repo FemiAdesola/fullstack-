@@ -20,12 +20,12 @@ namespace Backend.DTOs
     {
         public int Id { get; set; }
         public int Quantity { get; set; }
+        public ICollection<OrderItemProduct> ProductLists { get; set; } = null!;
         public override void BaseToRetunModel(OrderItem returnBase)
         {
             returnBase.Id = Id;
             returnBase.Quantity = Quantity;
-            
-
+        
         }
     }
 }

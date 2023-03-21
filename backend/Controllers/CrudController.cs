@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
 {
-    // [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public abstract class CrudController<TModel, TDto, TReturn> : BaseApiController
      where TModel : BaseModel, new()
      where TDto : BaseDTO<TModel>
@@ -40,10 +40,10 @@ namespace Backend.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public async virtual Task<ActionResult<IReadOnlyList<TReturn>>> GetAll()
+        public async virtual Task<ActionResult<ICollection<TReturn>>> GetAll()
         {
             var items = await _service.GetAllAsync();
-            return Ok(_mapper.Map<IReadOnlyList<TModel>, IReadOnlyList<TReturn>>(items));
+            return Ok(_mapper.Map<ICollection<TModel>, ICollection<TReturn>>(items));
         }
 
         [AllowAnonymous]

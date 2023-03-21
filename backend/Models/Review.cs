@@ -9,6 +9,7 @@ namespace Backend.Models
     {
         public int Rating { get; set; }
         public string? Comment { get; set; }
-        public int ProductId { get; set; }
+        // public int ProductId { get; set; }
+        // public ICollection<ReviewProduct> ReviewLists { get; set; } = null!;
     }
 }

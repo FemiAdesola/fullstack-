@@ -27,7 +27,10 @@ namespace Backend.Controllers
             {
                 return BadRequest("No valid product found");
             }
-            return Ok(new { Count = added });
+            else
+            {
+                return Ok(new { Count = added });
+            }
         }
     }
 }

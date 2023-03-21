@@ -14,7 +14,8 @@ namespace Backend.Helper
 
             CreateMap<Category, CategoryToReturnDTO>();
 
-            CreateMap<Order, OrderToReturnDTO>();
+            // CreateMap<OrderToReturnDTO, Order >();
+             CreateMap<Order, OrderToReturnDTO>();
 
             CreateMap<Review, ReviewToReturnDTO>();
 
@@ -22,6 +23,7 @@ namespace Backend.Helper
 
             CreateMap<UserSignUpDTO, User>();
             CreateMap<User, UserToReturnDTO >();
+            CreateMap<Address, AddressDTO>();
         }
     }
 }

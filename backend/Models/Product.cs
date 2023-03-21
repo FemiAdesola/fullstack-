@@ -22,5 +22,7 @@ namespace Backend.Models
 
         public Category Category { get; set; } = default!;
 
+        public ICollection<ReviewProduct> Reviews { get; set; } = null!;
+
     }
 }
