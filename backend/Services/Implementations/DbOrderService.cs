@@ -18,6 +18,7 @@ namespace Backend.Services.Implementations
             return await _dbContext.Orders
                 .AsNoTracking()
                 .Include(s => s.Address)
+                .Include(s => s.User)
                 .Include(p => p.Orders)
                     .ThenInclude(p => p.OrderItem)
                 .OrderBy(s => s.Id)
@@ -26,16 +27,9 @@ namespace Backend.Services.Implementations
 
         public override async Task<Order?> GetAsync(int id)
         {
-            // var product = await base.GetAsync(id);
-            // if (product is null)
-            // {
-            //     return null;
-            // }
-            // await _dbContext.Entry(product).Reference(s => s.Address).LoadAsync();
-            // // return product;
-
             return await _dbContext.Orders
                 .Include(s => s.Address)
+                .Include(s => s.User)
                 .Include(p => p.Orders)
                     .ThenInclude(p => p.OrderItem)
                 .OrderByDescending(s => s.CreatedAt)
@@ -46,6 +40,7 @@ namespace Backend.Services.Implementations
         {
             return await _dbContext.Orders
                 .Include(s => s.Address)
+                .Include(s => s.User)
                 .Where(c => c.IsPaid.Equals(isPaid))
                 .ToListAsync();
         }

@@ -19,7 +19,7 @@ namespace Backend.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost("{id}/add-products")]
+        [HttpPost("{id}/add-product")]
         public async Task<IActionResult> AddProducts(int id, ICollection<AddProductToOrderItemDTO> request)
         {
             var added = await _orderItemService.AddProductsAsync(id, request);

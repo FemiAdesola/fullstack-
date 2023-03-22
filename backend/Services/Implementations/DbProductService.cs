@@ -23,8 +23,7 @@ namespace Backend.Services.Implementations
             .OrderByDescending(s => s.CreatedAt)
             .ToListAsync();
         }
-
-
+        
         public override async Task<Product?> GetAsync(int id)
         {
             return await _dbContext.Products

@@ -32,8 +32,7 @@ namespace Backend.Controllers
             return NotFound("Item you are looking for is not found");
         }
 
-
-        [HttpPost("{id}/orderItems")]
+        [HttpPost("{id}/add-orderItem")]
         public async Task<IActionResult> AddReview(int id, ICollection<AddOrderItemToOrderDTO> orderItems)
         {
             var added = await _orderService.AddOrderItemsToOrder(id, orderItems);

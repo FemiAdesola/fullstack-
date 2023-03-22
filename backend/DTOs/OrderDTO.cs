@@ -12,12 +12,15 @@ namespace Backend.DTOs
         public double TotalPrice { get; set; }
         public DateTime DispatcedDate { get; set; }
         public AddressDTO Address { get; set; } = null!;
+        public int UserId { get; set; }
 
         public override void UpdateModel(Order model)
         {
             model.IsPaid = IsPaid;
             model.DispatchedDate = DispatcedDate;
             model.TotalPrice = TotalPrice;
+          
+            model.UserId = UserId;
 
             if (model.Address is not null)
             {
@@ -29,6 +32,7 @@ namespace Backend.DTOs
                 Address.UpdateModel(address);
                 model.Address = address;
             }
+
         }
     }
 
@@ -37,9 +41,11 @@ namespace Backend.DTOs
         public double TotalPrice { get; set; }
         public AddressDTO Address { get; set; } = null!;
         public ICollection<OrderAndOrderItem> Orders { get; set; } = null!;
+        public int UserId { get; set; }
         public override void BaseToRetunModel(Order returnBase)
         {
             returnBase.TotalPrice = TotalPrice;
+            returnBase.UserId = UserId;
 
             if (returnBase.Address is not null)
             {

@@ -11,14 +11,22 @@ public static class CommonEntityExtention
             .HasIndex(c => c.Name)
             .IsUnique();
 
-        modelBuilder.Entity<Order>()
-            .HasOne(s => s.Address)
-            .WithOne()
-            .OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<Order>(entity =>
+        {
+            entity
+                .HasOne(s => s.Address)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity
+                .HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
 
         modelBuilder.Entity<OrderItemProduct>()
-       .HasKey(ps => new { ps.ProductId, ps.OrderItemId})
-       ;
+       .HasKey(ps => new { ps.ProductId, ps.OrderItemId});
 
         modelBuilder.Entity<Product>().Property(c => c.Title).IsRequired().HasMaxLength(100);
         modelBuilder.Entity<Product>().Property(c => c.Price).HasColumnType("decimal(18,2)");
@@ -29,27 +37,10 @@ public static class CommonEntityExtention
            .HasIndex(s => s.Email)
            .IsUnique();
 
-
         modelBuilder.Entity<ReviewProduct>()
             .HasKey(ps => new {ps.ReviewId, ps.ProductId });
 
         modelBuilder.Entity<OrderAndOrderItem>()
             .HasKey(ps => new { ps.OrderItemId, ps.OrderId });
-
-        // modelBuilder.Entity<OrderAndOrderItem>(entity =>
-        // {
-        //     entity
-        //         .HasOne(e => e.OrderItem)
-        //         .WithMany()
-        //         .HasForeignKey(entity => entity.OrderItemId)
-                
-        //         .OnDelete(DeleteBehavior.Cascade);
-        //     entity
-        //         .HasOne(e => e.Order)
-        //         .WithMany()
-        //         .HasForeignKey(e => e.OrderId)
-        //         .OnDelete(DeleteBehavior.Cascade);
-        // });
-
     }
 }

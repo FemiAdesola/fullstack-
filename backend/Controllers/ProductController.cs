@@ -36,7 +36,7 @@ namespace Backend.Controllers
             return NotFound("Item you are looking for is not found");
         }
 
-        [HttpPost("{id}/reviews")]
+        [HttpPost("{id}/add-review")]
         public async Task<IActionResult> AddReview(int id, ICollection<AddReviewToProductDTO> reviews)
         {
             var added = await _productService.AddReviewToProuct(id, reviews);

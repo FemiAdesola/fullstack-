@@ -53,6 +53,7 @@ internal class Program
         builder.Services.AddApplicationServices(builder.Configuration);
         builder.Services.AddSwaggerDocumentation();
         builder.Services.AddIdentityServices(builder.Configuration);
+        builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
         var app = builder.Build();
 
