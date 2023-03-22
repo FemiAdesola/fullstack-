@@ -24,7 +24,7 @@ namespace Backend.Extensions
                     }
                 };
 
-                option.AddSecurityDefinition("Bearer", securitySchema);
+                option.AddSecurityDefinition("Bearer",securitySchema);
 
                 var securityRequirement = new OpenApiSecurityRequirement
                 {

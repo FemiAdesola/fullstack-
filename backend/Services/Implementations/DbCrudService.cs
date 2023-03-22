@@ -28,10 +28,20 @@ namespace Backend.Services.Implementations
             return item;
         }
 
-        public virtual async Task<ICollection<TModel>> GetAllAsync()
+        public virtual async Task<IEnumerable<TModel>> GetAllAsync(QueryOptions options)
         {
-            return await _dbContext.Set<TModel>().AsNoTracking().ToListAsync();
+            var query =  _dbContext.Set<TModel>().AsNoTracking();
+            if (options.Sort.Trim().Length > 0)
+            {
+                if (query.GetType().GetProperty(options.Sort) != null)
+                {
+                    query.OrderBy(e => e.GetType().GetProperty(options.Sort));
+                } 
+                query.Take(options.Limit).Skip(options.Skip);
+            }
+            return await query.ToArrayAsync();
         }
+
 
         public virtual async Task<TModel?> GetAsync(int id)
         {

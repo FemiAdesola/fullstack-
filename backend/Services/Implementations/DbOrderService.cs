@@ -13,7 +13,7 @@ namespace Backend.Services.Implementations
 
         }
 
-        public override async Task<ICollection<Order>> GetAllAsync()
+        public override async Task<IEnumerable<Order>> GetAllAsync(QueryOptions options)
         {
             return await _dbContext.Orders
                 .AsNoTracking()

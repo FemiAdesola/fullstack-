@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
 {
+    [Authorize(Policy = "AdminOnly")]
     public abstract class CrudController<TModel, TDto, TReturn> : BaseApiController
      where TModel : BaseModel, new()
      where TDto : BaseDTO<TModel>
@@ -40,10 +41,10 @@ namespace Backend.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public async virtual Task<ActionResult<ICollection<TReturn>>> GetAll()
+        public async virtual Task<ActionResult<IEnumerable<TReturn>>> GetAll( [FromQuery] QueryOptions options)
         {
-            var items = await _service.GetAllAsync();
-            return Ok(_mapper.Map<ICollection<TModel>, ICollection<TReturn>>(items));
+            var items = await _service.GetAllAsync(options);
+            return Ok(_mapper.Map<IEnumerable<TModel>, IEnumerable<TReturn>>(items));
         }
 
         [AllowAnonymous]
