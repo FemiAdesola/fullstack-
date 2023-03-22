@@ -1,4 +1,5 @@
 using System.Text;
+using Backend.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -28,7 +29,13 @@ namespace Backend.Extensions
                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["AppSettings:Token"]))
                         };
                     });
-            services.AddAuthorization();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("AdminOrOwner", policy => policy.AddRequirements(new UpdateUserRequirement()));
+            });
+
+            
             return services;
         }
     }

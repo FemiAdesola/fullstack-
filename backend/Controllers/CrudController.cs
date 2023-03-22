@@ -1,10 +1,7 @@
 using AutoMapper;
-using Backend.common;
 using Backend.DTOs;
 using Backend.Errors;
-using Backend.Helper;
 using Backend.Models;
-using Backend.Services;
 using Backend.Services.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public abstract class CrudController<TModel, TDto, TReturn> : BaseApiController
      where TModel : BaseModel, new()
      where TDto : BaseDTO<TModel>
@@ -20,11 +16,15 @@ namespace Backend.Controllers
     {
         private readonly ICrudService<TModel, TDto> _service;
         private readonly IMapper _mapper;
+        private readonly IAuthorizationService _authorizationService;
         
-        public CrudController(ICrudService<TModel, TDto> service, IMapper mapper)
+        public CrudController(ICrudService<TModel, TDto> service, 
+            IMapper mapper,
+            IAuthorizationService authorizationService)
         {
             _service = service ?? throw new ArgumentNullException(nameof(service));
             _mapper = mapper;
+            _authorizationService = authorizationService;
         }
 
         [HttpPost]
@@ -64,13 +64,18 @@ namespace Backend.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<TModel>> Update(int id, TDto request)
         {
-            var item = await _service.UpdateAsync(id, request);
-            if (item is null)
+            var authorization = await _authorizationService.AuthorizeAsync(HttpContext.User, id, "AdminOrOwner"); 
+            if (authorization.Succeeded)
             {
-                return NotFound(new ApiResponseError(404));
+                var item = await _service.UpdateAsync(id, request);
+                if (item is null)
+                {
+                    return NotFound(new ApiResponseError(404));
+                }
+
+                return Ok(item);
             }
-            
-            return Ok(new Response<TModel>(item));
+            return Ok(authorization);
         }
 
         [HttpDelete("{id}")]

@@ -9,7 +9,7 @@ namespace Backend.Services.UserService
         Task<UserSignInResponseDTO?> SignInAsync(UserSignInDTO request);
         Task<User?> GetByIdAsync(int id);
         Task<ICollection<User>> GetUsersAsync();
-        Task<User> UpdateUserAsync(UserUpdateDTO request);
+        Task<User> UpdateUserAsync(int id, UserUpdateDTO request);
         Task<User> DeleteAsync(int id);
     }
 }

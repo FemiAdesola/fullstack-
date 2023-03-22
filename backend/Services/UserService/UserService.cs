@@ -86,26 +86,15 @@ namespace Backend.Services.UserService
             return user;
         }
 
-        public async Task<User> UpdateUserAsync(UserUpdateDTO request)
+        public async Task<User> UpdateUserAsync(int id, UserUpdateDTO request)
         {
-            var user = await _userManager.FindByEmailAsync(request.Email);
+            var user = await _userManager.FindByIdAsync(id.ToString());
             if (user is null)
             {
                 return null!;
             }
-            if (!await _userManager.CheckPasswordAsync(user, request.Password))
-            {
-                return null!;
-            }
-            if (request.NewPassword != null)
-            {
-                await _userManager.ChangePasswordAsync(user, request.Password, request.NewPassword);
-            }
-            request.UpdateUser(user);
-
             await _userManager.UpdateAsync(user);
             return user;
-
         }
     }
 }

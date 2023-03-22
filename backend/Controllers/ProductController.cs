@@ -8,6 +8,7 @@ using Backend.Helper;
 using Backend.Models;
 using Backend.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace Backend.Controllers
@@ -17,12 +18,19 @@ namespace Backend.Controllers
         private readonly IProductService _productService;
         private readonly ILogger<ProductController> _logger;
         private readonly IMapper _mapper;
+        private readonly IAuthorizationService _authorizationService;
 
-        public ProductController(IProductService service, ILogger<ProductController> logger, IMapper mapper) : base(service, mapper)
+        public ProductController(
+            IProductService service, 
+            ILogger<ProductController> logger,
+            IMapper mapper,
+            IAuthorizationService authorizationService
+            ) : base(service, mapper, authorizationService)
         {
             _productService = service;
             _logger = logger;
             _mapper = mapper;
+            _authorizationService = authorizationService;
         }
 
         [HttpGet("by-categories/{id}")]

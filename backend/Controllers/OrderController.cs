@@ -3,6 +3,7 @@ using Backend.DTOs;
 using Backend.Models;
 using Backend.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Backend.Controllers
 {
@@ -11,14 +12,19 @@ namespace Backend.Controllers
         private readonly IOrderService _orderService;
         private readonly ILogger<OrderController> _logger;
         private readonly IMapper _mapper;
+        private readonly IAuthorizationService _authorizationService;
 
         public OrderController(IOrderService service, 
-            ILogger<OrderController> logger, IMapper mapper) : 
-            base(service, mapper)
+            ILogger<OrderController> logger,
+            IMapper mapper,
+            IAuthorizationService authorizationService
+            ) : base(service, mapper, authorizationService)
+           
         {
             _orderService = service;
             _logger = logger;
             _mapper = mapper;
+            _authorizationService = authorizationService;
         }
 
         [HttpGet("status/{status}")]

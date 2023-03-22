@@ -1,5 +1,4 @@
 using AutoMapper;
-using Backend.common;
 using Backend.DTOs;
 using Backend.Errors;
 using Backend.Models;
@@ -14,12 +13,18 @@ namespace Backend.Controllers
     {
         private readonly IUserService _service;
         private readonly IUserTokenService _tokensService;
+        private readonly IAuthorizationService _authorizationService;
         private readonly IMapper _mapper;
-        public UserController(IUserService service, IMapper mapper, IUserTokenService tokensService)
+        public UserController(
+            IUserService service, 
+            IMapper mapper, 
+            IUserTokenService tokensService,
+            IAuthorizationService authorizationService)
         {
             _service = service;
             _mapper = mapper;
             _tokensService = tokensService;
+          _authorizationService = authorizationService;
         }
 
         [AllowAnonymous]
@@ -82,25 +87,22 @@ namespace Backend.Controllers
             return Ok(new { Message = $"item with Id {id} is deleted " });
         }
 
-        // [HttpPut("{id:int}")]
-        // public async Task<bool> EditUser([FromRoute] int id, [FromBody] UserUpdateDTO updateUser)
-        // {
-        //     Request.Headers.TryGetValue("Authorization", out var token);
-        //     var jwtToken = _tokensService.GetToken(token[0]!.Replace("TOKEN", string.Empty));
-        //     if (int.TryParse(jwtToken.Subject, out int userId))
-        //     {
-        //         if (userId != id)
-        //         {
-        //             return false;
-        //         }
-        //     }
-        //     var user = await _service.UpdateUserAsync(updateUser);
-        //     if (user != null)
-        //     {
-        //         return false;
-        //     }
-        //     return true;
-        // }
+        [Authorize(Policy = "AdminOrOwner")]
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<User>> Update(int id, UserUpdateDTO request)
+        {
+            var authorization = await _authorizationService.AuthorizeAsync(HttpContext.User, id, "AdminOrOwner");
+            if (authorization.Succeeded)
+            {
+                var item = await _service.UpdateUserAsync(id, request);
+                if (item is null)
+                {
+                    return NotFound(new ApiResponseError(404));
+                }
+                return Ok(item);
+            }
+            return Ok(authorization);
+        }
     }
 }
 

@@ -60,10 +60,5 @@ namespace Backend.Services.UserService
             };
         }
 
-        public JwtSecurityToken GetToken(string token)
-        {
-            var tokenWriter = new JwtSecurityTokenHandler();
-            return tokenWriter.ReadJwtToken(token);
-        }
     }
 }
