@@ -69,7 +69,7 @@ namespace Backend.Services.Implementations
 
             foreach (var item in reviews)
             {
-                product. Reviews.Add(new ReviewProduct
+                product.Reviews.Add(new ReviewProduct
                 {
                     ReviewId = item.ReviewId,
                 });

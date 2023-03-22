@@ -67,7 +67,7 @@ namespace Backend.Controllers
             var item = await _service.UpdateAsync(id, request);
             if (item is null)
             {
-                return NotFound("item is not found");
+                return NotFound(new ApiResponseError(404));
             }
             
             return Ok(new Response<TModel>(item));

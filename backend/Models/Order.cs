@@ -15,5 +15,11 @@ namespace Backend.Models
 
         [JsonIgnore]
         public int? AddressId { get; set; }
+
+        [JsonIgnore]
+        public ICollection<OrderAndOrderItem> Orders { get; set; } = null!;
+
+        //public int UserId { get; set; }
+        // public User User { get; set; }
     }
 }

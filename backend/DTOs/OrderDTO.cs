@@ -36,7 +36,7 @@ namespace Backend.DTOs
     {
         public double TotalPrice { get; set; }
         public AddressDTO Address { get; set; } = null!;
-        
+        public ICollection<OrderAndOrderItem> Orders { get; set; } = null!;
         public override void BaseToRetunModel(Order returnBase)
         {
             returnBase.TotalPrice = TotalPrice;

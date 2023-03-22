@@ -18,19 +18,28 @@ namespace Backend.Services.Implementations
             return await _dbContext.Orders
                 .AsNoTracking()
                 .Include(s => s.Address)
+                .Include(p => p.Orders)
+                    .ThenInclude(p => p.OrderItem)
                 .OrderBy(s => s.Id)
                 .ToListAsync();
         }
 
         public override async Task<Order?> GetAsync(int id)
         {
-            var product = await base.GetAsync(id);
-            if (product is null)
-            {
-                return null;
-            }
-            await _dbContext.Entry(product).Reference(s => s.Address).LoadAsync();
-            return product;
+            // var product = await base.GetAsync(id);
+            // if (product is null)
+            // {
+            //     return null;
+            // }
+            // await _dbContext.Entry(product).Reference(s => s.Address).LoadAsync();
+            // // return product;
+
+            return await _dbContext.Orders
+                .Include(s => s.Address)
+                .Include(p => p.Orders)
+                    .ThenInclude(p => p.OrderItem)
+                .OrderByDescending(s => s.CreatedAt)
+                .FirstOrDefaultAsync(P => P.Id == id);
         }
 
         public async Task<ICollection<Order>> GetOrdersStatusAsync(bool isPaid)
@@ -39,6 +48,40 @@ namespace Backend.Services.Implementations
                 .Include(s => s.Address)
                 .Where(c => c.IsPaid.Equals(isPaid))
                 .ToListAsync();
+        }
+
+        public async Task<int> AddOrderItemsToOrder(int id, ICollection<AddOrderItemToOrderDTO> orderItems)
+        {
+            var order = await GetAsync(id);
+            if (order is null)
+            {
+                return -1;
+            }
+            var orerItemIds = orderItems
+            .Select(
+                item => new
+                {
+                    item.OrderItemId
+                }
+            )
+            .ToList();
+
+            var orderItemInOrder = await _dbContext.OrderItems
+            .Where(s => orderItems.Select(
+                item => item.OrderItemId
+
+                ).ToList().Contains(s.Id))
+            .ToListAsync();
+
+            foreach (var item in orderItems)
+            {
+                order.Orders.Add(new OrderAndOrderItem
+                {
+                    OrderItemId = item.OrderItemId
+                });
+            }
+            await _dbContext.SaveChangesAsync();
+            return orderItemInOrder.Count();
         }
     }
 }

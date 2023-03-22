@@ -47,5 +47,6 @@ namespace Backend.Database
         public DbSet<OrderItemProduct> OrderItemProducts { get; set; } = null!;
         public DbSet<Review> Reviews { get; set; } = null!;
         public DbSet<ReviewProduct> ReviewProducts { get; set; } = null!;
+        public DbSet<OrderAndOrderItem> OrderAndOrderItems{ get; set; } = null!;
     }
 }

@@ -31,7 +31,25 @@ public static class CommonEntityExtention
 
 
         modelBuilder.Entity<ReviewProduct>()
-         .HasKey(ps => new {ps.ReviewId, ps.ProductId })
-         ;
+            .HasKey(ps => new {ps.ReviewId, ps.ProductId });
+
+        modelBuilder.Entity<OrderAndOrderItem>()
+            .HasKey(ps => new { ps.OrderItemId, ps.OrderId });
+
+        // modelBuilder.Entity<OrderAndOrderItem>(entity =>
+        // {
+        //     entity
+        //         .HasOne(e => e.OrderItem)
+        //         .WithMany()
+        //         .HasForeignKey(entity => entity.OrderItemId)
+                
+        //         .OnDelete(DeleteBehavior.Cascade);
+        //     entity
+        //         .HasOne(e => e.Order)
+        //         .WithMany()
+        //         .HasForeignKey(e => e.OrderId)
+        //         .OnDelete(DeleteBehavior.Cascade);
+        // });
+
     }
 }
