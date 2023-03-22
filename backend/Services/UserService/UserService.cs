@@ -1,7 +1,6 @@
 using AutoMapper;
 using Backend.DTOs;
 using Backend.Models;
-using Backend.Services.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

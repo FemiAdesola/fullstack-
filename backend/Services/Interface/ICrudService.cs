@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 namespace Backend.Services.Interface
 {
     public interface ICrudService<TModel, TDto>

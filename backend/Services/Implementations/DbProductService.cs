@@ -1,4 +1,3 @@
-using System.Linq;
 using Backend.Database;
 using Backend.DTOs;
 using Backend.Models;

@@ -22,7 +22,6 @@ internal class Program
             });
 
         builder.Services
-            // .AddIdentity<User,IdentityRole<int>>() // with strong identity 
             .AddIdentity<User, IdentityRole<int>>(options =>
             {
                 options.Password.RequiredLength = 6;
@@ -57,22 +56,23 @@ internal class Program
 
         var app = builder.Build();
 
+        app.UseHttpsRedirection();
         app.UseMiddleware<ErrorHandlerMiddleware>();
     
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            using (var scope = app.Services.CreateScope())
-            {
-                var dbContext = scope.ServiceProvider.GetService<AppDbContext>();
-                var config = scope.ServiceProvider.GetService<IConfiguration>();
-                if (dbContext is not null)
-                {
-                    dbContext.Database.EnsureDeleted();
-                    dbContext.Database.EnsureCreated();
-                }
-            }
-        }
+        // // Configure the HTTP request pipeline.
+        // if (app.Environment.IsDevelopment())
+        // {
+        //     using (var scope = app.Services.CreateScope())
+        //     {
+        //         var dbContext = scope.ServiceProvider.GetService<AppDbContext>();
+        //         // var config = scope.ServiceProvider.GetService<IConfiguration>();
+        //         // if (dbContext is not null && config.GetValue<bool>("CreateDbAtStart", false))
+        //         // {
+        //         //     dbContext.Database.EnsureDeleted();
+        //         //     dbContext.Database.EnsureCreated();
+        //         // }
+        //     }
+        // }
 
         app.UseStatusCodePagesWithRedirects("/errors/{0}");
         app.UseHttpsRedirection();

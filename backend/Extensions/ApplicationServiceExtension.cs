@@ -1,4 +1,3 @@
-using System.Text;
 using Backend.Authorization;
 using Backend.DTOs;
 using Backend.Errors;
@@ -6,10 +5,8 @@ using Backend.Models;
 using Backend.Services.Implementations;
 using Backend.Services.Interface;
 using Backend.Services.UserService;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Backend.Extensions
 {
