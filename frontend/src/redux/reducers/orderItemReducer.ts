@@ -15,7 +15,7 @@ export const orderItemSlice = createSlice({
   name: 'orderItem',
   initialState: initialState,
   reducers: {
-    addToCart: (state: OrderItemSliceState, action: PayloadAction<OrderItemProductType>) => {
+    addToOrderItem: (state: OrderItemSliceState, action: PayloadAction<OrderItemProductType>) => {
       const product = action.payload;
       const existItem = state.orderItems.find(
         (orderItem) => orderItem.id === product.id
@@ -28,7 +28,7 @@ export const orderItemSlice = createSlice({
         state.orderItems = [...state.orderItems, { ...product, quantity: 1 }];
       }
     },
-    removeFromCart: (state: OrderItemSliceState, action: PayloadAction<OrderItemProductType>) => {
+    removeFromOrderItem: (state: OrderItemSliceState, action: PayloadAction<OrderItemProductType>) => {
       const product = action.payload;
       const existItem = state.orderItems.find(
         (orderItem) => orderItem.id === product.id
@@ -57,7 +57,7 @@ export const orderItemSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, reset, saveAddress} = orderItemSlice.actions;
+export const { addToOrderItem, removeFromOrderItem, reset, saveAddress} = orderItemSlice.actions;
 
 const orderItemReducer= orderItemSlice.reducer
 

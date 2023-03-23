@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Container, Col, Card, ListGroup, Image } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { Row, Container, Col, Card, ListGroup, Image, Button } from 'react-bootstrap';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import axiosInstance from '../../common/axiosIntsance';
+import { useAppDispatch } from '../../hooks/reduxHooks';
+import { addToOrderItem } from '../../redux/reducers/orderItemReducer';
+import { OrderItemProductType } from '../../types/orderItem';
 import { ProductType } from '../../types/product';
 import Review from './Review';
 import UpdateProduct from './UpdateProduct';
 
 const SingleProduct = () => {
   const params = useParams();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch()
   const { id } = params;
   const [products, setProducts] = useState<ProductType>()
  
@@ -23,6 +28,11 @@ const SingleProduct = () => {
     };
     singleProductDetails();
     }, [id]);
+  
+  const onAdd = () => {
+    dispatch(addToOrderItem(products as OrderItemProductType));
+    navigate('/orderitem');
+  };
   return (
     <Container style={{marginBottom:'200px'}}>
       <Row  className='pt-4'>
@@ -37,7 +47,7 @@ const SingleProduct = () => {
           </Card>
         </Col>
         <Col md={5}>
-          <ListGroup
+        <ListGroup
             variant='flush'
             className='shadow p-5 bg-white rounded'
         >
@@ -61,7 +71,15 @@ const SingleProduct = () => {
             <span>Description: </span>
             {products?.description}
           </ListGroup.Item>
-          </ListGroup>
+          <ListGroup.Item>
+            <Button
+              onClick={onAdd}
+              style={{ backgroundColor: '#e03a3c', color: '#fff' }}
+              variant='outline-none'
+              className='w-full'
+              >Add To OrderItem</Button>
+          </ListGroup.Item> 
+        </ListGroup>
         </Col>
          <Col md={30}>
           <ListGroup.Item>

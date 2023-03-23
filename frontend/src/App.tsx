@@ -8,6 +8,7 @@ import Products from './components/product/Products';
 import SingleProduct from './components/product/SingleProduct';
 import Home from './pages/Home';
 import Layout from './pages/Layout';
+import OrderItem from './components/orderItem/OrderItem';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: 'contact',
         element: <Contact />
+      },
+       {
+        path: 'orderitem',
+        element: <OrderItem />
       },
     ]
   }
