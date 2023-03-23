@@ -65,18 +65,18 @@ const Header = () => {
                 <Nav.Item as={NavLink} className=' nav-link' to='/products'>
                     <span>Product</span>
                 </Nav.Item>
-
-                <Nav.Item as={NavLink} className=' nav-link' to='/createcategory'>
-                    <span>CreateCategory</span>
-                </Nav.Item>
-
                 <Nav.Item as={NavLink} className=' nav-link' to='/contact'>
                     <span>Contact</span>
                 </Nav.Item>
-                    {userInfo ? (   
-                <Nav.Item as={NavLink} className=' nav-link' to='/productList'>
-                    <span>ListProduct</span>
-                </Nav.Item>
+                    {userInfo ? (  
+                <>    
+                    <Nav.Item as={NavLink} className=' nav-link' to='/productList'>
+                        <span>ListProduct</span>
+                        </Nav.Item>
+                        <Nav.Item as={NavLink} className=' nav-link' to='/createcategory'>
+                        <span>CreateCategory</span>
+                    </Nav.Item>
+                </>  
                     ) : (  
                         null
                     )} 

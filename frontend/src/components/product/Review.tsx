@@ -4,7 +4,6 @@ import toast, { Renderable, Toast, ValueFunction } from 'react-hot-toast';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axiosInstance from '../../common/axiosIntsance';
 
-
 import Rating from '../../features/Rating';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { getProductById } from '../../redux/method/productMethod';
@@ -28,7 +27,7 @@ const Review = () => {
       rating,
     };
     axiosInstance
-      .post(`/products/${id}/reviews`, review)
+      .post(`/products/${id}/add-review`, review)
       .then((res) => {
         toast.success('thank you for the comment 🙂');
         setRefresh((prev) => (prev = !prev));
@@ -54,7 +53,6 @@ const Review = () => {
                         <div className='d-flex'>
                           <strong>{review.name}</strong>
                           <Rating value={review.rating} />
-                          <p>{getDate(review.createdAt)}</p>
                         </div>
                         <p>{review.comment}</p>
                       </ListGroup.Item>

@@ -16,7 +16,6 @@
 - [Introduction](#introduction)
 - [Technologies](#technologies)
 - [Installation](#installation)
-- [Project structure](#project-structure)
 - [Getting started](#getting-started)
 
 ## Introduction
@@ -65,3 +64,26 @@ In addition, the backend was modeled first by designing the model from top to bo
 - Users have to generate a token and insert it before they could be able to get total access to all the functionality.
 
 
+### Frontend product page
+
+![Frontend](/img/Frontend.png)
+
+### Frontend single product page
+
+![SinglePage](/img/Singleproduct.png)
+
+### Backend with swagger for Category and Order endpoint
+
+![Backend1](/img/Backend1.png)
+
+### Backend with swagger for Ordertem. product and review endpoint
+
+![Backend2](/img/Backend1.png)
+
+### Backend with swagger for user endpoint
+
+![User](/img/user.png)
+
+### Example for query endpoint 
+
+![Query](/img/Examplequery.png)
