@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import CategoryBoard from './components/category/CategoryBoard';
 import CreateCategory from './components/category/CreateCategory';
+import Contact from './components/Contact';
 import CreateProduct from './components/product/CreateProduct';
 import Products from './components/product/Products';
 import SingleProduct from './components/product/SingleProduct';
@@ -37,7 +38,11 @@ const router = createBrowserRouter([
       {
         path: 'create',
         element: <CreateProduct />
-      }
+      },
+      {
+        path: 'contact',
+        element: <Contact />
+      },
     ]
   }
 ])
