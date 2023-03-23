@@ -32,17 +32,17 @@ internal class Program
             }) // with less strong password requirements
             .AddEntityFrameworkStores<AppDbContext>();
             
-        builder.Services.AddCors(options =>
-        {
-            options.AddPolicy("CorsPolicy", builder =>
-            {
-                builder
-                    .AllowAnyOrigin()
-                    .SetIsOriginAllowedToAllowWildcardSubdomains()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
-            });
-        });
+        // builder.Services.AddCors(options =>
+        // {
+        //     options.AddPolicy("CorsPolicy", builder =>
+        //     {
+        //         builder
+        //             .AllowAnyOrigin()
+        //             .SetIsOriginAllowedToAllowWildcardSubdomains()
+        //             .AllowAnyHeader()
+        //             .AllowAnyMethod();
+        //     });
+        // });
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
@@ -75,10 +75,9 @@ internal class Program
         // }
 
         app.UseStatusCodePagesWithRedirects("/errors/{0}");
-        app.UseHttpsRedirection();
         app.UseRouting();
         app.UseStaticFiles();
-        app.UseCors("CorsPolicy");
+        // app.UseCors("CorsPolicy");
         app.UseAuthentication();
         app.UseAuthorization();
         app.UseSwaggerDocumentation();

@@ -11,27 +11,57 @@
 * Frontend: SASS, TypeScript, React, Redux Toolkit
 * Backend: ASP .NET Core, Entity Framework Core, PostgreSQL
 
-You can follow the same topics as your backend project. It is also possible to select a different topic
+## Table of content
 
-## Setting Up for folder `Backend`
+- [Introduction](#introduction)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Project structure](#project-structure)
+- [Getting started](#getting-started)
 
-1. Create `appsettings.json` (and `appsettings.*.json` if needed) file in the root of folder `Backend`. You can refer to the content of file `example.json`
-2. Install all the needed packages:
-    * AutoMapper
-    * AutoMapper.Extensions.Microsoft.DependencyInjection
-    * Microsoft.EntityFrameworkCore
-    * Microsoft.EntityFrameworkCore.Design
-    * Npgsql.EntityFrameworkCore.PostgreSQL
-    \
-   *You can add more packages when necessary.*
-3. You can change .NET Core version to be compatible with your local machine
+## Introduction
+This is a full-stack project built with ASP .NET core for the backend and React Redux for the Frontend. For getting the full-stack project done, eCommerce was used as a way to illustrate the connection.
+This project aims to understand the connection between the backend, database structure, and the frontend.
+In addition, the backend was modeled first by designing the model from top to bottom and vice versa with ERD (Entity Relation Diagram), to get the relation needed, such as one-one, one-many, and many-many.
 
-## Requirements
+## Technologies
+- Backend
+    + PostgreSQL
+    + ASP .NET Core, 
+    + Entity Framework Core
 
-Below are the steps that you need to finish in order to finish this module
+- Frontend
+    + RectJS
+    + React bootsrap (for design and styling)
+    + TypeScript
+    + Redux
+    + React hook userform
+    + react-router-dom
+    + Redux-persist
+    + SASS/SCSS
+    + web-vitals
 
-1. Your full stack project should have one git repo to manage both frontend and backend. The shared .git in the root directory is used to push commits to the remote repo. In case you need to deploy frontend and backend to different server, you can inittiate another `.git` folder in each repository. Syntax: `cd frontend` -> `git init` (similar to backend folder). Remember to add `.gitignore` for each folder when you intiate `git` repo.
-2. `frontend` folder is for the react frontend. Start with `backend` first before moving on to `frontend`.
-3. `backend` should have proper file structure, naming convention, and comply with Rest API.
-4. Each topic would have different features. However, the main routes should have CRUD operations, authentication and authorization.
-5. You need to deploy the fullstack project, rewrite `README.md` as instructed earlier in the course.
+## Installation
+
+- Steps to perform the installation for the `Backend`
+    + Register the database server with PostgreSQL
+    + Check your local machine for .NET Core compatibility from microsoft webiste
+    + Create an `appsettings.json` file in to main root like [example.json file](/Backend/example.json)
+    + Persform these following commands
+        1. dotnet restore
+        2. dotnet build
+        3. dotnet run
+    + For database migration
+        1. dotnet ef migrations  add [added new name here]
+        2. dotnet ef database update
+- Steps to perform the installation for the `Frontend`
+    + Install all the dependencies
+        1. Write `npm install` on your terminal 
+    + Runs the app in the development mode.
+        1.  Write `npm start` on your terminal 
+
+## Getting started
+
+- Users have to generate a token and insert it before they could be able to get total access to all the functionality.
+
+

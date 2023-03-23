@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/10011a44-630b-4afd-aa7b-0780324256b5/resourceGroups/csharp/providers/Microsoft.Web/sites/backend-femi",
+    "appService.deploySubpath": "Backend/bin/Publish"
+}
