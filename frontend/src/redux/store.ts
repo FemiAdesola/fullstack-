@@ -6,6 +6,7 @@ import categoryReducer from './reducers/categoryReducer';
 import orderItemReducer from './reducers/orderItemReducer';
 import orderReducer from './reducers/orderReducer';
 import productReducer from './reducers/productReducer';
+import userReducer from './reducers/userReducer';
 
 const persistConfig = {
   key: 'root',
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   categoryReducer,
   productReducer,
   orderItemReducer,
-  orderReducer
+  orderReducer,
+  userReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

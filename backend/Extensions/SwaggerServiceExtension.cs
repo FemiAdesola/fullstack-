@@ -1,4 +1,5 @@
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Backend.Extensions
 {
@@ -9,6 +10,17 @@ namespace Backend.Extensions
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(option =>
             {
+            //     option.AddSecurityDefinition(
+            //     "oauth2",
+            //     new OpenApiSecurityScheme
+            //     {
+            //         Description = "Bearer token authentication",
+            //         Name = "Authorization",
+            //         In = ParameterLocation.Header,
+            //     }
+            // );
+            //     option.OperationFilter<SecurityRequirementsOperationFilter>();
+
                 var securitySchema = new OpenApiSecurityScheme
                 {
                     Description = "JWT Auth Bearer Scheme",

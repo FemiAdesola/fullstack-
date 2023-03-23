@@ -1,6 +1,7 @@
 using Backend.Authorization;
 using Backend.DTOs;
 using Backend.Errors;
+using Backend.Middleware;
 using Backend.Models;
 using Backend.Services.Implementations;
 using Backend.Services.Interface;
@@ -26,7 +27,9 @@ namespace Backend.Extensions
                 .AddScoped<IUserService, UserService>()
                 .AddScoped<IUserTokenService, UserTokenService>()
                 .AddTransient<IAuthorizationHandler, UpdateUserPermission>();
-
+            services
+                
+                .AddTransient<LoggerMiddleware>();
             services.Configure<ApiBehaviorOptions>(options =>
                 {
                     options.InvalidModelStateResponseFactory = actionContext =>
