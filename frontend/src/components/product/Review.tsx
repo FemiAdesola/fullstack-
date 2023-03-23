@@ -17,8 +17,8 @@ const Review = () => {
     const { id } = params;
     const [rating, setRating] = useState<number>(0);
     const [comment, setComment] = useState<string>('');
-     const [refresh, setRefresh] = useState<boolean>(false);
-
+    const [refresh, setRefresh] = useState<boolean>(false);
+    const  userInfo  = useAppSelector((state) => state.userReducer.currentUser);
    let products = useAppSelector(state => state.productReducer)
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -44,7 +44,7 @@ const Review = () => {
   return (
       <Container>
           <Row className='mt-2'>
-            <Col md={7}>
+            <Col md={6}>
               <Card>
                 <Card.Body>
                   <h3 style={{ color: '#e03a3c' }}>Review from customers</h3>
@@ -67,7 +67,7 @@ const Review = () => {
               <ListGroup className='bg-white p-3'>
                 <ListGroup.Item>
                   <h3 style={{ color: '#e03a3c' }}>Comment</h3>
-                 
+                 {userInfo ? (
                     <Form onSubmit={onSubmit}>
                       <Form.Group controlId='rating'>
                         <Form.Label>Rating</Form.Label>
@@ -101,12 +101,14 @@ const Review = () => {
                         Submit
                       </Button>
                       </Form>
+                ) : (
                    <Alert  variant='danger'>
                       You must login first to feedback{' '}
                       <Link to='/login' className='ms-2'>
                         Login Now
                       </Link>
-                    </Alert>
+                  </Alert>
+                )}
                 </ListGroup.Item>
               </ListGroup>
             </Col>

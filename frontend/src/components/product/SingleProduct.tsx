@@ -3,7 +3,7 @@ import { Row, Container, Col, Card, ListGroup, Image, Button } from 'react-boots
 import { useNavigate, useParams } from 'react-router-dom';
 
 import axiosInstance from '../../common/axiosIntsance';
-import { useAppDispatch } from '../../hooks/reduxHooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { addToOrderItem } from '../../redux/reducers/orderItemReducer';
 import { OrderItemProductType } from '../../types/orderItem';
 import { ProductType } from '../../types/product';
@@ -16,7 +16,7 @@ const SingleProduct = () => {
   const dispatch = useAppDispatch()
   const { id } = params;
   const [products, setProducts] = useState<ProductType>()
- 
+  const  userInfo = useAppSelector((state) => state.userReducer.currentUser);
     useEffect(() => {
     const singleProductDetails = async () => {
       try {
@@ -36,13 +36,13 @@ const SingleProduct = () => {
   return (
     <Container style={{marginBottom:'200px'}}>
       <Row  className='pt-4'>
-        <Col md={7}>
+        <Col md={6}>
           <Card className='shadow'>
             <Image
               className=' p-3'
               rounded
               src={products?.images}
-              style={{ width: '100%', height: '100%' }}
+              style={{ width: '100%', height: '450px' }}
             />
           </Card>
         </Col>
@@ -81,6 +81,7 @@ const SingleProduct = () => {
           </ListGroup.Item> 
         </ListGroup>
         </Col>
+        {userInfo ? ( 
          <Col md={30}>
           <ListGroup.Item>
             <UpdateProduct
@@ -90,7 +91,10 @@ const SingleProduct = () => {
               previousPrice={products?.price}
               previousImage={products?.images} />
           </ListGroup.Item>
-          </Col> 
+          </Col>
+          ) : (  
+          null
+          )}   
       </Row>
       <Review/>
     </Container>

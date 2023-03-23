@@ -15,6 +15,8 @@ import OrderDetails from './components/order/OrderDetails';
 import SignUp from './components/user/SignUp';
 import Login from './components/user/Login';
 import Profile from './components/user/Profile';
+import ProductBoard from './components/product/ProductBoard';
+import SingleCategory from './components/category/SingleCategory';
 
 const router = createBrowserRouter([
   {
@@ -78,6 +80,18 @@ const router = createBrowserRouter([
       {
         path: 'profile',
         element: <Profile/>
+      },
+      {
+        path: 'productlist',
+        element: <ProductBoard/>
+      },
+      {
+        path: 'categories/:id',
+        element: <SingleCategory/>
+      },
+      {
+        path: 'categories',
+        element: <CategoryBoard/>
       },
     ]
   }

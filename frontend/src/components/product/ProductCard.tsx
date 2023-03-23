@@ -7,12 +7,12 @@ import { ProductType } from '../../types/product';
 const ProductCard = ({ id, title, price, images, category }: ProductType) => {
 
   return (
-    <Card className='my-3 p-3 rounded' style={{ height: '30rem' }}>
+    <Card className='my-2 p-1 rounded' style={{ height: '22rem' }}>
       <Link to={`/products/${id}`}>
         <Card.Img
           src={images}
           variant='top'
-          style={{ height: '300px', width: '100%', objectFit: 'cover' }}
+          style={{ height: '250px', width: '100%', objectFit: 'cover' }}
         />
         <Card.Body>
           <Card.Title className='d-flex justify-content-between align-items-baseline mb-4'>

@@ -1,8 +1,8 @@
 import { createAsyncThunk} from "@reduxjs/toolkit";
-import axios, { AxiosError} from "axios";
+import axios, { AxiosError, AxiosResponse} from "axios";
 
 import axiosInstance from "../../common/axiosIntsance";
-import { CategoryType, CreateCategoryType } from "../../types/category";
+import { CategoryType, CreateCategoryType, UpdateCategoryType } from "../../types/category";
 
 
 export const getAllCategories = createAsyncThunk(
@@ -46,6 +46,50 @@ export const createCategory = createAsyncThunk(
                 console.log(`Error from request: ${error.request}`)
             } else {
                console.log(error.config)
+            }
+        }
+    }
+)
+
+
+export const deleteCategory = createAsyncThunk(
+    "deleteCategory",
+    async (id:string|undefined) => {
+        try {
+            const response: AxiosResponse<CategoryType, any> = await axiosInstance.delete(`categories/${id}`)
+            return response.data
+        } catch (err) {
+            const error = err as AxiosError
+            if (error.response) {
+                console.log(error.response.data)
+            } else if (error.request) {
+                console.log(`Error from request: ${error.request}`)
+            } else {
+                console.log(error.config)
+            }
+        }
+    }
+)
+
+export const updateCategory = createAsyncThunk(
+    "updateCategory",
+    async (update: UpdateCategoryType) => { 
+        try {
+            const response: AxiosResponse<CategoryType, any> = await axiosInstance.put(`categories/${update.id}`,
+                {
+                    name: update.name,
+                    image: update.image,
+                }
+            )
+            return response.data
+        } catch (err) {
+            const error = err as AxiosError
+            if (error.response) {
+                console.log(error.response.data)
+            } else if (error.request) {
+                console.log(`Error from request: ${error.request}`)
+            } else {
+                console.log(error.config)
             }
         }
     }

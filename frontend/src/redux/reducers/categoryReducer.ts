@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 
 import { CategoryType } from "../../types/category";
-import { createCategory, getAllCategories } from "../method/categoryMethod";
+import { createCategory, deleteCategory, getAllCategories, updateCategory } from "../method/categoryMethod";
 
 const initialState: CategoryType[] = []
 
@@ -17,7 +17,7 @@ const categorySlice = createSlice({
             } else if (!action.payload) {
                 return state
             }
-                return action.payload
+            return action.payload
             })
             .addCase(createCategory.fulfilled, (state, action) => {
                 if (action.payload) {
@@ -25,6 +25,22 @@ const categorySlice = createSlice({
                 } else {
                     return state
                 }
+            })
+            .addCase(deleteCategory.fulfilled, (state, action) => {
+                return state.filter(item => {
+                    if (item.id !== action.payload?.id) {
+                        return action.payload
+                    }
+                    return state
+                })
+            })
+            .addCase(updateCategory.fulfilled, (state, action) => {
+                return state.map(product => {
+                    if (product.id === action.payload?.id) {
+                        return action.payload
+                    }
+                    return product
+                })
             })
     }
 });
