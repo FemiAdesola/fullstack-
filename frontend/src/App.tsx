@@ -11,6 +11,7 @@ import Layout from './pages/Layout';
 import OrderItem from './components/orderItem/OrderItem';
 import Checkout from './components/orderItem/Checkout';
 import ShippingAddress from './components/orderItem/ShippingAddress';
+import OrderDetails from './components/order/OrderDetails';
 
 const router = createBrowserRouter([
   {
@@ -54,9 +55,14 @@ const router = createBrowserRouter([
         path: 'checkout',
         element: <Checkout/>
       },
-       {
+      {
         path: 'shipping',
         element: <ShippingAddress />
+      },
+      {
+        path: 'orders/:id',
+        // path: 'order',
+        element: <OrderDetails/>
       }
     ]
   }

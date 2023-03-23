@@ -23,8 +23,8 @@ export const getOrdersList = createAsyncThunk(
     });
 
     export const getOrderById = createAsyncThunk(
-    'getOrderById',
-    async (id: string| undefined) => {
+    'orders/:id',
+    async (id?: string| undefined) => {
         try {
             const res = await axiosInstance.get(`/orders/${id}`);
             if (res.data) {

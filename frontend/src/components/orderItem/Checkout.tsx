@@ -19,7 +19,7 @@ const Checkout = () => {
     const taxPrice = itemsPrice * 0.24;
     const shippingPrice = itemsPrice <= 200 ? 0 : 30;
     const totalPrice = itemsPrice + taxPrice + shippingPrice;
-     const onSubmit = () => {
+    const onSubmit = () => {
     const order = {
       totalPrice,
       orderItems,
@@ -30,8 +30,9 @@ const Checkout = () => {
       .then((res) => {
         toast.success('your order has been created');
         dispatch(reset());
-        navigate(`/orders/${res.data.id}`);
-        navigate(`/order`);
+        navigate(`/orders/${res.headers['Content-Type']?.toString()}`);
+        // navigate(`/orders/${res.data.id}`);
+        // navigate(`/order`);
       })
       .catch((err) => toast.error((err)));
   };
