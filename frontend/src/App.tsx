@@ -12,6 +12,9 @@ import OrderItem from './components/orderItem/OrderItem';
 import Checkout from './components/orderItem/Checkout';
 import ShippingAddress from './components/orderItem/ShippingAddress';
 import OrderDetails from './components/order/OrderDetails';
+import SignUp from './components/user/SignUp';
+import Login from './components/user/Login';
+import Profile from './components/user/Profile';
 
 const router = createBrowserRouter([
   {
@@ -63,7 +66,19 @@ const router = createBrowserRouter([
         path: 'orders/:id',
         // path: 'order',
         element: <OrderDetails/>
-      }
+      },
+      {
+        path: 'signup',
+        element: <SignUp />
+      },
+      {
+        path: 'login',
+        element: <Login />
+      },
+      {
+        path: 'profile',
+        element: <Profile/>
+      },
     ]
   }
 ])

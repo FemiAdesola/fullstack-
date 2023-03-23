@@ -1,12 +1,24 @@
 import React from 'react'
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import { Link, NavLink} from 'react-router-dom';
+import { Link, NavLink, useNavigate} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 
 import HeaderTop from '../features/HeaderTop';
+import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
+import { userLogout } from '../redux/reducers/userReducer';
+import { reset } from '../redux/reducers/orderItemReducer';
 
 const Header = () => {
-  const ToggleSwitch = () => {
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    const userInfo = useAppSelector((state) => state.userReducer.currentUser);
+    const { orderItems } = useAppSelector((state) => state.orderItemReducer);
+    const onLogout = () => { 
+        dispatch(userLogout())
+        dispatch(reset());
+        navigate('/login');
+    }
+    const ToggleSwitch = () => {
         return (
           <>
             <Form>
@@ -61,10 +73,13 @@ const Header = () => {
                 <Nav.Item as={NavLink} className=' nav-link' to='/contact'>
                     <span>Contact</span>
                 </Nav.Item>
-                    
+                    {userInfo ? (   
                 <Nav.Item as={NavLink} className=' nav-link' to='/productList'>
-                <span>ListProduct</span>
+                    <span>ListProduct</span>
                 </Nav.Item>
+                    ) : (  
+                        null
+                    )} 
                 <Nav.Item>
                     <span><ToggleSwitch /></span>
                 </Nav.Item>
@@ -81,46 +96,52 @@ const Header = () => {
                         <span
                             style={{ backgroundColor: '#e03a3c' }}
                             className='position-absolute top-0 left-100 translate-middle badge rounded-pill  text-white'
-                        >
+                                  >
+                    {orderItems.length}
                     </span>
                     </Link>
-                </div>
-                <div className='d-flex align-items-lg-center mt-3  mt-lg-0'>
-                    <Nav.Link
-                        as={NavLink}
-                        to='/login'
-                        style={{ width:'100px' }}
-                        className='btn btn-secondary btn-sm text-white me-5 ms-5 p-2'
+                          </div>
+                {!userInfo ? (
+                <>
+                    <div className='d-flex align-items-lg-center mt-3  mt-lg-0'>
+                        <Nav.Link
+                            as={NavLink}
+                            to='/login'
+                            style={{ width:'100px' }}
+                            className='btn btn-secondary btn-sm text-white me-5 ms-5 p-2'
+                            >
+                            Login
+                        </Nav.Link>
+                    </div>
+                    <div className='d-flex align-items-lg-center mt-3 mt-lg-0'>
+                        <Nav.Link
+                            as={NavLink}
+                            to='/signup'
+                            style={{ backgroundColor: '#e03a3c', width:'100px' }}
+                            className='btn btn-sm text-white  ms-xs-3 p-2'
+                            >
+                            Register
+                        </Nav.Link>
+                    </div>
+                </>
+                ):(
+                    <NavDropdown
+                        title={<i className='fa fa-fw fa-user text-dark mr-5 me-5 ms-5'></i>}
+                        id='basic-nav-dropdown'
                         >
-                        Login
-                    </Nav.Link>
-                </div>
-                <div className='d-flex align-items-lg-center mt-3 mt-lg-0'>
-                    <Nav.Link
+                    <NavDropdown.Item as={NavLink} to='/products'>
+                        Products
+                    </NavDropdown.Item>
+                    <NavDropdown.Item
                         as={NavLink}
-                        to='/signup'
-                        style={{ backgroundColor: '#e03a3c', width:'100px' }}
-                        className='btn btn-sm text-white  ms-xs-3 p-2'
+                        to={"/profile"}
                         >
-                        Register
-                    </Nav.Link>
-                </div>
-                <NavDropdown
-                    title={<i className='fa fa-fw fa-user text-dark mr-5 me-5 ms-5'></i>}
-                    id='basic-nav-dropdown'
-                    >
-                <NavDropdown.Item as={NavLink} to='/products'>
-                    Products
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                    as={NavLink}
-                    to={"/profile"}
-                    >
-                    Profile
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                    Logout
-                </NavDropdown>
+                        Profile
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                        <NavDropdown.Item onClick={onLogout}>Logout</NavDropdown.Item>
+                    </NavDropdown>
+                )}
             </div>
             </Navbar.Collapse>
         </div>
