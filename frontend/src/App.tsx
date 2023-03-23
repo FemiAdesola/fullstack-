@@ -9,6 +9,8 @@ import SingleProduct from './components/product/SingleProduct';
 import Home from './pages/Home';
 import Layout from './pages/Layout';
 import OrderItem from './components/orderItem/OrderItem';
+import Checkout from './components/orderItem/Checkout';
+import ShippingAddress from './components/orderItem/ShippingAddress';
 
 const router = createBrowserRouter([
   {
@@ -48,6 +50,14 @@ const router = createBrowserRouter([
         path: 'orderitem',
         element: <OrderItem />
       },
+       {
+        path: 'checkout',
+        element: <Checkout/>
+      },
+       {
+        path: 'shipping',
+        element: <ShippingAddress />
+      }
     ]
   }
 ])
