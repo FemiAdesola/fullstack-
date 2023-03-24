@@ -11,7 +11,6 @@ namespace Backend.Models
 
         [Column(TypeName = "bytea")]
          public string Images { get; set; } = null!;
-        // public ICollection<string> Images { get; set; } = null!;
 
         [JsonIgnore]
         public int CategoryId { get; set; }

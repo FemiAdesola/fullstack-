@@ -35,8 +35,6 @@ namespace Backend.Extensions
                 options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
                 options.AddPolicy("AdminOrOwner", policy => policy.AddRequirements(new UpdateUserRequirement()));
             });
-
-            
             return services;
         }
     }

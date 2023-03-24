@@ -52,13 +52,11 @@ namespace Backend.Services.UserService
             );
             var tokenWriter = new JwtSecurityTokenHandler();
 
-
             return new UserSignInResponseDTO
             {
                 Token = tokenWriter.WriteToken(getToken),
                 Expiration = expiration,
             };
         }
-
     }
 }
