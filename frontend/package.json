@@ -21,6 +21,7 @@
     "react-bootstrap": "^2.7.2",
     "react-bootstrap-icons": "^1.10.2",
     "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
     "react-hook-form": "^7.43.5",
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.8.0",
@@ -39,7 +40,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "compile": "sass --watch src/scss/App.scss:src/App.css",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [

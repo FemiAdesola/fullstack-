@@ -10,17 +10,6 @@ namespace Backend.Extensions
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(option =>
             {
-            //     option.AddSecurityDefinition(
-            //     "oauth2",
-            //     new OpenApiSecurityScheme
-            //     {
-            //         Description = "Bearer token authentication",
-            //         Name = "Authorization",
-            //         In = ParameterLocation.Header,
-            //     }
-            // );
-            //     option.OperationFilter<SecurityRequirementsOperationFilter>();
-
                 var securitySchema = new OpenApiSecurityScheme
                 {
                     Description = "JWT Auth Bearer Scheme",
@@ -51,7 +40,11 @@ namespace Backend.Extensions
         public static IApplicationBuilder UseSwaggerDocumentation(this IApplicationBuilder app)
         {
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
+            app.UseSwaggerUI(c => 
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
+                c.RoutePrefix = string.Empty;
+            });
             return app;
         }
     }

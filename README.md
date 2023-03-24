@@ -9,7 +9,9 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-v.14-drakblue)
 
 * Frontend: SASS, TypeScript, React, Redux Toolkit
-* Backend: ASP .NET Core, Entity Framework Core, PostgreSQL
+* Backend: ASP .NET Core, Entity Framework Core, PostgreSQL 
+    + Click [here](https://backend-femi.azurewebsites.net/index.html) to see the RESTApi
+    + Click [here](https://fullstackfrontend.netlify.app/) to see the frontend
 
 ## Table of content
 
