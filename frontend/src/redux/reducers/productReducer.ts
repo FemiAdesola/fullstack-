@@ -62,7 +62,7 @@ const productSlice = createSlice({
     }
 
 })
-const productReducer = productSlice.reducer
 
+const productReducer = productSlice.reducer
 export const {sortByPrice, sortByName } = productSlice.actions
 export default productReducer

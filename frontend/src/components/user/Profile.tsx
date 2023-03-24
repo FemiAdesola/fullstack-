@@ -3,12 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Container, Row, Col, Button, Form, Card } from 'react-bootstrap';
-import { FaCheck, FaTimes, FaTrash } from 'react-icons/fa';
-
 
 import { SignUpSchema } from '../../formValidation/signUpSchema';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-
 import { UserForm } from '../../types/user';
 import Loader from '../Loader/Loader';
 import axiosInstance from '../../common/axiosIntsance';
@@ -38,7 +35,6 @@ const Profile = () => {
         .catch((err) => (console.log(err)));
         navigate(`/users`);
     }
-  
    useEffect(() => {
      dispatch(getUserBydId(id));
      navigate(`/profile/`);
@@ -80,7 +76,6 @@ const Profile = () => {
                         {errors.email?.message}
                       </p>
                     </Form.Group>
-
                     <Form.Group controlId='password'>
                       <Form.Label>Password</Form.Label>
                       <Form.Control
@@ -120,39 +115,6 @@ const Profile = () => {
               </Card>
             </Col>
             <Col md={7} lg={8}>
-              {/* <TableContainer cols={cols}>
-                {orders.map((order) => (
-                  <tr key={order._id}>
-                    <td>{order._id}</td>
-
-                    <td>{formatCurrencry(order?.totalPrice)}</td>
-                    <td>{order?.shippingAddress?.address}</td>
-                    <td>
-                      {order.isPaid ? (
-                        <FaCheck color='green' />
-                      ) : (
-                        <FaTimes color='red' />
-                      )}
-                    </td>
-                    <td>{getDate(order?.createdAt)}</td>
-                    <td>
-                      <Link
-                        to={`/orders/${order._id}`}
-                        className='btn btn-sm btn-secondary  me-2'
-                      >
-                        <GrView />
-                      </Link>
-                      <Button
-                        onClick={() => onDelete(order._id)}
-                        variant='danger'
-                        size='sm'
-                      >
-                        <FaTrash />
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
-              </TableContainer> */}
             </Col>
           </Row>
         )}

@@ -6,10 +6,6 @@ export const SignUpSchema = yup.object({
     password: yup.string().matches(/^(?=.*[a-z])(?=.*\d)/,
     "Required at leaset 1 uppercase, 1 lowercase and 1 number").min(4).max(15),
     confirm_password: yup.string().oneOf([yup.ref("password")], "password does not match"),
-    // avatar: yup.mixed().test({
-    //     test: (value) => value.length > 0,
-    //     message: "file cannot be empty"
-    // })
 })
 
 export const SignInSchema= yup.object().shape({

@@ -7,8 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { updateCategory } from '../../redux/method/categoryMethod';
 import axiosInstance from '../../common/axiosIntsance';
 
-
-
 const UpdateCategory = ({id, previousName, previousImage }:UpdateCategoryProps) => {
     const [categoryName, setCategoryName] = useState(previousName)
     const [categoryImage, setCategoryImage] = useState(previousImage)
@@ -48,8 +46,7 @@ const UpdateCategory = ({id, previousName, previousImage }:UpdateCategoryProps) 
     }, [getUrlImages])
     
     return (
-   <div>
-        {/* <Container> */}
+        <div>
             <Row className=' justify-content-center py-6'>
                 <Col lg={11} md={6}>
                     <Card>
@@ -89,9 +86,8 @@ const UpdateCategory = ({id, previousName, previousImage }:UpdateCategoryProps) 
                     </Card>
                 </Col>
             </Row>
-        {/* </Container> */}
-    </div>
-  )
+        </div>
+    )
 }
 
 export default UpdateCategory

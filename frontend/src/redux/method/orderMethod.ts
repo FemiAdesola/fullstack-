@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-import axiosInstance from "../../common/axiosIntsance";
 
+import axiosInstance from "../../common/axiosIntsance";
 import { OrderTypes } from "../../types/order";
 
 export const getOrdersList = createAsyncThunk(
@@ -49,9 +49,6 @@ async () => {
     try {
         const {data} = await axiosInstance.get("/orders/userOrder")
         return data
-        // const response = await axiosInstance.get("/orders/userOrder")
-        // const data: OrderTypes[] = response.data
-        //     return data
         } catch (err) {
          const error = err as AxiosError
         if (error.response) {

@@ -57,8 +57,6 @@ export const orderItemSlice = createSlice({
   },
 });
 
-export const { addToOrderItem, removeFromOrderItem, reset, saveAddress} = orderItemSlice.actions;
-
 const orderItemReducer= orderItemSlice.reducer
-
+export const { addToOrderItem, removeFromOrderItem, reset, saveAddress} = orderItemSlice.actions;
 export default orderItemReducer

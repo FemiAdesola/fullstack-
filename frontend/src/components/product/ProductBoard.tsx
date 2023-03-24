@@ -3,7 +3,6 @@ import { Button, Container, Image, Nav, Row} from 'react-bootstrap';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Link, NavLink,  useParams } from 'react-router-dom';
 
-
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import BoardWrapper from '../../features/BoardWrapper';
 import toast from 'react-hot-toast';

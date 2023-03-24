@@ -6,7 +6,6 @@ import { FaMinus, FaPlus } from 'react-icons/fa';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { addToOrderItem, removeFromOrderItem } from '../../redux/reducers/orderItemReducer';
 
-
 const OrderItem = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate();

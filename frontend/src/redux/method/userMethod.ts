@@ -57,7 +57,6 @@ export const loginUser = createAsyncThunk(
                 headers: { "Authorization": ` Bearer ${access_token}` }
             })
             const data: UserType = response.data
-            // localStorage.setItem("loginUser", access_token)
             return data
         } catch (err) {
             const error = err as AxiosError

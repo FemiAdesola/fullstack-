@@ -1,8 +1,6 @@
-import React from 'react'
 import { Card, Table } from 'react-bootstrap';
 
 import { BoardWrapperType } from '../types/boardWrapper';
-
 
 const BoardWrapper = ({children, cols}: BoardWrapperType ) => {
   return (

@@ -1,6 +1,5 @@
-import React from 'react'
-
 const FooterBottom = () => {
+  
   return (
     <div className='container d-md-flex py-4'>
       <div className='me-md-auto text-center text-md-start'>

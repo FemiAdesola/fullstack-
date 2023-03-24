@@ -2,7 +2,6 @@ import { createAsyncThunk, PayloadAction} from "@reduxjs/toolkit";
 import axios, { AxiosError, AxiosResponse } from "axios";
 
 import axiosInstance from "../../common/axiosIntsance";
-
 import { CreateProductType, CreateProductWithImages, ProductType, UpdateValueType } from "../../types/product";
 
 export const getAllProducts = createAsyncThunk(

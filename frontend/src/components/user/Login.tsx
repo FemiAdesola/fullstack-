@@ -4,7 +4,6 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Form} from 'react-bootstrap';
 
-
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { Authentications } from '../../types/user';
 import { userAuthentication } from '../../redux/method/userMethod';
@@ -28,8 +27,7 @@ const Login = () => {
     }
   }, [navigate, userInfo]);
   const redirectInUrl = new URLSearchParams().get("redirect");
-    const redirect = redirectInUrl ? redirectInUrl : "/signup";
-    
+  const redirect = redirectInUrl ? redirectInUrl : "/signup";
   return (
    <FormContainer
         meta='Login your account'
@@ -48,7 +46,6 @@ const Login = () => {
           />
           <p className='invalid-feedback'>{errors.email?.message}</p>
         </Form.Group>
-
         <Form.Group controlId='password'>
           <Form.Label>Enter your password </Form.Label>
           <Form.Control

@@ -4,7 +4,6 @@ import { AxiosError } from "axios";
 import { UserReducer} from '../../types/user'; 
 import { createUserWithSignUp, getAllUsers, getUserBydId, loginUser, userAuthentication } from "../method/userMethod";
 
-
 const initialState: UserReducer = {
     userList: [],
     

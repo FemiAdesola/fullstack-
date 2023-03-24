@@ -9,7 +9,6 @@ import { getAllProducts } from '../../redux/method/productMethod';
 import { getAllCategories } from '../../redux/method/categoryMethod';
 import { sortByName, sortByPrice } from '../../redux/reducers/productReducer';
 
-
 const Products = () => {
   const [search, setSearch] = useState("")
   const [filteredValue, setFilteredValue] = useState("");
@@ -47,7 +46,6 @@ const Products = () => {
       return item.category.name.toLowerCase().includes(filteredValue)
     })
   } 
-
   const sortByNameA = () => {
     dispatch(sortByName("asc"))
   }
@@ -143,7 +141,6 @@ const Products = () => {
                         <option value='desc'>
                         Z-A
                   </option>
-                    
                   </FormSelect>
                 </ListGroup.Item>
               </ListGroup>

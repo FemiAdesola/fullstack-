@@ -71,7 +71,6 @@ const UpdateProduct = ({id, previousTitle, previousDescription, previousImage, p
                   <Form.Label>Product title</Form.Label>
                   <Form.Control
                     type='text'
-                    // placeholder='product title'
                     value={productTitle? productTitle : previousTitle}
                     onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setProductTitle(e.target.value)}
                     className={errors.title?.message}

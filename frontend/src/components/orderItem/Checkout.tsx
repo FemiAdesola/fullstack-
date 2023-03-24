@@ -7,7 +7,6 @@ import axiosInstance from '../../common/axiosIntsance';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { reset } from '../../redux/reducers/orderItemReducer';
 
-
 const Checkout = () => {
     const dispatch = useAppDispatch();
     const { orderItems, shippingAddress } = useAppSelector((state) => state.orderItemReducer);
@@ -31,8 +30,6 @@ const Checkout = () => {
         toast.success('your order has been created');
         dispatch(reset());
         navigate(`/orders/${res.headers['Content-Type']?.toString()}`);
-        // navigate(`/orders/${res.data.id}`);
-        // navigate(`/order`);
       })
       .catch((err) => toast.error((err)));
   };
@@ -109,7 +106,6 @@ const Checkout = () => {
                     <Button
                         style={{ backgroundColor: '#e03a3c', color: '#fff' }}
                         onClick={onSubmit}
-                    // onClick={() => navigate('/order')}
                         disabled={orderItems.length === 0}
                         className='w-full'
                         >

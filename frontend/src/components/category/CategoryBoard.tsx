@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Container, Image, Nav, Row } from 'react-bootstrap';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 
 
 import BoardWrapper from '../../features/BoardWrapper';
@@ -9,18 +9,6 @@ import { getAllCategories } from '../../redux/method/categoryMethod';
 
 
 const CategoryBoard = () => {
-    const params = useParams();
-    const { id } = params;
-    // useEffect(() => {
-    // const singleProductDetails = async () => {
-    //   try {
-    //     await axiosInstance.get<CategoryType>(`categories/${id}`);
-    //   } catch (err) {
-    //     console.log(err);
-    //   } 
-    // };
-    //     singleProductDetails();
-    // }, [id]);
     const categories = useAppSelector(state => state.categoryReducer)
     const dispatch = useAppDispatch();
     const [show, setShow] = useState<boolean>(false);

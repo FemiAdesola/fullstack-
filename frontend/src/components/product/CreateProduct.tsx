@@ -3,11 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Button, Col, Container, Modal, Row, Form, Nav } from 'react-bootstrap';
 
-
-
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { NavLink, useNavigate } from 'react-router-dom';
-
 import { CreateProductType } from '../../types/product';
 import { createProduct } from '../../redux/method/productMethod';
 import axiosInstance from '../../common/axiosIntsance';
@@ -26,7 +23,6 @@ const CreateProduct = () => {
     const [productImages, setProductImages] = useState<string>("")
     const [getUrlImages, setGetUrlImages]= useState<FileList | null>(null);
     const [message, setMessage] = useState("")
-
     const createProductHandler = (e:React.FormEvent<HTMLFormElement>) => {
      e.preventDefault();
      dispatch(createProduct(

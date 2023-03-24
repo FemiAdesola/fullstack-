@@ -2,7 +2,6 @@ import React from 'react'
 import { Col, Container, Image, Row } from 'react-bootstrap';
 import toast from 'react-hot-toast';
 
-
 const Footer = () => {
   return (
       <footer id='footer' >

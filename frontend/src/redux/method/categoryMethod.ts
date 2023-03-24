@@ -4,7 +4,6 @@ import axios, { AxiosError, AxiosResponse} from "axios";
 import axiosInstance from "../../common/axiosIntsance";
 import { CategoryType, CreateCategoryType, UpdateCategoryType } from "../../types/category";
 
-
 export const getAllCategories = createAsyncThunk(
     "getAllCategories",
     async () => {

@@ -11,18 +11,17 @@ import FormContainer from '../../features/FormContainer';
 import { createUserWithSignUp } from '../../redux/method/userMethod';
 
 const SignUp = () => {
-    const dispatch = useAppDispatch()
-    const navigate = useNavigate();
-    const { handleSubmit, register, formState: { errors } } = useForm<UserForm>({
-        resolver: yupResolver(SignUpSchema)
-    })
-    const onSubmit: SubmitHandler<UserForm> = data => {
-        dispatch(createUserWithSignUp(data))
-        navigate('/login');
-    }
-    const redirectInUrl = new URLSearchParams().get("redirect");
-    const redirect = redirectInUrl ? redirectInUrl : "/login";  
-
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate();
+  const { handleSubmit, register, formState: { errors } } = useForm<UserForm>({
+    resolver: yupResolver(SignUpSchema)
+  })
+  const onSubmit: SubmitHandler<UserForm> = data => {
+    dispatch(createUserWithSignUp(data))
+    navigate('/login');
+  }
+  const redirectInUrl = new URLSearchParams().get("redirect");
+  const redirect = redirectInUrl ? redirectInUrl : "/login";  
   return (
     <FormContainer
         meta='Register to have access to the store'

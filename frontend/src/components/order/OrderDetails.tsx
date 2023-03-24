@@ -2,11 +2,9 @@ import { useEffect, useState } from 'react';
 import { Card, Col, Container, Image, ListGroup, Row } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import Stripe from 'react-stripe-checkout';
-
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-
 import toast from 'react-hot-toast';
 
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import Loader from '../Loader/Loader';
 import axiosInstance from '../../common/axiosIntsance';
 import { getOrderById } from '../../redux/method/orderMethod';
@@ -14,7 +12,7 @@ import { getOrderById } from '../../redux/method/orderMethod';
 const OrderDetails = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-     const { id } = useParams();
+    const { id } = useParams();
     const order = useAppSelector((state) => state.orderReducer);
     const [isLoading, setIsLoading] = useState(true)
     // const orderItems = useAppSelector((state) => state.orderItemReducer);

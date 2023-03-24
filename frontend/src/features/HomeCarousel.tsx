@@ -3,7 +3,6 @@ import { Carousel } from 'react-bootstrap';
 
 const HomeCarousel = () => {
     const [index, setIndex] = useState(0);
-
     const handleSelect = (selectedIndex: number) => {
     setIndex(selectedIndex);
   };
