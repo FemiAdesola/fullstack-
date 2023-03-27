@@ -45,7 +45,7 @@ namespace Backend.Services.Implementations
                 .ToListAsync();
         }
 
-        public async Task<int> AddOrderItemsToOrder(int id, ICollection<AddOrderItemToOrderDTO> orderItems)
+        public async Task<int> AddOrderItemsToOrder(int id, IEnumerable<AddOrderItemToOrderDTO> orderItems)
         {
             var order = await GetAsync(id);
             if (order is null)

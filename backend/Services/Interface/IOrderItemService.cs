@@ -5,6 +5,6 @@ namespace Backend.Services.Interface
 {
     public interface IOrderItemService : ICrudService<OrderItem, OrderItemDTO>
     {
-        Task<int> AddProductsAsync(int id, ICollection<AddProductToOrderItemDTO> products);
+        Task<int> AddProductsAsync(int id, IEnumerable<AddProductToOrderItemDTO> products);
     }
 }

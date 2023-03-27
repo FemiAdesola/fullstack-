@@ -39,7 +39,7 @@ namespace Backend.Controllers
         }
 
         [HttpPost("{id}/add-orderItem")]
-        public async Task<IActionResult> AddReview(int id, ICollection<AddOrderItemToOrderDTO> orderItems)
+        public async Task<IActionResult> AddReview(int id, IEnumerable<AddOrderItemToOrderDTO> orderItems)
         {
             var added = await _orderService.AddOrderItemsToOrder(id, orderItems);
             if (added <= 0)

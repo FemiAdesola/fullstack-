@@ -28,10 +28,10 @@ namespace Backend.Services.Implementations
             return await _dbContext.OrderItems
             .Include(p => p.ProductLists)
                 .ThenInclude(p => p.Product)
-            .SingleOrDefaultAsync(p => p.Id == id);
+            .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<int> AddProductsAsync(int id, ICollection<AddProductToOrderItemDTO> request)
+        public async Task<int> AddProductsAsync(int id, IEnumerable<AddProductToOrderItemDTO> request)
         {
             var orderItem = await GetAsync(id);
             if (orderItem is null)

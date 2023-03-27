@@ -41,7 +41,7 @@ namespace Backend.Services.Implementations
                 .ToListAsync();
         }
 
-        public async Task<int> AddReviewToProuct(int id, ICollection<AddReviewToProductDTO> reviews)
+        public async Task<int> AddReviewToProuct(int id, IEnumerable<AddReviewToProductDTO> reviews)
         {
             var product = await GetAsync(id);
             if (product is null)

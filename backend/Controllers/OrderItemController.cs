@@ -28,7 +28,7 @@ namespace Backend.Controllers
         }
 
         [HttpPost("{id}/add-product")]
-        public async Task<IActionResult> AddProducts(int id, ICollection<AddProductToOrderItemDTO> request)
+        public async Task<IActionResult> AddProducts(int id, IEnumerable<AddProductToOrderItemDTO> request)
         {
             var added = await _orderItemService.AddProductsAsync(id, request);
             if (added <= 0)

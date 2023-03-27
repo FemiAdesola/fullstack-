@@ -39,7 +39,7 @@ namespace Backend.Controllers
         }
 
         [HttpPost("{id}/add-review")]
-        public async Task<IActionResult> AddReview(int id, ICollection<AddReviewToProductDTO> reviews)
+        public async Task<IActionResult> AddReview(int id, IEnumerable<AddReviewToProductDTO> reviews)
         {
             var added = await _productService.AddReviewToProuct(id, reviews);
             if (added <= 0)
