@@ -107,13 +107,13 @@ const Header = () => {
                         <Nav.Link
                             as={NavLink}
                             to='/login'
-                            style={{ width:'100px' }}
+                          style={{ backgroundColor: '#111000', width:'100px' }}
                             className='btn btn-secondary btn-sm text-white me-5 ms-5 p-2'
                             >
                             Login
                         </Nav.Link>
                     </div>
-                    <div className='d-flex align-items-lg-center mt-3 mt-lg-0'>
+                    {/* <div className='d-flex align-items-lg-center mt-3 mt-lg-0'>
                         <Nav.Link
                             as={NavLink}
                             to='/signup'
@@ -122,7 +122,7 @@ const Header = () => {
                             >
                             Register
                         </Nav.Link>
-                    </div>
+                    </div> */}
                 </>
                 ):(
                     <NavDropdown

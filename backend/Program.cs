@@ -30,7 +30,6 @@ internal class Program
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
         builder.Services.AddAutoMapper(typeof(Program).Assembly);
         builder.Services.AddApplicationServices(builder.Configuration);
         builder.Services.AddSwaggerDocumentation();
@@ -38,15 +37,15 @@ internal class Program
         builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
         var app = builder.Build();
-
+        
         app.UseMiddleware<ErrorHandlerMiddleware>();
-        app.UseMiddleware<LoggerMiddleware>();
+        // app.UseMiddleware<LoggerMiddleware>();
+        app.UseSwaggerDocumentation();
         app.UseHttpsRedirection();
         app.UseStatusCodePagesWithRedirects("/errors/{0}");
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
-        app.UseSwaggerDocumentation();
         app.MapControllers();
         app.Run();
     }

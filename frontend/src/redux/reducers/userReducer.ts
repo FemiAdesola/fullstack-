@@ -13,7 +13,7 @@ const userSlice = createSlice({
     name: "userSlice",
     initialState,
     reducers: {
-         userLogout: (state) => {
+        userLogout: (state) => {
             state = initialState
             return state
         }
@@ -51,10 +51,10 @@ const userSlice = createSlice({
             })
             .addCase(getUserBydId.fulfilled, (state, action) => {
             if (action.payload instanceof AxiosError) {
-                        return state
-                    } else {
+                return state
+            } else {
                     state.userList = action.payload
-                    }
+                }
             })
             .addCase(getUserBydId.pending, (state, action) => {
                 return state

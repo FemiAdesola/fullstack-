@@ -12,14 +12,13 @@ export const getAllUsers = createAsyncThunk(
             const data: UserType[] = response.data
             return data
         } catch (err) {
-            const error = err as AxiosError
+                const error = err as AxiosError
             if (error.response) {
-                console.log(`Error from response: ${error.message}`)
-                console.log(error.response.data)
+                alert(error.response.data)
             }else if (error.request) {
-                console.log(`Error from request: ${error.request}`)
+                alert(`Error from request: ${error.request}`)
             } else {
-                 console.log(error.config)
+               alert(error.config)
             }
             return error
         }
@@ -30,19 +29,18 @@ export const userAuthentication = createAsyncThunk(
     "userAuthentication",
     async ({ email, password }: Authentications, thunkAPI ) => {
         try {
-            const response = await axiosInstance.post("auth/login", { email, password })
-            const data: ReturnedAuthentications = response.data
-            const result = await thunkAPI.dispatch(loginUser(data.access_token))
+                const response = await axiosInstance.post("auth/login", { email, password })
+                const data: ReturnedAuthentications = response.data
+                const result = await thunkAPI.dispatch(loginUser(data.access_token))
                 return result.payload as UserType
         } catch (err) {
-            const error = err as AxiosError
+                const error = err as AxiosError
             if (error.response) {
-                console.log(`Error from response: ${error.message}`)
-                console.log(error.response.data)
+                alert(error.response.data)
             }else if (error.request) {
-                console.log(`Error from request: ${error.request}`)
+                alert(`Error from request: ${error.request}`)
             } else {
-                console.log(error.config)
+               alert(error.config)
             }
             return error
         }
@@ -53,20 +51,21 @@ export const loginUser = createAsyncThunk(
     "loginUser",
     async (access_token: string) => {
         try {
-            const response = await axiosInstance.get("auth/profile", {
+                const response = await axiosInstance.get("auth/profile", {
                 headers: { "Authorization": ` Bearer ${access_token}` }
             })
-            const data: UserType = response.data
-            return data
+                const data: UserType = response.data
+                return data
         } catch (err) {
-            const error = err as AxiosError
+               const error = err as AxiosError
             if (error.response) {
-                console.log(`Error from response: ${error.message}`)
+                alert(error.response.data)
             }else if (error.request) {
-                console.log(`Error from request: ${error.request}`)
+                alert(`Error from request: ${error.request}`)
             } else {
-                 console.log(error.config)
+               alert(error.config)
             }
+            return error
         }
     }
 )

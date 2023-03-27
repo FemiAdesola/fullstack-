@@ -28,7 +28,6 @@ namespace Backend.Extensions
                 .AddScoped<IUserTokenService, UserTokenService>()
                 .AddTransient<IAuthorizationHandler, UpdateUserPermission>();
             services
-                
                 .AddTransient<LoggerMiddleware>();
             services.Configure<ApiBehaviorOptions>(options =>
                 {
