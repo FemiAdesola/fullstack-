@@ -43,7 +43,7 @@ namespace Backend.Extensions
             app.UseSwaggerUI(option => 
             {
                 option.SwaggerEndpoint("swagger/v1/swagger.json", "API v1");
-                option.RoutePrefix = string.Empty;
+                // option.RoutePrefix = string.Empty;
             });
             return app;
         }

@@ -40,9 +40,9 @@ internal class Program
         
         app.UseMiddleware<ErrorHandlerMiddleware>();
         // app.UseMiddleware<LoggerMiddleware>();
-        app.UseSwaggerDocumentation();
+         app.UseSwaggerDocumentation();
         app.UseHttpsRedirection();
-        app.UseStatusCodePagesWithRedirects("/errors/{0}");
+        // app.UseStatusCodePagesWithRedirects("/errors/{0}");
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();

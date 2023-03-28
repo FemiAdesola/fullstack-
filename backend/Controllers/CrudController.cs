@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
 {
-    [Authorize(Policy = "AdminOnly")]
+    // [Authorize(Policy = "AdminOnly")]
     public abstract class CrudController<TModel, TDto, TReturn> : BaseApiController
      where TModel : BaseModel, new()
      where TDto : BaseDTO<TModel>
