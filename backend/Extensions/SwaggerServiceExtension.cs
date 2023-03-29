@@ -14,8 +14,8 @@ namespace Backend.Extensions
                 {
                     Description = "JWT Auth Bearer Scheme",
                     Name = "Authorisation",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.Http,
+                    // In = ParameterLocation.Header,
+                    // Type = SecuritySchemeType.Http,
                     Scheme = "Bearer",
                     Reference = new OpenApiReference
                     {
@@ -40,11 +40,7 @@ namespace Backend.Extensions
         public static IApplicationBuilder UseSwaggerDocumentation(this IApplicationBuilder app)
         {
             app.UseSwagger();
-            app.UseSwaggerUI(option => 
-            {
-                option.SwaggerEndpoint("swagger/v1/swagger.json", "API v1");
-                // option.RoutePrefix = string.Empty;
-            });
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             return app;
         }
     }

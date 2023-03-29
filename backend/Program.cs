@@ -5,6 +5,7 @@ using Backend.Middleware;
 using Backend.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.OpenApi.Models;
 
 internal class Program
 {
@@ -20,14 +21,12 @@ internal class Program
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
-
         builder.Services
             .AddIdentity<User, IdentityRole<int>>(options =>
             {
                 options.Password.RequiredLength = 6;
             })
             .AddEntityFrameworkStores<AppDbContext>();
-
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddAutoMapper(typeof(Program).Assembly);
@@ -36,12 +35,24 @@ internal class Program
         builder.Services.AddIdentityServices(builder.Configuration);
         builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("CorsPolicy", builder =>
+            {
+                builder
+                    .AllowAnyOrigin()
+                    .SetIsOriginAllowedToAllowWildcardSubdomains()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
         var app = builder.Build();
-        
+
         app.UseMiddleware<ErrorHandlerMiddleware>();
         // app.UseMiddleware<LoggerMiddleware>();
-         app.UseSwaggerDocumentation();
+        app.UseSwaggerDocumentation();
         app.UseHttpsRedirection();
+        app.UseCors("CorsPolicy");
         // app.UseStatusCodePagesWithRedirects("/errors/{0}");
         app.UseRouting();
         app.UseAuthentication();
