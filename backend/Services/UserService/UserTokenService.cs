@@ -35,15 +35,15 @@ namespace Backend.Services.UserService
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
 
-            var token = _config["AppSettings:Token"];
+            var secret = _config["AppSettings:Secret"];
             var signingKey = new SigningCredentials(
-                new SymmetricSecurityKey(Encoding.UTF8.GetBytes(token!)),
+                new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret!)),
                 SecurityAlgorithms.HmacSha256
             );
 
-            var expiration = DateTime.Now.AddDays(2);
+            var expiration = DateTime.Now.AddHours(1);
 
-            var getToken = new JwtSecurityToken(
+            var token = new JwtSecurityToken(
                 _config["AppSettings:Issuer"],
                 _config["AppSettings:Audience"],
                 claims,
@@ -54,7 +54,7 @@ namespace Backend.Services.UserService
 
             return new UserSignInResponseDTO
             {
-                Token = tokenWriter.WriteToken(getToken),
+                Token = tokenWriter.WriteToken(token),
                 Expiration = expiration,
             };
         }

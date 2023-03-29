@@ -45,7 +45,6 @@ namespace Backend.Services.UserService
                 }
             }
             await _userManager.AddToRolesAsync(user, userRoles);
-
             return user; 
         }
 

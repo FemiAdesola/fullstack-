@@ -27,7 +27,7 @@ namespace Backend.Extensions
                             ValidateLifetime = true,
                             ValidIssuer = config["AppSettings:Issuer"],
                             ValidAudience = config["AppSettings:Audience"],
-                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["AppSettings:Token"]))
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config.GetSection("AppSettings:Secret").Value!))
                         };
                     });
             services.AddAuthorization(options =>

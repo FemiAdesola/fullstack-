@@ -38,8 +38,6 @@ namespace Backend.DTOs
                 Email = user.Email!,
                 Avatar = user.Avatar,
             };
-        }
-
-       
+        }       
     }
 }

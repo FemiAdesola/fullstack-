@@ -31,7 +31,6 @@ namespace Backend.Database
             base.OnModelCreating(modelBuilder);
             modelBuilder.AddIdentityConfig();
             modelBuilder.AddICommonConfig();
-           
         }
 
         public DbSet<Category> Categories { get; set; } = null!;

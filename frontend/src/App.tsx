@@ -65,7 +65,8 @@ const router = createBrowserRouter([
         element: <ShippingAddress />
       },
       {
-        path: 'orders/:id',
+        // path: 'orders/:id',
+         path: 'orders',
         element: <OrderDetails/>
       },
       {

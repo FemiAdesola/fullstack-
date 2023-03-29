@@ -90,7 +90,7 @@ const Header = () => {
                         <i className='fa fa-fw fa-search text-dark me-2'></i>
                     </Link>
                     <Link
-                    className='nav-icon position-relative text-decoration-none' to={'/cart'}                 
+                    className='nav-icon position-relative text-decoration-none' to={'/orderitem'}                 
                     >
                         <i className='fa fa-fw fa-cart-arrow-down text-dark me-2 '></i>
                         <span

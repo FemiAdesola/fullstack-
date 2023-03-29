@@ -1,14 +1,15 @@
 import React from 'react'
 import { Button, Card, Col, Container, Image, ListGroup, Row } from 'react-bootstrap';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import axiosInstance from '../../common/axiosIntsance';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { reset } from '../../redux/reducers/orderItemReducer';
 
 const Checkout = () => {
-    const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
+  const id = useParams()
     const { orderItems, shippingAddress } = useAppSelector((state) => state.orderItemReducer);
     const navigate = useNavigate();
     const itemsPrice = orderItems.reduce(
@@ -28,10 +29,13 @@ const Checkout = () => {
       .post('/orders', order)
       .then((res) => {
         toast.success('your order has been created');
+        
+        navigate(`/orders/${res.data.id}`);
         dispatch(reset());
-        navigate(`/orders/${res.headers['Content-Type']?.toString()}`);
+        // navigate(`/orders/${res.headers['Content-Type']?.toString()}`);
       })
       .catch((err) => toast.error((err)));
+      
   };
   return (
     <Container className='mt-5' style={{ marginBottom: '300px' }}>
@@ -105,7 +109,8 @@ const Checkout = () => {
                     <ListGroup.Item className=' d-flex justify-content-between align-items-center'>
                     <Button
                         style={{ backgroundColor: '#e03a3c', color: '#fff' }}
-                        onClick={onSubmit}
+                    onClick={onSubmit}
+                    //  onClick={() => navigate(`/orders/${id}`)}
                         disabled={orderItems.length === 0}
                         className='w-full'
                         >

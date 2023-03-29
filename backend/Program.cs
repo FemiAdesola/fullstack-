@@ -4,8 +4,6 @@ using Backend.Extensions;
 using Backend.Middleware;
 using Backend.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Rewrite;
-using Microsoft.OpenApi.Models;
 
 internal class Program
 {
@@ -25,6 +23,10 @@ internal class Program
             .AddIdentity<User, IdentityRole<int>>(options =>
             {
                 options.Password.RequiredLength = 6;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
             })
             .AddEntityFrameworkStores<AppDbContext>();
         builder.Services.AddControllers();
@@ -49,11 +51,11 @@ internal class Program
         var app = builder.Build();
 
         app.UseMiddleware<ErrorHandlerMiddleware>();
-        // app.UseMiddleware<LoggerMiddleware>();
+        app.UseMiddleware<LoggerMiddleware>();
         app.UseSwaggerDocumentation();
         app.UseHttpsRedirection();
         app.UseCors("CorsPolicy");
-        // app.UseStatusCodePagesWithRedirects("/errors/{0}");
+        app.UseStatusCodePagesWithRedirects("/errors/{0}");
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
