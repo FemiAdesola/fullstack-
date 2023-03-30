@@ -4,7 +4,6 @@ using Backend.Extensions;
 using Backend.Middleware;
 using Backend.Models;
 using Microsoft.AspNetCore.Identity;
-
 internal class Program
 {
     private static void Main(string[] args)
@@ -43,7 +42,6 @@ internal class Program
             {
                 builder
                     .AllowAnyOrigin()
-                    .SetIsOriginAllowedToAllowWildcardSubdomains()
                     .AllowAnyHeader()
                     .AllowAnyMethod();
             });
