@@ -4,7 +4,13 @@ import axios from "axios"
 //     baseURL: "https://backend-femi.azurewebsites.net/api/v1/"
 // })
 
+// const axiosInstance = axios.create  ({
+//     baseURL: "https://localhost:7187/api/v1"
+// })
+
+
 const axiosInstance = axios.create  ({
-    baseURL: "https://localhost:7187/api/v1"
+    baseURL: "http://localhost:4000/api/v1/"
 })
+
 export default axiosInstance

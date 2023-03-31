@@ -36,7 +36,7 @@ const Home = ({ title, description, children, }: HomeLayout) => {
               ) : (
             <Col lg={12} className='ml-5'>
               <Row md={3} xs={1} lg={3} style={{ minHeight: '60vh' }}>
-                {categories.map((category) => (
+                {Array.isArray(categories)? categories.map((category) => (
                   <Col lg={4} md={6} xs={12} key={category.id} gap={5}>
                       <CategoryCard 
                         image={category.image}
@@ -44,7 +44,7 @@ const Home = ({ title, description, children, }: HomeLayout) => {
                         id={category.id}  
                       />
                   </Col>
-                ))}
+                )):null}
               </Row>
             </Col>
         )}

@@ -83,11 +83,11 @@ const Products = () => {
                   >
                     <option value='All'>All</option>
                     All
-                    { categories.map((category) => (
+                    {Array.isArray(categories)? categories.map((category) => (
                       <option value={category.name.toLowerCase()} key={category.id}>
                         {category.name.toLowerCase()}
                       </option>
-                    ))}
+                    )): null}
                   </FormSelect>
                     </ListGroup.Item>
                 <ListGroup.Item>
