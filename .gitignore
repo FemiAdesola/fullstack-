@@ -14,6 +14,8 @@ backend/Publish
 /Note2.md
 /Note3.md
 /docker.md
+/docker-compose.yml
+/docker-compose.debug.yml
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/

@@ -4,9 +4,34 @@ version: '3.4'
 
 services:
   backend:
+    container_name: 'aspnetcoreapp'
     image: backend
     build:
-      context: .
-      dockerfile: Backend/Dockerfile
+      context: ./Backend
+      dockerfile: Dockerfile
+    environment:
+        - ConnectionStrings__DefaultConnection=User ID=femioyinloye;Password=Oyin090577!;Server=backend.postgres.database.azure.com;Port=5432;Database=backend; Integrated Security=true;Pooling=true;
     ports:
       - 5131:5131
+    depends_on:
+      - database
+  frontend:
+    container_name: 'reactapp'
+    image: frontend 
+    build:
+      context: ./frontend 
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+  database:
+    container_name: 'database'
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: Oyin090577!
+      POSTGRES_DB: backend
+    ports:
+      - 5432:5432
+    
