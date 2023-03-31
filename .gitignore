@@ -8,6 +8,7 @@ backend/bin
 backend/wwwroot
 backend/user.http
 backend/note.http
+backend/Publish
 
 /Note.md
 /Note2.md
