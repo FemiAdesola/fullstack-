@@ -15,7 +15,7 @@ namespace Backend.Services.Interface
         public string Search { get; set; } = string.Empty;
         public SortBy SortBy { get; set; }
         public int Limit { get; set; } = 30;
-        public int Skip { get; set; } = 0;
+        public int Skip { get; set; } = 1;
     }
 
     public enum SortBy

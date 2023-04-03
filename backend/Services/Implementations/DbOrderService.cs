@@ -15,6 +15,7 @@ namespace Backend.Services.Implementations
 
         public override async Task<IEnumerable<Order>> GetAllAsync(QueryOptions options)
         {
+            var filter = (QueryOptions?)options;
             return await _dbContext.Orders
                 .AsNoTracking()
                 .Include(s => s.Address)
@@ -22,6 +23,9 @@ namespace Backend.Services.Implementations
                 .Include(p => p.Orders)
                     .ThenInclude(p => p.OrderItem)
                 .OrderBy(s => s.Id)
+                .Skip((filter!.Skip - 1) * filter.Limit)
+                .Take(filter.Limit)
+                .OrderByDescending(c => c.Id)
                 .ToListAsync();
         }
 

@@ -15,11 +15,15 @@ namespace Backend.Services.Implementations
 
         public override async Task<IEnumerable<OrderItem>> GetAllAsync(QueryOptions options)
         {
+            var filter = (QueryOptions?)options;
             return await _dbContext.OrderItems
                 .AsNoTracking()
                 .Include(s => s.ProductLists)
                    .ThenInclude(s => s.Product)
                 .OrderBy(s => s.Id)
+                .Skip((filter!.Skip - 1) * filter.Limit)
+                .Take(filter.Limit)
+                .OrderByDescending(c => c.Id)
                 .ToListAsync();
         }
 

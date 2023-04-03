@@ -28,7 +28,8 @@ namespace Backend.Services.Implementations
 
         public virtual async Task<IEnumerable<TModel>> GetAllAsync(QueryOptions options)
         {
-            var query =  _dbContext.Set<TModel>().AsNoTracking();
+            var filter = (QueryOptions?)options;
+            var query = _dbContext.Set<TModel>().AsNoTracking().Where(c => true);
             if (options.Sort.Trim().Length > 0)
             {
                 if (query.GetType().GetProperty(options.Sort) != null)
@@ -37,7 +38,11 @@ namespace Backend.Services.Implementations
                 } 
                 query.Take(options.Limit).Skip(options.Skip);
             }
-            return await query.ToArrayAsync();
+            return await query
+            .Skip((filter!.Skip - 1) * filter.Limit)
+            .Take(filter.Limit)
+            .OrderByDescending(c => c.Id)
+            .ToListAsync();
         }
 
 

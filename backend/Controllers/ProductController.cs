@@ -27,6 +27,7 @@ namespace Backend.Controllers
             _authorizationService = authorizationService;
         }
 
+        [AllowAnonymous]
         [HttpGet("by-categories/{id}")]
         public async Task<IActionResult> GetProductsByCategoryIdAsync(int id)
         {
