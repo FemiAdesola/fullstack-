@@ -23,9 +23,14 @@ jobs:
                 working-directory: frontend
         steps:
             -   uses: actions/checkout@v3
-            -   name: install all dependencies 🔧
-                run: npm install
-            -   name: build the project
+            -   name: Use Node.js 19.x
+                uses: actions/setup-node@v3
+                with:
+                    node-version: 19.x
+                    cache: 'npm'
+                    cache-dependency-path: package-lock.json
+            -   run: npm ci
+            -   name: Install dependencies
+                run: npm install 
+            -   name: Build file
                 run: npm run build
-                env:
-                    CI: false
