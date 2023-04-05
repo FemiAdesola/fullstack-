@@ -10,7 +10,7 @@
 
 * Frontend: SASS, TypeScript, React, Redux Toolkit
 * Backend: ASP .NET Core, Entity Framework Core, PostgreSQL 
-    + Click [here](https://backend-femi.azurewebsites.net/index.html) to see the RESTApi
+    + Click [here](https://backend-femi.azurewebsites.net/index.html) or [this](https://femi-backend.azurewebsites.net/index.html) to see the RESTApi
     + Click [here](https://fullstackfrontend.netlify.app/) to see the frontend
 
 ## Table of content
