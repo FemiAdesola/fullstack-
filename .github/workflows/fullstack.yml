@@ -26,6 +26,6 @@ jobs:
             -   name: install all dependencies 🔧
                 run: npm install
             -   name: build the project
-                run: npm run deploy:ci
+                run: npm run build
                 env:
                     CI: false
