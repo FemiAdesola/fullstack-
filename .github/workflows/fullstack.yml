@@ -1,4 +1,4 @@
-name: Fullstack project
+name: Automate push/deployment operation
 on: [push]
 jobs:
     Backend:
