@@ -4,6 +4,8 @@ using Backend.Extensions;
 using Backend.Middleware;
 using Backend.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Net.Http.Headers;
+
 internal class Program
 {
     private static void Main(string[] args)
@@ -43,10 +45,28 @@ internal class Program
                 builder
                     .AllowAnyOrigin()
                     .AllowAnyHeader()
-                    .AllowAnyMethod();
+                    .AllowAnyMethod()
+                    .WithOrigins()
+                    .WithHeaders(HeaderNames.ContentType, HeaderNames.Accept)
+                    // .WithMethods("GET, POST, PUT, DELETE, OPTIONS, PATCH")
+                ;
             });
         });
+
+// 
+      
+// 
+
         var app = builder.Build();
+
+        app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+                context.Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH");
+                context.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+                await next();
+            });
 
         app.UseMiddleware<ErrorHandlerMiddleware>();
         app.UseMiddleware<LoggerMiddleware>();

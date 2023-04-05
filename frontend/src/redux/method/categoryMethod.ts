@@ -33,7 +33,8 @@ export const createCategory = createAsyncThunk(
             const url: string = response.data.location
             const categoryResponse = await axiosInstance.post("categories", {
                 ...category,
-                image: url
+                image: url,
+                // headers: { "Content-Type": "apllication/json" }
             })
             const data: CategoryType = categoryResponse.data
             return data
