@@ -3,7 +3,9 @@ on: [push]
 jobs:
     Backend:
         runs-on: ubuntu-latest
-        
+        defaults:
+            run:
+                working-directory: /Backend
         steps:
             -   uses: actions/checkout@v3
             -   name: install .net sdk
