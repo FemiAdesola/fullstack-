@@ -1,3 +1,4 @@
+[![FullStack](https://github.com/FemiAdesola/fs13-FullStack/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/FemiAdesola/fs13-FullStack/actions)
 # Fullstack Project
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-v.4-green)
