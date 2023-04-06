@@ -53,10 +53,6 @@ internal class Program
             });
         });
 
-// 
-      
-// 
-
         var app = builder.Build();
 
         app.Use(async (context, next) =>
@@ -67,7 +63,6 @@ internal class Program
 
                 await next();
             });
-
         app.UseMiddleware<ErrorHandlerMiddleware>();
         app.UseMiddleware<LoggerMiddleware>();
         app.UseSwaggerDocumentation();

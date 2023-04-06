@@ -19,6 +19,5 @@ namespace Backend.Models
 
         [JsonIgnore]
         public ICollection<ReviewProduct> Reviews { get; set; } = null!;
-
     }
 }

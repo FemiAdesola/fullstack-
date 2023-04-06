@@ -45,7 +45,6 @@ namespace Backend.Services.Implementations
             .ToListAsync();
         }
 
-
         public virtual async Task<TModel?> GetAsync(int id)
         {
             return await _dbContext.Set<TModel>().FindAsync(id);

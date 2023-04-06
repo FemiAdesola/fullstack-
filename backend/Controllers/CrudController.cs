@@ -6,7 +6,6 @@ using Backend.Services.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace Backend.Controllers
 {
     [Authorize(Policy = "AdminOnly")]

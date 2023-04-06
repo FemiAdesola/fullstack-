@@ -23,5 +23,4 @@ namespace Backend.Services.Interface
         ASC,
         DESC
     }
-
 }

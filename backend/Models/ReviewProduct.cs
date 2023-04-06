@@ -10,6 +10,5 @@ namespace Backend.Models
 
         [JsonIgnore]
         public int ProductId { get; set; }
-
     }
 }
