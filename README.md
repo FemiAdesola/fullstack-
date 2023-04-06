@@ -19,6 +19,7 @@
 - [Introduction](#introduction)
 - [Technologies](#technologies)
 - [Installation](#installation)
+- [Project structure](#project-structure)
 - [Getting started](#getting-started)
 
 ## Introduction
@@ -61,6 +62,203 @@ In addition, the backend was modeled first by designing the model from top to bo
         1. Write `npm install` on your terminal 
     + Runs the app in the development mode.
         1.  Write `npm start` on your terminal 
+
+## Project structure
+
+```shell
+backend
+├── Authorization
+│   └── UpdateUserPermission.cs
+├── Controllers
+│   ├── BaseApiController.cs
+│   ├── CategoryController.cs
+│   ├── CrudController.cs
+│   ├── ErrorController.cs
+│   ├── HttpErrorController.cs
+│   ├── OrderController.cs
+│   ├── OrderItemController.cs
+│   ├── ProductController.cs
+│   ├── ReviewController.cs
+│   └── UserController.cs
+├── DTOs
+│   ├── AddOrderItemToOrderDTO.cs
+│   ├── AddProductToOrderItemDTO.cs
+│   ├── AddReviewToProductDTO.cs
+│   ├── AddressDTO.cs
+│   ├── BaseDTO.cs
+│   ├── BaseReturnDTO.cs
+│   ├── CategoryDTO.cs
+│   ├── OrderDTO.cs
+│   ├── OrderItemDTO.cs
+│   ├── ProductDTO.cs
+│   ├── ReviewDTO.cs
+│   ├── UserSignInDTO.cs
+│   ├── UserSignUpDTO.cs
+│   └── UserUpdateDTO.cs
+├── Database
+│   ├── AppDbContext.cs
+│   ├── AppDbContextSaveChangesInterceptor.cs
+│   ├── CommonEntityExtension.cs
+│   ├── DataStore.cs
+│   └── IdentityConfigExtension.cs
+├── Dockerfile
+├── Errors
+│   ├── ApiExceptionError.cs
+│   ├── ApiResponseError.cs
+│   └── ApiValidationError.cs
+├── Extensions
+│   ├── ApplicationServiceExtension.cs
+│   ├── IdentityServiceExtensions.cs
+│   └── SwaggerServiceExtension.cs
+├── Helper
+│   └── MappingProfile.cs
+├── Middleware
+│   ├── ErrorHandlerMiddleware.cs
+│   └── LoggerMiddleware.cs
+├── Migrations
+│   ├── 20230324155045_InitiaMigration.Designer.cs
+│   ├── 20230324155045_InitiaMigration.cs
+│   └── AppDbContextModelSnapshot.cs
+├── Models
+│   ├── Address.cs
+│   ├── BaseModel.cs
+│   ├── Category.cs
+│   ├── Order.cs
+│   ├── OrderAndOrderItem.cs
+│   ├── OrderItem.cs
+│   ├── OrderItemProduct.cs
+│   ├── Product.cs
+│   ├── ProductBrand.cs
+│   ├── Review.cs
+│   ├── ReviewProduct.cs
+│   └── User.cs
+├── Program.cs
+├── Properties
+│   └── launchSettings.json
+├── Services
+│   ├── Implementations
+│   │   ├── DbCategoryService.cs
+│   │   ├── DbCrudService.cs
+│   │   ├── DbOrderItemService.cs
+│   │   ├── DbOrderService.cs
+│   │   ├── DbProductService.cs
+│   │   └── DbReviewService.cs
+│   ├── Interface
+│   │   ├── ICategoryService.cs
+│   │   ├── ICrudService.cs
+│   │   ├── IOrderItemService.cs
+│   │   ├── IOrderService.cs
+│   │   ├── IProductService.cs
+│   │   └── IReviewService.cs
+│   └── UserService
+│       ├── IUserService.cs
+│       ├── IUserTokenService.cs
+│       ├── UserService.cs
+│       └── UserTokenService.cs
+├── backend.csproj
+├── example.json
+└── example.json
+
+frontend
+├── package.json
+├── public
+│   ├── _redirects
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+├── src
+│   ├── App.css
+│   ├── App.css.map
+│   ├── App.tsx
+│   ├── SCSS
+│   │   ├── App.SCSS
+│   │   └── features
+│   │       ├── _common.SCSS
+│   │       ├── _contact.SCSS
+│   │       └── _footer.scss
+│   ├── common
+│   │   └── axiosIntsance.ts
+│   ├── components
+│   │   ├── Contact.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Header.tsx
+│   │   ├── Loader
+│   │   │   └── Loader.tsx
+│   │   ├── category
+│   │   │   ├── Categories.tsx
+│   │   │   ├── CategoryBoard.tsx
+│   │   │   ├── CategoryCard.tsx
+│   │   │   ├── CreateCategory.tsx
+│   │   │   ├── SingleCategory.tsx
+│   │   │   └── UpdateCategory.tsx
+│   │   ├── order
+│   │   │   └── OrderDetails.tsx
+│   │   ├── orderItem
+│   │   │   ├── Checkout.tsx
+│   │   │   ├── OrderItem.tsx
+│   │   │   └── ShippingAddress.tsx
+│   │   ├── product
+│   │   │   ├── CreateProduct.tsx
+│   │   │   ├── ProductBoard.tsx
+│   │   │   ├── ProductCard.tsx
+│   │   │   ├── Products.tsx
+│   │   │   ├── Review.tsx
+│   │   │   ├── SingleProduct.tsx
+│   │   │   └── UpdateProduct.tsx
+│   │   └── user
+│   │       ├── Login.tsx
+│   │       ├── Profile.tsx
+│   │       └── SignUp.tsx
+│   ├── features
+│   │   ├── BoardWrapper.tsx
+│   │   ├── FooterBottom.tsx
+│   │   ├── FormContainer.tsx
+│   │   ├── HeaderTop.tsx
+│   │   ├── HomeCarousel.tsx
+│   │   ├── HomeMeta.tsx
+│   │   └── Rating.tsx
+│   ├── formValidation
+│   │   ├── categorySchema.ts
+│   │   ├── productSchema.ts
+│   │   └── signUpSchema.ts
+│   ├── hooks
+│   │   └── reduxHooks.ts
+│   ├── index.css
+│   ├── index.tsx
+│   ├── logo.svg
+│   ├── pages
+│   │   ├── Home.tsx
+│   │   └── Layout.tsx
+│   ├── react-app-env.d.ts
+│   ├── redux
+│   │   ├── method
+│   │   │   ├── categoryMethod.ts
+│   │   │   ├── orderMethod.ts
+│   │   │   ├── productMethod.ts
+│   │   │   └── userMethod.ts
+│   │   ├── reducers
+│   │   │   ├── categoryReducer.ts
+│   │   │   ├── orderItemReducer.ts
+│   │   │   ├── orderReducer.ts
+│   │   │   ├── productReducer.ts
+│   │   │   └── userReducer.ts
+│   │   └── store.ts
+│   ├── reportWebVitals.ts
+│   ├── setupTests.ts
+│   └── types
+│       ├── boardWrapper.ts
+│       ├── category.ts
+│       ├── homeLayout.ts
+│       ├── order.ts
+│       ├── orderItem.ts
+│       ├── product.ts
+│       ├── review.ts
+│       └── user.ts
+└── tsconfig.json
+```
 
 ## Getting started
 

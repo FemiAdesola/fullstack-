@@ -29,7 +29,7 @@ export const userAuthentication = createAsyncThunk(
     "userAuthentication",
     async ({ email, password }: Authentications, thunkAPI ) => {
         try {
-                const response = await axiosInstance.post("auth/login", { email, password })
+                const response = await axiosInstance.post("user", { email, password })
                 const data: ReturnedAuthentications = response.data
                 const result = await thunkAPI.dispatch(loginUser(data.access_token))
                 return result.payload as UserType
@@ -51,7 +51,7 @@ export const loginUser = createAsyncThunk(
     "loginUser",
     async (access_token: string) => {
         try {
-                const response = await axiosInstance.get("auth/profile", {
+                const response = await axiosInstance.get("users/signin", {
                 headers: { "Authorization": ` Bearer ${access_token}` }
             })
                 const data: UserType = response.data
@@ -78,7 +78,7 @@ export const createUserWithSignUp = createAsyncThunk(
                 headers: { "Content-Type": "multipart/form-data" }
             })
             const url: string = response.data.location
-            const userResponse = await axiosInstance.post("users", {
+            const userResponse = await axiosInstance.post("users/signup", {
                 ...user,
                 avatar: url
             })
