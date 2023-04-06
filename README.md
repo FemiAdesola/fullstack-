@@ -273,15 +273,15 @@ frontend
 
 ![SinglePage](/img/Singleproduct.png)
 
-### Backend with swagger for Category and Order endpoint
+### Backend with azurewebsites for Category and Order endpoint
 
 ![Backend1](/img/Backend1.png)
 
-### Backend with swagger for Ordertem. product and review endpoint
+### Backend with azurewebsites for Ordertem. product and review endpoint
 
 ![Backend2](/img/Backend1.png)
 
-### Backend with swagger for user endpoint
+### Backend with azurewebsites for user endpoint
 
 ![User](/img/user.png)
 
