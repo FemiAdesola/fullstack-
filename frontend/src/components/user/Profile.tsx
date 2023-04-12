@@ -33,7 +33,7 @@ const Profile = () => {
             setRefresh((prev) => (prev = !prev));
         })
         .catch((err) => (console.log(err)));
-        navigate(`/users`);
+        navigate(`/products`);
     }
    useEffect(() => {
      dispatch(getUserBydId(id));

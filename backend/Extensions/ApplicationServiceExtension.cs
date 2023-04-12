@@ -23,11 +23,10 @@ namespace Backend.Extensions
                 .AddScoped<IOrderService, DbOrderSerivce>()
                 .AddScoped<IOrderItemService, DbOrderItemSerivce>()
                 .AddScoped<IReviewService, DbReviewSerivce>()
-
                 .AddScoped<IUserService, UserService>()
-                .AddScoped<IUserTokenService, UserTokenService>()
-                .AddTransient<IAuthorizationHandler, UpdateUserPermission>();
+                .AddScoped<IUserTokenService, UserTokenService>();
             services
+                .AddTransient<IAuthorizationHandler, UpdateUserPermission>()
                 .AddTransient<LoggerMiddleware>();
             services.Configure<ApiBehaviorOptions>(options =>
                 {
