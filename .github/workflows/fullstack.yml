@@ -5,7 +5,7 @@ jobs:
         runs-on: ubuntu-latest
         defaults:
             run:
-                working-directory: BackendItem/backend
+                working-directory: backenditem/backend
         steps:
             -   uses: actions/checkout@v3
             -   name: install .net sdk
