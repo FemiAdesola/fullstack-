@@ -1,11 +1,11 @@
 ### Ignore unnecessary files in backend
 
 # User-specific files
-backend/appsettings.json
-backend/appsettings.*.json
-backend/obj
-backend/bin
-backend/Publish
+BackendItem/backend/appsettings.json
+BackendItem/backend/appsettings.*.json
+BackendItem/backend/obj
+BackendItem/backend/bin
+BackendItem/backend/Publish
 
 /Note.md
 /Note2.md

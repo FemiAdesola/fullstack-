@@ -99,3 +99,22 @@ frontend
 │       └── user.ts
 └── tsconfig.json
 ```
+
+```shell
+mkdir backendtest
+cd backendtest
+dotnet new sln
+ls
+mv mv ../Backend/ .
+ls
+
+mkdir backend.Test
+cd backend.Test/
+dotnet new xunit
+ls
+cd ..
+ls
+code-insiders .
+ 
+
+```
