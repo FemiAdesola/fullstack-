@@ -10,6 +10,8 @@ BackendItem/backend/user.http
 BackendItem/backend/note.http
 BackendItem/backend/Publish
 BackendItem/backend.Test/obj
+BackendItem/backend.Test/bin
+BackendItem/Backend/bin
 
 /Note.md
 /Note2.md

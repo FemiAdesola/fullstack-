@@ -14,9 +14,9 @@ namespace Backend.Controllers
      where TDto : BaseDTO<TModel>
      where TReturn: BaseReturnDTO<TModel>
     {
-        private readonly ICrudService<TModel, TDto> _service;
-        private readonly IMapper _mapper;
-        private readonly IAuthorizationService _authorizationService;
+        protected readonly ICrudService<TModel, TDto> _service;
+        protected readonly IMapper _mapper;
+        protected readonly IAuthorizationService _authorizationService;
         
         public CrudController(ICrudService<TModel, TDto> service, 
             IMapper mapper,
