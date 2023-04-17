@@ -1,4 +1,4 @@
 {
     "appService.defaultWebAppToDeploy": "",
-    "appService.deploySubpath": "Backend/bin/Publish"
+    "appService.deploySubpath": "BackendItem/Backend/bin/Publish"
 }
