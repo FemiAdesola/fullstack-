@@ -13,6 +13,7 @@ BackendItem/backend.Test/obj
 BackendItem/backend.Test/bin
 BackendItem/Backend/bin
 BackendItem/backend_key.pem
+BackendItem/Backend/Migrations
 
 /Note.md
 /Note2.md
