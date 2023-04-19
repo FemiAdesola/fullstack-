@@ -12,6 +12,7 @@ BackendItem/backend/Publish
 BackendItem/backend.Test/obj
 BackendItem/backend.Test/bin
 BackendItem/Backend/bin
+BackendItem/backend_key.pem
 
 /Note.md
 /Note2.md

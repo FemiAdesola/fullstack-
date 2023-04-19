@@ -40,7 +40,6 @@ namespace Backend.DTOs
             returnBase.Price = Price;
             returnBase.Images = Images;
             returnBase.Category = Category;
-
         }
     }
 }
